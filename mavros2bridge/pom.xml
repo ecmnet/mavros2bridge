@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.comino</groupId>
+  <artifactId>mavros2bridge</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+		<dependency>
+			<groupId>us.ihmc</groupId>
+			<artifactId>ihmc-ros2-library</artifactId>
+			<version>0.20.5</version>
+		</dependency>
+		<dependency>
+			<groupId>us.ihmc</groupId>
+			<artifactId>ros2-common-interfaces</artifactId>
+			<version>0.20.5</version>
+		</dependency>
+		<dependency>
+			<groupId>us.ihmc</groupId>
+			<artifactId>ihmc-ros-control</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+	</dependencies>
+	
+</project>
