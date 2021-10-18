@@ -4,6 +4,12 @@
   <artifactId>mavros2bridge</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.10</maven.compiler.target>
+		<maven.compiler.source>1.10</maven.compiler.source>
+	</properties>
+  
   <dependencies>
 		<dependency>
 			<groupId>us.ihmc</groupId>
@@ -14,11 +20,6 @@
 			<groupId>us.ihmc</groupId>
 			<artifactId>ros2-common-interfaces</artifactId>
 			<version>0.20.5</version>
-		</dependency>
-		<dependency>
-			<groupId>us.ihmc</groupId>
-			<artifactId>ihmc-ros-control</artifactId>
-			<version>0.6.0</version>
 		</dependency>
 	</dependencies>
 	
