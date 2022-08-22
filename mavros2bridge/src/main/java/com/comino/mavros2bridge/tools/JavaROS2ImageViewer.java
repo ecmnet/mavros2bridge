@@ -75,7 +75,7 @@ public class JavaROS2ImageViewer extends Application  {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		primaryStage.setTitle("ROS2 Image viewer");
+		primaryStage.setTitle("ROS2 Image viewer: "+imageTopic);
 
 		FlowPane root = new FlowPane();
 
@@ -100,6 +100,7 @@ public class JavaROS2ImageViewer extends Application  {
 			sensor_msgs.msg.dds.Image message = new sensor_msgs.msg.dds.Image();
 			
 			if (subscriber.takeNextData(message, info)) {
+				
 				output.setData(Raster.createRaster(output.getSampleModel(), 
 						new DataBufferByte(message.data_.toArray(),0), new Point() ) );
 				
@@ -110,10 +111,12 @@ public class JavaROS2ImageViewer extends Application  {
 				
 				c.drawString(message.getHeader().getStamp().toString(), 5, 20);
 				c.drawString(String.format("%3.1f fps", fps), WIDTH-60, 20);
+				
 				Platform.runLater(() -> {
 					SwingFXUtils.toFXImage(output, wirgb);
 				});
 			}
+			
 		}, imageTopic);
 
 		
