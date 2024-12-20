@@ -1,0 +1,34 @@
+#ifndef __px4_msgs__msg__LogMessage__idl__
+#define __px4_msgs__msg__LogMessage__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      /**
+       * A logging message, output with PX4_WARN, PX4_ERR, PX4_INFO
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::LogMessage_")
+      struct LogMessage
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * log level (same as in the linux kernel, starting with 0)
+         */
+        octet severity;
+        char text[127];
+      };
+    };
+  };
+};
+
+#endif

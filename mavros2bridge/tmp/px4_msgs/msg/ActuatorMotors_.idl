@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__ActuatorMotors__idl__
+#define __px4_msgs__msg__ActuatorMotors__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ACTUATOR_FUNCTION_MOTOR1 =
+      101;
+
+      const octet NUM_CONTROLS =
+      12;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ActuatorMotors_")
+      struct ActuatorMotors
+      {
+        /**
+         * Motor control message
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp the data this control response is based on was sampled
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * bitset which motors are configured to be reversible
+         */
+        unsigned short reversible_flags;
+        /**
+         * range: [-1, 1], where 1 means maximum positive thrust,
+         */
+        float control[12];
+      };
+    };
+  };
+};
+
+#endif

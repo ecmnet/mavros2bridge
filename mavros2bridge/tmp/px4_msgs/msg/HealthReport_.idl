@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__HealthReport__idl__
+#define __px4_msgs__msg__HealthReport__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * A component is required but missing, if present==0 and error==1
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::HealthReport_")
+      struct HealthReport
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * bitfield for each flight mode (NAVIGATION_STATE_*) if arming is possible
+         */
+        unsigned long long can_arm_mode_flags;
+        /**
+         * bitfield for each flight mode if it can run
+         */
+        unsigned long long can_run_mode_flags;
+        /**
+         * flags for each health_component_t
+         */
+        unsigned long long health_is_present_flags;
+        unsigned long long health_warning_flags;
+        unsigned long long health_error_flags;
+        unsigned long long arming_check_warning_flags;
+        unsigned long long arming_check_error_flags;
+      };
+    };
+  };
+};
+
+#endif

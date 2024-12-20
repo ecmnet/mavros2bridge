@@ -1,0 +1,120 @@
+#ifndef __px4_msgs__msg__VehicleCommandAck__idl__
+#define __px4_msgs__msg__VehicleCommandAck__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * Result cases. This follows the MAVLink MAV_RESULT enum definition
+       * Command ACCEPTED and EXECUTED |
+       */
+      const octet VEHICLE_CMD_RESULT_ACCEPTED =
+      0;
+
+      /**
+       * Command TEMPORARY REJECTED/DENIED |
+       */
+      const octet VEHICLE_CMD_RESULT_TEMPORARILY_REJECTED =
+      1;
+
+      /**
+       * Command PERMANENTLY DENIED |
+       */
+      const octet VEHICLE_CMD_RESULT_DENIED =
+      2;
+
+      /**
+       * Command UNKNOWN/UNSUPPORTED |
+       */
+      const octet VEHICLE_CMD_RESULT_UNSUPPORTED =
+      3;
+
+      /**
+       * Command executed, but failed |
+       */
+      const octet VEHICLE_CMD_RESULT_FAILED =
+      4;
+
+      /**
+       * Command being executed |
+       */
+      const octet VEHICLE_CMD_RESULT_IN_PROGRESS =
+      5;
+
+      /**
+       * Command Canceled
+       */
+      const octet VEHICLE_CMD_RESULT_CANCELLED =
+      6;
+
+      /**
+       * Arming denied specific cases
+       */
+      const unsigned short ARM_AUTH_DENIED_REASON_GENERIC =
+      0;
+
+      const unsigned short ARM_AUTH_DENIED_REASON_NONE =
+      1;
+
+      const unsigned short ARM_AUTH_DENIED_REASON_INVALID_WAYPOINT =
+      2;
+
+      const unsigned short ARM_AUTH_DENIED_REASON_TIMEOUT =
+      3;
+
+      const unsigned short ARM_AUTH_DENIED_REASON_AIRSPACE_IN_USE =
+      4;
+
+      const unsigned short ARM_AUTH_DENIED_REASON_BAD_WEATHER =
+      5;
+
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      /**
+       * Vehicle Command Ackonwledgement uORB message.
+       * Used for acknowledging the vehicle command being received.
+       * Follows the MAVLink COMMAND_ACK message definition
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleCommandAck_")
+      struct VehicleCommandAck
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Command that is being acknowledged
+         */
+        unsigned long command;
+        /**
+         * Command result
+         */
+        octet result;
+        /**
+         * Also used as progress[%], it can be set with the reason why the command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS
+         */
+        octet result_param1;
+        /**
+         * Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
+         */
+        long result_param2;
+        octet target_system;
+        /**
+         * Target component / mode executor
+         */
+        unsigned short target_component;
+        /**
+         * Indicates if the command came from an external source
+         */
+        boolean from_external;
+      };
+    };
+  };
+};
+
+#endif

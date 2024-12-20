@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__DatamanRequest__idl__
+#define __px4_msgs__msg__DatamanRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::DatamanRequest_")
+      struct DatamanRequest
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet client_id;
+        /**
+         * id/read/write/clear
+         */
+        octet request_type;
+        /**
+         * dm_item_t
+         */
+        octet item;
+        unsigned long index;
+        octet data[56];
+        unsigned long data_length;
+      };
+    };
+  };
+};
+
+#endif

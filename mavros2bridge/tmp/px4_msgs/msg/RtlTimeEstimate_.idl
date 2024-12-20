@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__RtlTimeEstimate__idl__
+#define __px4_msgs__msg__RtlTimeEstimate__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RtlTimeEstimate_")
+      struct RtlTimeEstimate
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Flag indicating whether the time estiamtes are valid
+         */
+        boolean valid;
+        /**
+         * [s] Estimated time for RTL
+         */
+        float time_estimate;
+        /**
+         * [s] Same as time_estimate, but with safety factor and safety margin included (factor*t + margin)
+         */
+        float safe_time_estimate;
+      };
+    };
+  };
+};
+
+#endif

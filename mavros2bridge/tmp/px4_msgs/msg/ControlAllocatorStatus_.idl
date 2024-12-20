@@ -1,0 +1,83 @@
+#ifndef __px4_msgs__msg__ControlAllocatorStatus__idl__
+#define __px4_msgs__msg__ControlAllocatorStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * The actuator is not saturated
+       */
+      const octet ACTUATOR_SATURATION_OK =
+      0;
+
+      /**
+       * The actuator is saturated (with a value <= the desired value) because it cannot increase its value faster
+       */
+      const octet ACTUATOR_SATURATION_UPPER_DYN =
+      1;
+
+      /**
+       * The actuator is saturated (with a value <= the desired value) because it has reached its maximum value
+       */
+      const octet ACTUATOR_SATURATION_UPPER =
+      2;
+
+      /**
+       * The actuator is saturated (with a value >= the desired value) because it cannot decrease its value faster
+       */
+      const octet ACTUATOR_SATURATION_LOWER_DYN =
+      255;
+
+      /**
+       * The actuator is saturated (with a value >= the desired value) because it has reached its minimum value
+       */
+      const octet ACTUATOR_SATURATION_LOWER =
+      254;
+
+
+      /**
+       * Computed as: unallocated_torque = torque_setpoint - allocated_torque
+       * Computed as: unallocated_thrust = thrust_setpoint - allocated_thrust
+       * Note 1: actuator saturation does not necessarily imply that the thrust setpoint or the torque setpoint were not achieved.
+       * Note 2: an actuator with limited dynamics can be indicated as upper-saturated even if it as not reached its maximum value.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ControlAllocatorStatus_")
+      struct ControlAllocatorStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Boolean indicating whether the 3D torque setpoint was correctly allocated to actuators. 0 if not achieved, 1 if achieved.
+         */
+        boolean torque_setpoint_achieved;
+        /**
+         * Unallocated torque. Equal to 0 if the setpoint was achieved.
+         */
+        float unallocated_torque[3];
+        /**
+         * Boolean indicating whether the 3D thrust setpoint was correctly allocated to actuators. 0 if not achieved, 1 if achieved.
+         */
+        boolean thrust_setpoint_achieved;
+        /**
+         * Unallocated thrust. Equal to 0 if the setpoint was achieved.
+         */
+        float unallocated_thrust[3];
+        /**
+         * Indicates actuator saturation status.
+         */
+        octet actuator_saturation[16];
+        /**
+         * Bitmask of failed motors that were removed from the allocation / effectiveness matrix. Not necessarily identical to the report from FailureDetector
+         */
+        unsigned short handled_motor_failure_mask;
+      };
+    };
+  };
+};
+
+#endif

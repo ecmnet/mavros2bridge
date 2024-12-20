@@ -1,0 +1,258 @@
+#ifndef __px4_msgs__msg__InternalCombustionEngineStatus__idl__
+#define __px4_msgs__msg__InternalCombustionEngineStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * The engine is not running. This is the default state.
+       */
+      const octet STATE_STOPPED =
+      0;
+
+      /**
+       * The engine is starting. This is a transient state.
+       */
+      const octet STATE_STARTING =
+      1;
+
+      /**
+       * The engine is running normally.
+       */
+      const octet STATE_RUNNING =
+      2;
+
+      /**
+       * The engine can no longer function.
+       */
+      const octet STATE_FAULT =
+      3;
+
+      /**
+       * General error.
+       */
+      const unsigned long FLAG_GENERAL_ERROR =
+      1;
+
+      /**
+       * Error of the crankshaft sensor. This flag is optional.
+       */
+      const unsigned long FLAG_CRANKSHAFT_SENSOR_ERROR_SUPPORTED =
+      2;
+
+      const unsigned long FLAG_CRANKSHAFT_SENSOR_ERROR =
+      4;
+
+      /**
+       * Temperature levels. These flags are optional
+       */
+      const unsigned long FLAG_TEMPERATURE_SUPPORTED =
+      8;
+
+      /**
+       * Under-temperature warning
+       */
+      const unsigned long FLAG_TEMPERATURE_BELOW_NOMINAL =
+      16;
+
+      /**
+       * Over-temperature warning
+       */
+      const unsigned long FLAG_TEMPERATURE_ABOVE_NOMINAL =
+      32;
+
+      /**
+       * Critical overheating
+       */
+      const unsigned long FLAG_TEMPERATURE_OVERHEATING =
+      64;
+
+      /**
+       * Exhaust gas over-temperature warning
+       */
+      const unsigned long FLAG_TEMPERATURE_EGT_ABOVE_NOMINAL =
+      128;
+
+      /**
+       * Fuel pressure. These flags are optional
+       */
+      const unsigned long FLAG_FUEL_PRESSURE_SUPPORTED =
+      256;
+
+      /**
+       * Under-pressure warning
+       */
+      const unsigned long FLAG_FUEL_PRESSURE_BELOW_NOMINAL =
+      512;
+
+      /**
+       * Over-pressure warning
+       */
+      const unsigned long FLAG_FUEL_PRESSURE_ABOVE_NOMINAL =
+      1024;
+
+      /**
+       * Detonation warning. This flag is optional.
+       */
+      const unsigned long FLAG_DETONATION_SUPPORTED =
+      2048;
+
+      /**
+       * Detonation condition observed warning
+       */
+      const unsigned long FLAG_DETONATION_OBSERVED =
+      4096;
+
+      /**
+       * Misfire warning. This flag is optional.
+       */
+      const unsigned long FLAG_MISFIRE_SUPPORTED =
+      8192;
+
+      /**
+       * Misfire condition observed warning
+       */
+      const unsigned long FLAG_MISFIRE_OBSERVED =
+      16384;
+
+      /**
+       * Oil pressure. These flags are optional
+       */
+      const unsigned long FLAG_OIL_PRESSURE_SUPPORTED =
+      32768;
+
+      /**
+       * Under-pressure warning
+       */
+      const unsigned long FLAG_OIL_PRESSURE_BELOW_NOMINAL =
+      65536;
+
+      /**
+       * Over-pressure warning
+       */
+      const unsigned long FLAG_OIL_PRESSURE_ABOVE_NOMINAL =
+      131072;
+
+      /**
+       * Debris warning. This flag is optional
+       */
+      const unsigned long FLAG_DEBRIS_SUPPORTED =
+      262144;
+
+      /**
+       * Detection of debris warning
+       */
+      const unsigned long FLAG_DEBRIS_DETECTED =
+      524288;
+
+      const octet SPARK_PLUG_SINGLE =
+      0;
+
+      const octet SPARK_PLUG_FIRST_ACTIVE =
+      1;
+
+      const octet SPARK_PLUG_SECOND_ACTIVE =
+      2;
+
+      const octet SPARK_PLUG_BOTH_ACTIVE =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::InternalCombustionEngineStatus_")
+      struct InternalCombustionEngineStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet state;
+        unsigned long flags;
+        /**
+         * Engine load estimate, percent, [0, 127]
+         */
+        octet engine_load_percent;
+        /**
+         * Engine speed, revolutions per minute
+         */
+        unsigned long engine_speed_rpm;
+        /**
+         * Spark dwell time, millisecond
+         */
+        float spark_dwell_time_ms;
+        /**
+         * Atmospheric (barometric) pressure, kilopascal
+         */
+        float atmospheric_pressure_kpa;
+        /**
+         * Engine intake manifold pressure, kilopascal
+         */
+        float intake_manifold_pressure_kpa;
+        /**
+         * Engine intake manifold temperature, kelvin
+         */
+        float intake_manifold_temperature;
+        /**
+         * Engine coolant temperature, kelvin
+         */
+        float coolant_temperature;
+        /**
+         * Oil pressure, kilopascal
+         */
+        float oil_pressure;
+        /**
+         * Oil temperature, kelvin
+         */
+        float oil_temperature;
+        /**
+         * Fuel pressure, kilopascal
+         */
+        float fuel_pressure;
+        /**
+         * Instant fuel consumption estimate, (centimeter^3)/minute
+         */
+        float fuel_consumption_rate_cm3pm;
+        /**
+         * Estimate of the consumed fuel since the start of the engine, centimeter^3
+         */
+        float estimated_consumed_fuel_volume_cm3;
+        /**
+         * Throttle position, percent
+         */
+        octet throttle_position_percent;
+        /**
+         * The index of the publishing ECU
+         */
+        octet ecu_index;
+        /**
+         * Spark plug activity report.
+         */
+        octet spark_plug_usage;
+        /**
+         * Cylinder ignition timing, angular degrees of the crankshaft
+         */
+        float ignition_timing_deg;
+        /**
+         * Fuel injection time, millisecond
+         */
+        float injection_time_ms;
+        /**
+         * Cylinder head temperature (CHT), kelvin
+         */
+        float cylinder_head_temperature;
+        /**
+         * Exhaust gas temperature (EGT), kelvin
+         */
+        float exhaust_gas_temperature;
+        /**
+         * Estimated lambda coefficient, dimensionless ratio
+         */
+        float lambda_coefficient;
+      };
+    };
+  };
+};
+
+#endif

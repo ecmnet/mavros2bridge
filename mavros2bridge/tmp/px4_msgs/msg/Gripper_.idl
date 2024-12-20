@@ -1,0 +1,33 @@
+#ifndef __px4_msgs__msg__Gripper__idl__
+#define __px4_msgs__msg__Gripper__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet COMMAND_GRAB =
+      0;
+
+      const octet COMMAND_RELEASE =
+      1;
+
+
+      /**
+       * # Used to command an actuation in the gripper, which is mapped to a specific output in the control allocation module
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::Gripper_")
+      struct Gripper
+      {
+        unsigned long long timestamp;
+        /**
+         * Commanded state for the gripper
+         */
+        octet command;
+      };
+    };
+  };
+};
+
+#endif

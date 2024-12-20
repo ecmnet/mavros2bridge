@@ -1,0 +1,23 @@
+#ifndef __px4_msgs__msg__OpenDroneIdSelfId__idl__
+#define __px4_msgs__msg__OpenDroneIdSelfId__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::OpenDroneIdSelfId_")
+      struct OpenDroneIdSelfId
+      {
+        unsigned long long timestamp;
+        octet id_or_mac[20];
+        octet description_type;
+        char description[23];
+      };
+    };
+  };
+};
+
+#endif

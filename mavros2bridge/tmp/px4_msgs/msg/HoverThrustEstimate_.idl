@@ -1,0 +1,52 @@
+#ifndef __px4_msgs__msg__HoverThrustEstimate__idl__
+#define __px4_msgs__msg__HoverThrustEstimate__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::HoverThrustEstimate_")
+      struct HoverThrustEstimate
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * time of corresponding sensor data last used for this estimate
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * estimated hover thrust [0.1, 0.9]
+         */
+        float hover_thrust;
+        /**
+         * estimated hover thrust variance
+         */
+        float hover_thrust_var;
+        /**
+         * innovation of the last acceleration fusion
+         */
+        float accel_innov;
+        /**
+         * innovation variance of the last acceleration fusion
+         */
+        float accel_innov_var;
+        /**
+         * normalized innovation squared test ratio
+         */
+        float accel_innov_test_ratio;
+        /**
+         * vertical acceleration noise variance estimated form innovation residual
+         */
+        float accel_noise_var;
+        boolean valid;
+      };
+    };
+  };
+};
+
+#endif

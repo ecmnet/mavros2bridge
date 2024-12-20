@@ -1,0 +1,78 @@
+#ifndef __px4_msgs__msg__NavigatorMissionItem__idl__
+#define __px4_msgs__msg__NavigatorMissionItem__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::NavigatorMissionItem_")
+      struct NavigatorMissionItem
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Sequence of the current mission item
+         */
+        unsigned short sequence_current;
+        unsigned short nav_cmd;
+        float latitude;
+        float longitude;
+        /**
+         * time that the MAV should stay inside the radius before advancing in seconds
+         */
+        float time_inside;
+        /**
+         * default radius in which the mission is accepted as reached in meters
+         */
+        float acceptance_radius;
+        /**
+         * loiter radius in meters, 0 for a VTOL to hover, negative for counter-clockwise
+         */
+        float loiter_radius;
+        /**
+         * in radians NED -PI..+PI, NAN means don't change yaw
+         */
+        float yaw;
+        /**
+         * altitude in meters (AMSL)
+         */
+        float altitude;
+        /**
+         * mission frame
+         */
+        octet frame;
+        /**
+         * mission item origin (onboard or mavlink)
+         */
+        octet origin;
+        /**
+         * exit xtrack location: 0 for center of loiter wp, 1 for exit location
+         */
+        boolean loiter_exit_xtrack;
+        /**
+         * heading needs to be reached
+         */
+        boolean force_heading;
+        /**
+         * true if altitude is relative from start point
+         */
+        boolean altitude_is_relative;
+        /**
+         * true if next waypoint should follow after this one
+         */
+        boolean autocontinue;
+        /**
+         * part of the vtol back transition sequence
+         */
+        boolean vtol_back_transition;
+      };
+    };
+  };
+};
+
+#endif

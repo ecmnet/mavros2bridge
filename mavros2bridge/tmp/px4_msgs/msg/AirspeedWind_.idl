@@ -1,0 +1,99 @@
+#ifndef __px4_msgs__msg__AirspeedWind__idl__
+#define __px4_msgs__msg__AirspeedWind__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * wind estimate only based on synthetic sideslip fusion
+       */
+      const octet SOURCE_AS_BETA_ONLY =
+      0;
+
+      /**
+       * combined synthetic sideslip and airspeed fusion (data from first airspeed sensor)
+       */
+      const octet SOURCE_AS_SENSOR_1 =
+      1;
+
+      /**
+       * combined synthetic sideslip and airspeed fusion (data from second airspeed sensor)
+       */
+      const octet SOURCE_AS_SENSOR_2 =
+      2;
+
+      /**
+       * combined synthetic sideslip and airspeed fusion (data from third airspeed sensor)
+       */
+      const octet SOURCE_AS_SENSOR_3 =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::AirspeedWind_")
+      struct AirspeedWind
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * Wind component in north / X direction (m/sec)
+         */
+        float windspeed_north;
+        /**
+         * Wind component in east / Y direction (m/sec)
+         */
+        float windspeed_east;
+        /**
+         * Wind estimate error variance in north / X direction (m/sec)**2 - set to zero (no uncertainty) if not estimated
+         */
+        float variance_north;
+        /**
+         * Wind estimate error variance in east / Y direction (m/sec)**2 - set to zero (no uncertainty) if not estimated
+         */
+        float variance_east;
+        /**
+         * True airspeed innovation
+         */
+        float tas_innov;
+        /**
+         * True airspeed innovation variance
+         */
+        float tas_innov_var;
+        /**
+         * Estimated true airspeed scale factor (not validated)
+         */
+        float tas_scale_raw;
+        /**
+         * True airspeed scale factor variance
+         */
+        float tas_scale_raw_var;
+        /**
+         * Estimated true airspeed scale factor after validation
+         */
+        float tas_scale_validated;
+        /**
+         * Sideslip measurement innovation
+         */
+        float beta_innov;
+        /**
+         * Sideslip measurement innovation variance
+         */
+        float beta_innov_var;
+        /**
+         * source of wind estimate
+         */
+        octet source;
+      };
+    };
+  };
+};
+
+#endif

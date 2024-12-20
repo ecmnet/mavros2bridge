@@ -1,0 +1,81 @@
+#ifndef __px4_msgs__msg__VehicleImuStatus__idl__
+#define __px4_msgs__msg__VehicleImuStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleImuStatus_")
+      struct VehicleImuStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long accel_device_id;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long gyro_device_id;
+        /**
+         * total clipping per axis
+         */
+        unsigned_long accel_clipping[3];
+        /**
+         * total clipping per axis
+         */
+        unsigned_long gyro_clipping[3];
+        unsigned long accel_error_count;
+        unsigned long gyro_error_count;
+        float accel_rate_hz;
+        float gyro_rate_hz;
+        /**
+         * full raw sensor sample rate (Hz)
+         */
+        float accel_raw_rate_hz;
+        /**
+         * full raw sensor sample rate (Hz)
+         */
+        float gyro_raw_rate_hz;
+        /**
+         * high frequency vibration level in the accelerometer data (m/s/s)
+         */
+        float accel_vibration_metric;
+        /**
+         * high frequency vibration level in the gyro data (rad/s)
+         */
+        float gyro_vibration_metric;
+        /**
+         * average IMU delta angle coning correction (rad^2)
+         */
+        float delta_angle_coning_metric;
+        /**
+         * average accelerometer readings since last publication
+         */
+        float mean_accel[3];
+        /**
+         * average gyroscope readings since last publication
+         */
+        float mean_gyro[3];
+        /**
+         * accelerometer variance since last publication
+         */
+        float var_accel[3];
+        /**
+         * gyroscope variance since last publication
+         */
+        float var_gyro[3];
+        float temperature_accel;
+        float temperature_gyro;
+      };
+    };
+  };
+};
+
+#endif

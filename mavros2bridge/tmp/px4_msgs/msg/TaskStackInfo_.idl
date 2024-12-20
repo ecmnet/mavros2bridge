@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__TaskStackInfo__idl__
+#define __px4_msgs__msg__TaskStackInfo__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      2;
+
+
+      /**
+       * stack information for a single running process
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::TaskStackInfo_")
+      struct TaskStackInfo
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned short stack_free;
+        char task_name[24];
+      };
+    };
+  };
+};
+
+#endif

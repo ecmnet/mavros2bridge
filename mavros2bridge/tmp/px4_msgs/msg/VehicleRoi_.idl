@@ -1,0 +1,88 @@
+#ifndef __px4_msgs__msg__VehicleRoi__idl__
+#define __px4_msgs__msg__VehicleRoi__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * No region of interest
+       */
+      const octet ROI_NONE =
+      0;
+
+      /**
+       * Point toward next MISSION with optional offset
+       */
+      const octet ROI_WPNEXT =
+      1;
+
+      /**
+       * Point toward given MISSION
+       */
+      const octet ROI_WPINDEX =
+      2;
+
+      /**
+       * Point toward fixed location
+       */
+      const octet ROI_LOCATION =
+      3;
+
+      /**
+       * Point toward target
+       */
+      const octet ROI_TARGET =
+      4;
+
+      const octet ROI_ENUM_END =
+      5;
+
+
+      /**
+       * Vehicle Region Of Interest (ROI)
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleRoi_")
+      struct VehicleRoi
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * ROI mode (see above)
+         */
+        octet mode;
+        /**
+         * Latitude to point to
+         */
+        double lat;
+        /**
+         * Longitude to point to
+         */
+        double lon;
+        /**
+         * Altitude to point to
+         */
+        float alt;
+        /**
+         * additional angle offsets to next waypoint (only used with ROI_WPNEXT)
+         * angle offset in rad
+         */
+        float roll_offset;
+        /**
+         * angle offset in rad
+         */
+        float pitch_offset;
+        /**
+         * angle offset in rad
+         */
+        float yaw_offset;
+      };
+    };
+  };
+};
+
+#endif

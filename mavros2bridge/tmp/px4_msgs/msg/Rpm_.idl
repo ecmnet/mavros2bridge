@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__Rpm__idl__
+#define __px4_msgs__msg__Rpm__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::Rpm_")
+      struct Rpm
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * indicated rotor Frequency in Revolution per minute
+         */
+        float indicated_frequency_rpm;
+        /**
+         * estimated accuracy in Revolution per minute
+         */
+        float estimated_accurancy_rpm;
+      };
+    };
+  };
+};
+
+#endif

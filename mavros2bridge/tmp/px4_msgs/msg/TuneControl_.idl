@@ -1,0 +1,126 @@
+#ifndef __px4_msgs__msg__TuneControl__idl__
+#define __px4_msgs__msg__TuneControl__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet TUNE_ID_STOP =
+      0;
+
+      const octet TUNE_ID_STARTUP =
+      1;
+
+      const octet TUNE_ID_ERROR =
+      2;
+
+      const octet TUNE_ID_NOTIFY_POSITIVE =
+      3;
+
+      const octet TUNE_ID_NOTIFY_NEUTRAL =
+      4;
+
+      const octet TUNE_ID_NOTIFY_NEGATIVE =
+      5;
+
+      const octet TUNE_ID_ARMING_WARNING =
+      6;
+
+      const octet TUNE_ID_BATTERY_WARNING_SLOW =
+      7;
+
+      const octet TUNE_ID_BATTERY_WARNING_FAST =
+      8;
+
+      const octet TUNE_ID_GPS_WARNING =
+      9;
+
+      const octet TUNE_ID_ARMING_FAILURE =
+      10;
+
+      const octet TUNE_ID_PARACHUTE_RELEASE =
+      11;
+
+      const octet TUNE_ID_SINGLE_BEEP =
+      12;
+
+      const octet TUNE_ID_HOME_SET =
+      13;
+
+      const octet TUNE_ID_SD_INIT =
+      14;
+
+      const octet TUNE_ID_SD_ERROR =
+      15;
+
+      const octet TUNE_ID_PROG_PX4IO =
+      16;
+
+      const octet TUNE_ID_PROG_PX4IO_OK =
+      17;
+
+      const octet TUNE_ID_PROG_PX4IO_ERR =
+      18;
+
+      const octet TUNE_ID_POWER_OFF =
+      19;
+
+      const octet NUMBER_OF_TUNES =
+      20;
+
+      const octet VOLUME_LEVEL_MIN =
+      0;
+
+      const octet VOLUME_LEVEL_DEFAULT =
+      20;
+
+      const octet VOLUME_LEVEL_MAX =
+      100;
+
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      /**
+       * This message is used to control the tunes, when the tune_id is set to CUSTOM
+       * then the frequency, duration are used otherwise those values are ignored.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::TuneControl_")
+      struct TuneControl
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * tune_id corresponding to TuneID::* from the tune_defaults.h in the tunes library
+         */
+        octet tune_id;
+        /**
+         * if true the tune which is playing will be stopped and the new started
+         */
+        boolean tune_override;
+        /**
+         * in Hz
+         */
+        unsigned short frequency;
+        /**
+         * in us
+         */
+        unsigned long duration;
+        /**
+         * in us
+         */
+        unsigned long silence;
+        /**
+         * value between 0-100 if supported by backend
+         */
+        octet volume;
+      };
+    };
+  };
+};
+
+#endif

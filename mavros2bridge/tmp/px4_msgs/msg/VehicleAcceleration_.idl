@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__VehicleAcceleration__idl__
+#define __px4_msgs__msg__VehicleAcceleration__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleAcceleration_")
+      struct VehicleAcceleration
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * Bias corrected acceleration (including gravity) in the FRD body frame XYZ-axis in m/s^2
+         */
+        float xyz[3];
+      };
+    };
+  };
+};
+
+#endif

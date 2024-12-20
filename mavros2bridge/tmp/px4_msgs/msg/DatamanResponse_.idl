@@ -1,0 +1,53 @@
+#ifndef __px4_msgs__msg__DatamanResponse__idl__
+#define __px4_msgs__msg__DatamanResponse__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet STATUS_SUCCESS =
+      0;
+
+      const octet STATUS_FAILURE_ID_ERR =
+      1;
+
+      const octet STATUS_FAILURE_NO_DATA =
+      2;
+
+      const octet STATUS_FAILURE_READ_FAILED =
+      3;
+
+      const octet STATUS_FAILURE_WRITE_FAILED =
+      4;
+
+      const octet STATUS_FAILURE_CLEAR_FAILED =
+      5;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::DatamanResponse_")
+      struct DatamanResponse
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet client_id;
+        /**
+         * id/read/write/clear
+         */
+        octet request_type;
+        /**
+         * dm_item_t
+         */
+        octet item;
+        unsigned long index;
+        octet data[56];
+        octet status;
+      };
+    };
+  };
+};
+
+#endif

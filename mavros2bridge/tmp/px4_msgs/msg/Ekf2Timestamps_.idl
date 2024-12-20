@@ -1,0 +1,45 @@
+#ifndef __px4_msgs__msg__Ekf2Timestamps__idl__
+#define __px4_msgs__msg__Ekf2Timestamps__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * (0x7fff) If one of the relative timestamps
+       */
+      const short RELATIVE_TIMESTAMP_INVALID =
+      32767;
+
+
+      /**
+       * this message contains the (relative) timestamps of the sensor inputs used by EKF2.
+       * It can be used for reproducible replay.
+       * the timestamp field is the ekf2 reference time and matches the timestamp of
+       * the sensor_combined topic.
+       * is set to this value, it means the associated sensor values did not update
+       * timestamps are relative to the main timestamp and are in 0.1 ms (timestamp +
+       * *_timestamp_rel = absolute timestamp). For int16, this allows a maximum
+       * difference of +-3.2s to the sensor_combined topic.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::Ekf2Timestamps_")
+      struct Ekf2Timestamps
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        short airspeed_timestamp_rel;
+        short distance_sensor_timestamp_rel;
+        short optical_flow_timestamp_rel;
+        short vehicle_air_data_timestamp_rel;
+        short vehicle_magnetometer_timestamp_rel;
+        short visual_odometry_timestamp_rel;
+      };
+    };
+  };
+};
+
+#endif

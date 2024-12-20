@@ -1,0 +1,90 @@
+#ifndef __px4_msgs__msg__VehicleOdometry__idl__
+#define __px4_msgs__msg__VehicleOdometry__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet POSE_FRAME_UNKNOWN =
+      0;
+
+      /**
+       * NED earth-fixed frame
+       */
+      const octet POSE_FRAME_NED =
+      1;
+
+      /**
+       * FRD world-fixed frame, arbitrary heading reference
+       */
+      const octet POSE_FRAME_FRD =
+      2;
+
+      const octet VELOCITY_FRAME_UNKNOWN =
+      0;
+
+      /**
+       * NED earth-fixed frame
+       */
+      const octet VELOCITY_FRAME_NED =
+      1;
+
+      /**
+       * FRD world-fixed frame, arbitrary heading reference
+       */
+      const octet VELOCITY_FRAME_FRD =
+      2;
+
+      /**
+       * FRD body-fixed frame
+       */
+      const octet VELOCITY_FRAME_BODY_FRD =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleOdometry_")
+      struct VehicleOdometry
+      {
+        /**
+         * Vehicle odometry data. Fits ROS REP 147 for aerial vehicles
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * Position and orientation frame of reference
+         */
+        octet pose_frame;
+        /**
+         * Position in meters. Frame of reference defined by local_frame. NaN if invalid/unknown
+         */
+        float position[3];
+        /**
+         * Quaternion rotation from FRD body frame to reference frame. First value NaN if invalid/unknown
+         */
+        float q[4];
+        /**
+         * Reference frame of the velocity data
+         */
+        octet velocity_frame;
+        /**
+         * Velocity in meters/sec. Frame of reference defined by velocity_frame variable. NaN if invalid/unknown
+         */
+        float velocity[3];
+        /**
+         * Angular velocity in body-fixed frame (rad/s). NaN if invalid/unknown
+         */
+        float angular_velocity[3];
+        float position_variance[3];
+        float orientation_variance[3];
+        float velocity_variance[3];
+        octet reset_counter;
+        octet quality;
+      };
+    };
+  };
+};
+
+#endif

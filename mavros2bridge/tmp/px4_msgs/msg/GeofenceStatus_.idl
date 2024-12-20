@@ -1,0 +1,37 @@
+#ifndef __px4_msgs__msg__GeofenceStatus__idl__
+#define __px4_msgs__msg__GeofenceStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet GF_STATUS_LOADING =
+      0;
+
+      const octet GF_STATUS_READY =
+      1;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::GeofenceStatus_")
+      struct GeofenceStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * loaded geofence id
+         */
+        unsigned long geofence_id;
+        /**
+         * Current geofence status
+         */
+        octet status;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,29 @@
+#ifndef __px4_msgs__msg__QshellReq__idl__
+#define __px4_msgs__msg__QshellReq__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const unsigned long MAX_STRLEN =
+      100;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::QshellReq_")
+      struct QshellReq
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        char cmd[100];
+        unsigned long strlen;
+        unsigned long request_sequence;
+      };
+    };
+  };
+};
+
+#endif

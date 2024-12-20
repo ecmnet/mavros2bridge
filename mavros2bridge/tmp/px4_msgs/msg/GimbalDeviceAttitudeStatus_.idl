@@ -1,0 +1,47 @@
+#ifndef __px4_msgs__msg__GimbalDeviceAttitudeStatus__idl__
+#define __px4_msgs__msg__GimbalDeviceAttitudeStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const unsigned short DEVICE_FLAGS_RETRACT =
+      1;
+
+      const unsigned short DEVICE_FLAGS_NEUTRAL =
+      2;
+
+      const unsigned short DEVICE_FLAGS_ROLL_LOCK =
+      4;
+
+      const unsigned short DEVICE_FLAGS_PITCH_LOCK =
+      8;
+
+      const unsigned short DEVICE_FLAGS_YAW_LOCK =
+      16;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::GimbalDeviceAttitudeStatus_")
+      struct GimbalDeviceAttitudeStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet target_system;
+        octet target_component;
+        unsigned short device_flags;
+        float q[4];
+        float angular_velocity_x;
+        float angular_velocity_y;
+        float angular_velocity_z;
+        unsigned long failure_flags;
+        boolean received_from_mavlink;
+      };
+    };
+  };
+};
+
+#endif

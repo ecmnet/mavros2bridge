@@ -1,0 +1,49 @@
+#ifndef __px4_msgs__msg__VehicleTrajectoryBezier__idl__
+#define __px4_msgs__msg__VehicleTrajectoryBezier__idl__
+
+#include "px4_msgs/msg/./TrajectoryBezier_.idl"
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet POINT_0 =
+      0;
+
+      const octet POINT_1 =
+      1;
+
+      const octet POINT_2 =
+      2;
+
+      const octet POINT_3 =
+      3;
+
+      const octet POINT_4 =
+      4;
+
+      const octet NUMBER_POINTS =
+      5;
+
+
+      /**
+       * Vehicle Waypoints Trajectory description. See also MAVLink MAV_TRAJECTORY_REPRESENTATION msg
+       * The topic vehicle_trajectory_bezier is used to send a smooth flight path from the
+       * companion computer / avoidance module to the position controller.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleTrajectoryBezier_")
+      struct VehicleTrajectoryBezier
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        px4_msgs::msg::dds::TrajectoryBezier control_points[5];
+        octet bezier_order;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,68 @@
+#ifndef __px4_msgs__msg__VehicleLocalPositionSetpoint__idl__
+#define __px4_msgs__msg__VehicleLocalPositionSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Local position setpoint in NED frame
+       * Telemetry of PID position controller to monitor tracking.
+       * NaN means the state was not controlled
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleLocalPositionSetpoint_")
+      struct VehicleLocalPositionSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * in meters NED
+         */
+        float x;
+        /**
+         * in meters NED
+         */
+        float y;
+        /**
+         * in meters NED
+         */
+        float z;
+        /**
+         * in meters/sec
+         */
+        float vx;
+        /**
+         * in meters/sec
+         */
+        float vy;
+        /**
+         * in meters/sec
+         */
+        float vz;
+        /**
+         * in meters/sec^2
+         */
+        float acceleration[3];
+        /**
+         * normalized thrust vector in NED
+         */
+        float thrust[3];
+        /**
+         * in radians NED -PI..+PI
+         */
+        float yaw;
+        /**
+         * in radians/sec
+         */
+        float yawspeed;
+      };
+    };
+  };
+};
+
+#endif

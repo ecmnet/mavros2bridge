@@ -1,0 +1,38 @@
+#ifndef __px4_msgs__msg__CameraTrigger__idl__
+#define __px4_msgs__msg__CameraTrigger__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const unsigned long ORB_QUEUE_LENGTH =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::CameraTrigger_")
+      struct CameraTrigger
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * UTC timestamp
+         */
+        unsigned long long timestamp_utc;
+        /**
+         * Image sequence number
+         */
+        unsigned long seq;
+        /**
+         * Trigger feedback from camera
+         */
+        boolean feedback;
+      };
+    };
+  };
+};
+
+#endif

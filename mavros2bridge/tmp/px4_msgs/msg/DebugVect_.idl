@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__DebugVect__idl__
+#define __px4_msgs__msg__DebugVect__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::DebugVect_")
+      struct DebugVect
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * max. 10 characters as key / name
+         */
+        char name[10];
+        /**
+         * x value
+         */
+        float x;
+        /**
+         * y value
+         */
+        float y;
+        /**
+         * z value
+         */
+        float z;
+      };
+    };
+  };
+};
+
+#endif

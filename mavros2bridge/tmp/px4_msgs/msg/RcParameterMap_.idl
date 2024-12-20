@@ -1,0 +1,63 @@
+#ifndef __px4_msgs__msg__RcParameterMap__idl__
+#define __px4_msgs__msg__RcParameterMap__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * This limit is also hardcoded in the enum RC_CHANNELS_FUNCTION in rc_channels.h
+       */
+      const octet RC_PARAM_MAP_NCHAN =
+      3;
+
+      /**
+       * corresponds to MAVLINK_MSG_PARAM_VALUE_FIELD_PARAM_ID_LEN
+       */
+      const octet PARAM_ID_LEN =
+      16;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::RcParameterMap_")
+      struct RcParameterMap
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * true for RC-Param channels which are mapped to a param
+         */
+        boolean valid[3];
+        /**
+         * corresponding param index, this field is ignored if set to -1, in this case param_id will be used
+         */
+        long param_index[3];
+        /**
+         * MAP_NCHAN * (ID_LEN + 1) chars, corresponding param id, null terminated
+         */
+        char param_id[51];
+        /**
+         * scale to map the RC input [-1, 1] to a parameter value
+         */
+        float scale[3];
+        /**
+         * initial value around which the parameter value is changed
+         */
+        float value0[3];
+        /**
+         * minimal parameter value
+         */
+        float value_min[3];
+        /**
+         * minimal parameter value
+         */
+        float value_max[3];
+      };
+    };
+  };
+};
+
+#endif

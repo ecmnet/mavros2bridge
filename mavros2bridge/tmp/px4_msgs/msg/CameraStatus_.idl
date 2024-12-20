@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__CameraStatus__idl__
+#define __px4_msgs__msg__CameraStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::CameraStatus_")
+      struct CameraStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * mavlink system id of the currently active camera
+         */
+        octet active_sys_id;
+        /**
+         * mavlink component id of currently active camera
+         */
+        octet active_comp_id;
+      };
+    };
+  };
+};
+
+#endif

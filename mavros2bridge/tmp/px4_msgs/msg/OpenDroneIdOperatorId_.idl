@@ -1,0 +1,23 @@
+#ifndef __px4_msgs__msg__OpenDroneIdOperatorId__idl__
+#define __px4_msgs__msg__OpenDroneIdOperatorId__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::OpenDroneIdOperatorId_")
+      struct OpenDroneIdOperatorId
+      {
+        unsigned long long timestamp;
+        octet id_or_mac[20];
+        octet operator_id_type;
+        char operator_id[20];
+      };
+    };
+  };
+};
+
+#endif

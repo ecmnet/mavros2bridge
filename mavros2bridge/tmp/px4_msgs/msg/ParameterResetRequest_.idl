@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__ParameterResetRequest__idl__
+#define __px4_msgs__msg__ParameterResetRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      /**
+       * ParameterResetRequest : Used by the primary to reset one or all parameter value(s) on the remote
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ParameterResetRequest_")
+      struct ParameterResetRequest
+      {
+        unsigned long long timestamp;
+        unsigned short parameter_index;
+        /**
+         * If this is true then ignore parameter_index
+         */
+        boolean reset_all;
+      };
+    };
+  };
+};
+
+#endif

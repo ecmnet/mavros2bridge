@@ -1,0 +1,37 @@
+#ifndef __px4_msgs__msg__GimbalControls__idl__
+#define __px4_msgs__msg__GimbalControls__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet INDEX_ROLL =
+      0;
+
+      const octet INDEX_PITCH =
+      1;
+
+      const octet INDEX_YAW =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::GimbalControls_")
+      struct GimbalControls
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp the data this control response is based on was sampled
+         */
+        unsigned long long timestamp_sample;
+        float control[3];
+      };
+    };
+  };
+};
+
+#endif

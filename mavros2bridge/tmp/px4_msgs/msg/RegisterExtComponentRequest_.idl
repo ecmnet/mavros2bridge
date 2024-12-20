@@ -1,0 +1,69 @@
+#ifndef __px4_msgs__msg__RegisterExtComponentRequest__idl__
+#define __px4_msgs__msg__RegisterExtComponentRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * API version compatibility. Increase this on a breaking semantic change. Changes to any message field are detected separately and do not require an API version change.
+       */
+      const unsigned short LATEST_PX4_ROS2_API_VERSION =
+      1;
+
+      const octet ORB_QUEUE_LENGTH =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::RegisterExtComponentRequest_")
+      struct RegisterExtComponentRequest
+      {
+        /**
+         * Request to register an external component
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * ID, set this to a random value
+         */
+        unsigned long long request_id;
+        /**
+         * either the requested mode name, or component name
+         */
+        char name[25];
+        /**
+         * Set to LATEST_PX4_ROS2_API_VERSION
+         */
+        unsigned short px4_ros2_api_version;
+        /**
+         * Components to be registered
+         */
+        boolean register_arming_check;
+        /**
+         * registering a mode also requires arming_check to be set
+         */
+        boolean register_mode;
+        /**
+         * registering an executor also requires a mode to be registered (which is the owned mode by the executor)
+         */
+        boolean register_mode_executor;
+        /**
+         * set to true if an internal mode should be replaced
+         */
+        boolean enable_replace_internal_mode;
+        /**
+         * vehicle_status::NAVIGATION_STATE_*
+         */
+        octet replace_internal_mode;
+        /**
+         * switch to the registered mode (can only be set in combination with an executor)
+         */
+        boolean activate_mode_immediately;
+      };
+    };
+  };
+};
+
+#endif

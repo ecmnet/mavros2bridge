@@ -1,0 +1,54 @@
+#ifndef __px4_msgs__msg__TrajectorySetpoint__idl__
+#define __px4_msgs__msg__TrajectorySetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Trajectory setpoint in NED frame
+       * Input to PID position controller.
+       * Needs to be kinematically consistent and feasible for smooth flight.
+       * setting a value to NaN means the state should not be controlled
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::TrajectorySetpoint_")
+      struct TrajectorySetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * NED local world frame
+         * in meters
+         */
+        float position[3];
+        /**
+         * in meters/second
+         */
+        float velocity[3];
+        /**
+         * in meters/second^2
+         */
+        float acceleration[3];
+        /**
+         * in meters/second^3 (for logging only)
+         */
+        float jerk[3];
+        /**
+         * euler angle of desired attitude in radians -PI..+PI
+         */
+        float yaw;
+        /**
+         * angular velocity around NED frame z-axis in radians/second
+         */
+        float yawspeed;
+      };
+    };
+  };
+};
+
+#endif

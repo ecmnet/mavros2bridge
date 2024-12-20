@@ -1,0 +1,99 @@
+#ifndef __px4_msgs__msg__SystemPower__idl__
+#define __px4_msgs__msg__SystemPower__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet BRICK1_VALID_SHIFTS =
+      0;
+
+      const octet BRICK1_VALID_MASK =
+      1;
+
+      const octet BRICK2_VALID_SHIFTS =
+      1;
+
+      const octet BRICK2_VALID_MASK =
+      2;
+
+      const octet BRICK3_VALID_SHIFTS =
+      2;
+
+      const octet BRICK3_VALID_MASK =
+      4;
+
+      const octet BRICK4_VALID_SHIFTS =
+      3;
+
+      const octet BRICK4_VALID_MASK =
+      8;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::SystemPower_")
+      struct SystemPower
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * peripheral 5V rail voltage
+         */
+        float voltage5v_v;
+        /**
+         * payload rail voltage
+         */
+        float voltage_payload_v;
+        /**
+         * Sensors 3V3 rail voltage
+         */
+        float sensors3v3[4];
+        /**
+         * Sensors 3V3 rail voltage was read (bitfield).
+         */
+        octet sensors3v3_valid;
+        /**
+         * USB is connected when 1
+         */
+        octet usb_connected;
+        /**
+         * brick bits power is good when bit 1
+         */
+        octet brick_valid;
+        /**
+         * USB is valid when 1
+         */
+        octet usb_valid;
+        /**
+         * servo power is good when 1
+         */
+        octet servo_valid;
+        /**
+         * peripheral overcurrent when 1
+         */
+        octet periph_5v_oc;
+        /**
+         * high power peripheral overcurrent when 1
+         */
+        octet hipower_5v_oc;
+        /**
+         * 5V to companion valid
+         */
+        octet comp_5v_valid;
+        /**
+         * 5V for CAN1/GPS1 valid
+         */
+        octet can1_gps1_5v_valid;
+        /**
+         * payload rail voltage is valid
+         */
+        octet payload_v_valid;
+      };
+    };
+  };
+};
+
+#endif

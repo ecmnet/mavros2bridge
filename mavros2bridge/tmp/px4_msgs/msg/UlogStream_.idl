@@ -1,0 +1,64 @@
+#ifndef __px4_msgs__msg__UlogStream__idl__
+#define __px4_msgs__msg__UlogStream__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * flags bitmasks
+       * if set, this message requires to be acked.
+       */
+      const octet FLAGS_NEED_ACK =
+      1;
+
+      /**
+       * TODO: we might be able to reduce this if mavlink polled on the topic
+       */
+      const octet ORB_QUEUE_LENGTH =
+      16;
+
+
+      /**
+       * Message to stream ULog data from the logger. Corresponds to the LOGGING_DATA
+       * mavlink message
+       * Acked messages are published synchronous: a
+       * publisher waits for an ack before sending the
+       * next message
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::UlogStream_")
+      struct UlogStream
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * length of data
+         */
+        octet length;
+        /**
+         * offset into data where first message starts. This
+         */
+        octet first_message_offset;
+        /**
+         * can be used for recovery, when a previous message got lost
+         * allows determine drops
+         */
+        unsigned short msg_sequence;
+        /**
+         * see FLAGS_*
+         */
+        octet flags;
+        /**
+         * ulog data
+         */
+        octet data[249];
+      };
+    };
+  };
+};
+
+#endif

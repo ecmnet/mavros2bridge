@@ -1,0 +1,100 @@
+#ifndef __px4_msgs__msg__SensorGnssRelative__idl__
+#define __px4_msgs__msg__SensorGnssRelative__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * GNSS relative positioning information in NED frame. The NED frame is defined as the local topological system at the reference station.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::SensorGnssRelative_")
+      struct SensorGnssRelative
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * Timestamp (microseconds, UTC), this is the timestamp which comes from the gps module. It might be unavailable right after cold start, indicated by a value of 0
+         */
+        unsigned long long time_utc_usec;
+        /**
+         * Reference Station ID
+         */
+        unsigned short reference_station_id;
+        /**
+         * GPS NED relative position vector (m)
+         */
+        float position[3];
+        /**
+         * Accuracy of relative position (m)
+         */
+        float position_accuracy[3];
+        /**
+         * Heading of the relative position vector (radians)
+         */
+        float heading;
+        /**
+         * Accuracy of heading of the relative position vector (radians)
+         */
+        float heading_accuracy;
+        /**
+         * Length of the position vector (m)
+         */
+        float position_length;
+        /**
+         * Accuracy of the position length (m)
+         */
+        float accuracy_length;
+        /**
+         * GNSS valid fix (i.e within DOP & accuracy masks)
+         */
+        boolean gnss_fix_ok;
+        /**
+         * differential corrections were applied
+         */
+        boolean differential_solution;
+        boolean relative_position_valid;
+        /**
+         * carrier phase range solution with floating ambiguities
+         */
+        boolean carrier_solution_floating;
+        /**
+         * carrier phase range solution with fixed ambiguities
+         */
+        boolean carrier_solution_fixed;
+        /**
+         * if the receiver is operating in moving base mode
+         */
+        boolean moving_base_mode;
+        /**
+         * extrapolated reference position was used to compute moving base solution this epoch
+         */
+        boolean reference_position_miss;
+        /**
+         * extrapolated reference observations were used to compute moving base solution this epoch
+         */
+        boolean reference_observations_miss;
+        boolean heading_valid;
+        /**
+         * the components of the relative position vector (including the high-precision parts) are normalized
+         */
+        boolean relative_position_normalized;
+      };
+    };
+  };
+};
+
+#endif

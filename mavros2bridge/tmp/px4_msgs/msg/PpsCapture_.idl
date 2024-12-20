@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__PpsCapture__idl__
+#define __px4_msgs__msg__PpsCapture__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::PpsCapture_")
+      struct PpsCapture
+      {
+        /**
+         * time since system start (microseconds) at PPS capture event
+         */
+        unsigned long long timestamp;
+        /**
+         * Corrected GPS UTC timestamp at PPS capture event
+         */
+        unsigned long long rtc_timestamp;
+        /**
+         * Increments when PPS dt < 50ms
+         */
+        octet pps_rate_exceeded_counter;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,33 @@
+#ifndef __px4_msgs__msg__LandingTargetInnovations__idl__
+#define __px4_msgs__msg__LandingTargetInnovations__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::LandingTargetInnovations_")
+      struct LandingTargetInnovations
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Innovation of landing target position estimator
+         */
+        float innov_x;
+        float innov_y;
+        /**
+         * Innovation covariance of landing target position estimator
+         */
+        float innov_cov_x;
+        float innov_cov_y;
+      };
+    };
+  };
+};
+
+#endif

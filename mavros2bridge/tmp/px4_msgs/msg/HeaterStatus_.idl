@@ -1,0 +1,40 @@
+#ifndef __px4_msgs__msg__HeaterStatus__idl__
+#define __px4_msgs__msg__HeaterStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet MODE_GPIO =
+      1;
+
+      const octet MODE_PX4IO =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::HeaterStatus_")
+      struct HeaterStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long device_id;
+        boolean heater_on;
+        boolean temperature_target_met;
+        float temperature_sensor;
+        float temperature_target;
+        unsigned long controller_period_usec;
+        unsigned long controller_time_on_usec;
+        float proportional_value;
+        float integrator_value;
+        float feed_forward_value;
+        octet mode;
+      };
+    };
+  };
+};
+
+#endif

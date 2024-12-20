@@ -1,0 +1,110 @@
+#ifndef __px4_msgs__msg__GpioConfig__idl__
+#define __px4_msgs__msg__GpioConfig__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * Configuration Mask
+       * Bit 0-3: Direction: 0=Input, 1=Output
+       * Bit 4-7: Input Config: 0=Floating, 1=PullUp, 2=PullDown
+       * Bit 8-12: Output Config: 0=PushPull, 1=OpenDrain
+       * Bit 13-31: Reserved
+       * 0x0000
+       */
+      const unsigned long INPUT =
+      0;
+
+      /**
+       * 0x0001
+       */
+      const unsigned long OUTPUT =
+      1;
+
+      /**
+       * 0x0010
+       */
+      const unsigned long PULLUP =
+      16;
+
+      /**
+       * 0x0020
+       */
+      const unsigned long PULLDOWN =
+      32;
+
+      /**
+       * 0x0100
+       */
+      const unsigned long OPENDRAIN =
+      256;
+
+      /**
+       * 0x0000
+       */
+      const unsigned long INPUT_FLOATING =
+      0;
+
+      /**
+       * 0x0010
+       */
+      const unsigned long INPUT_PULLUP =
+      16;
+
+      /**
+       * 0x0020
+       */
+      const unsigned long INPUT_PULLDOWN =
+      32;
+
+      /**
+       * 0x0000
+       */
+      const unsigned long OUTPUT_PUSHPULL =
+      0;
+
+      /**
+       * 0x0100
+       */
+      const unsigned long OUTPUT_OPENDRAIN =
+      256;
+
+      /**
+       * 0x0110
+       */
+      const unsigned long OUTPUT_OPENDRAIN_PULLUP =
+      272;
+
+
+      /**
+       * GPIO configuration
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::GpioConfig_")
+      struct GpioConfig
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Device id
+         */
+        unsigned long device_id;
+        /**
+         * Pin mask
+         */
+        unsigned long mask;
+        /**
+         * Initial pin output state
+         */
+        unsigned long state;
+        unsigned long config;
+      };
+    };
+  };
+};
+
+#endif

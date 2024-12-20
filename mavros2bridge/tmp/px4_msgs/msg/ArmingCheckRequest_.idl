@@ -1,0 +1,27 @@
+#ifndef __px4_msgs__msg__ArmingCheckRequest__idl__
+#define __px4_msgs__msg__ArmingCheckRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * broadcast message to request all registered arming checks to be reported
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ArmingCheckRequest_")
+      struct ArmingCheckRequest
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet request_id;
+      };
+    };
+  };
+};
+
+#endif

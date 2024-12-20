@@ -1,0 +1,54 @@
+#ifndef __px4_msgs__msg__SensorGyroFft__idl__
+#define __px4_msgs__msg__SensorGyroFft__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorGyroFft_")
+      struct SensorGyroFft
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        float sensor_sample_rate_hz;
+        float resolution_hz;
+        /**
+         * x axis peak frequencies
+         */
+        float peak_frequencies_x[3];
+        /**
+         * y axis peak frequencies
+         */
+        float peak_frequencies_y[3];
+        /**
+         * z axis peak frequencies
+         */
+        float peak_frequencies_z[3];
+        /**
+         * x axis peak SNR
+         */
+        float peak_snr_x[3];
+        /**
+         * y axis peak SNR
+         */
+        float peak_snr_y[3];
+        /**
+         * z axis peak SNR
+         */
+        float peak_snr_z[3];
+      };
+    };
+  };
+};
+
+#endif

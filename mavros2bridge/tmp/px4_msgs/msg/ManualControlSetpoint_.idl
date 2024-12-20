@@ -1,0 +1,113 @@
+#ifndef __px4_msgs__msg__ManualControlSetpoint__idl__
+#define __px4_msgs__msg__ManualControlSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet SOURCE_UNKNOWN =
+      0;
+
+      /**
+       * radio control (input_rc)
+       */
+      const octet SOURCE_RC =
+      1;
+
+      /**
+       * mavlink instance 0
+       */
+      const octet SOURCE_MAVLINK_0 =
+      2;
+
+      /**
+       * mavlink instance 1
+       */
+      const octet SOURCE_MAVLINK_1 =
+      3;
+
+      /**
+       * mavlink instance 2
+       */
+      const octet SOURCE_MAVLINK_2 =
+      4;
+
+      /**
+       * mavlink instance 3
+       */
+      const octet SOURCE_MAVLINK_3 =
+      5;
+
+      /**
+       * mavlink instance 4
+       */
+      const octet SOURCE_MAVLINK_4 =
+      6;
+
+      /**
+       * mavlink instance 5
+       */
+      const octet SOURCE_MAVLINK_5 =
+      7;
+
+
+      /**
+       * Any of the channels may not be available and be set to NaN
+       * to indicate that it does not contain valid data.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ManualControlSetpoint_")
+      struct ManualControlSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        boolean valid;
+        octet data_source;
+        /**
+         * Stick positions [-1,1]
+         * on a common RC mode 1/2/3/4 remote/joystick the stick deflection: -1 is down/left, 1 is up/right
+         * Note: QGC sends throttle/z in range [0,1000] - [0,1]. The MAVLink input conversion [0,1] to [-1,1] is at the moment kept backwards compatible.
+         * Positive values are generally used for:
+         * move right,   positive roll rotation,  right side down
+         */
+        float roll;
+        /**
+         * move forward, negative pitch rotation, nose down
+         */
+        float pitch;
+        /**
+         * positive yaw rotation,   clockwise when seen top down
+         */
+        float yaw;
+        /**
+         * move up,      positive thrust,         -1 is minimum available 0% or -100% +1 is 100% thrust
+         */
+        float throttle;
+        /**
+         * position of flaps switch/knob/lever [-1, 1]
+         */
+        float flaps;
+        float aux1;
+        float aux2;
+        float aux3;
+        float aux4;
+        float aux5;
+        float aux6;
+        boolean sticks_moving;
+        /**
+         * From uint16 buttons field of Mavlink manual_control message
+         */
+        unsigned short buttons;
+      };
+    };
+  };
+};
+
+#endif

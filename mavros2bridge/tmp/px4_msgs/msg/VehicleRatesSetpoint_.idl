@@ -1,0 +1,46 @@
+#ifndef __px4_msgs__msg__VehicleRatesSetpoint__idl__
+#define __px4_msgs__msg__VehicleRatesSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleRatesSetpoint_")
+      struct VehicleRatesSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * body angular rates in FRD frame
+         * [rad/s] roll rate setpoint
+         */
+        float roll;
+        /**
+         * [rad/s] pitch rate setpoint
+         */
+        float pitch;
+        /**
+         * [rad/s] yaw rate setpoint
+         */
+        float yaw;
+        /**
+         * For clarification: For multicopters thrust_body[0] and thrust[1] are usually 0 and thrust[2] is the negative throttle demand.
+         * For fixed wings thrust_x is the throttle demand and thrust_y, thrust_z will usually be zero.
+         * Normalized thrust command in body NED frame [-1,1]
+         */
+        float thrust_body[3];
+        /**
+         * Reset roll/pitch/yaw integrals (navigation logic change)
+         */
+        boolean reset_integral;
+      };
+    };
+  };
+};
+
+#endif

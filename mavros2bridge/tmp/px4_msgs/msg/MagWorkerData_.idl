@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__MagWorkerData__idl__
+#define __px4_msgs__msg__MagWorkerData__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet MAX_MAGS =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::MagWorkerData_")
+      struct MagWorkerData
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        unsigned long done_count;
+        unsigned long calibration_points_perside;
+        unsigned long long calibration_interval_perside_us;
+        unsigned_long calibration_counter_total[4];
+        boolean side_data_collected[4];
+        float x[4];
+        float y[4];
+        float z[4];
+      };
+    };
+  };
+};
+
+#endif

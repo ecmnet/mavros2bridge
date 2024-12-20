@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__GpsDump__idl__
+#define __px4_msgs__msg__GpsDump__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      8;
+
+
+      /**
+       * This message is used to dump the raw gps communication to the log.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::GpsDump_")
+      struct GpsDump
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Instance of GNSS receiver
+         */
+        octet instance;
+        /**
+         * length of data, MSB bit set = message to the gps device,
+         */
+        octet len;
+        /**
+         * clear = message from the device
+         * data to write to the log
+         */
+        octet data[79];
+      };
+    };
+  };
+};
+
+#endif

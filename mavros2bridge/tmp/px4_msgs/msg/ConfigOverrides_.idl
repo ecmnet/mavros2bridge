@@ -1,0 +1,50 @@
+#ifndef __px4_msgs__msg__ConfigOverrides__idl__
+#define __px4_msgs__msg__ConfigOverrides__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet SOURCE_TYPE_MODE =
+      0;
+
+      const octet SOURCE_TYPE_MODE_EXECUTOR =
+      1;
+
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ConfigOverrides_")
+      struct ConfigOverrides
+      {
+        /**
+         * Configurable overrides by (external) modes or mode executors
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Prevent the drone from automatically disarming after landing (if configured)
+         */
+        boolean disable_auto_disarm;
+        /**
+         * Defer all failsafes that can be deferred (until the flag is cleared)
+         */
+        boolean defer_failsafes;
+        /**
+         * Maximum time a failsafe can be deferred. 0 = system default, -1 = no timeout
+         */
+        short defer_failsafes_timeout_s;
+        octet source_type;
+        /**
+         * ID depending on source_type
+         */
+        octet source_id;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,141 @@
+#ifndef __px4_msgs__msg__RcChannels__idl__
+#define __px4_msgs__msg__RcChannels__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet FUNCTION_THROTTLE =
+      0;
+
+      const octet FUNCTION_ROLL =
+      1;
+
+      const octet FUNCTION_PITCH =
+      2;
+
+      const octet FUNCTION_YAW =
+      3;
+
+      const octet FUNCTION_RETURN =
+      4;
+
+      const octet FUNCTION_LOITER =
+      5;
+
+      const octet FUNCTION_OFFBOARD =
+      6;
+
+      const octet FUNCTION_FLAPS =
+      7;
+
+      const octet FUNCTION_AUX_1 =
+      8;
+
+      const octet FUNCTION_AUX_2 =
+      9;
+
+      const octet FUNCTION_AUX_3 =
+      10;
+
+      const octet FUNCTION_AUX_4 =
+      11;
+
+      const octet FUNCTION_AUX_5 =
+      12;
+
+      const octet FUNCTION_AUX_6 =
+      13;
+
+      const octet FUNCTION_PARAM_1 =
+      14;
+
+      const octet FUNCTION_PARAM_2 =
+      15;
+
+      const octet FUNCTION_PARAM_3_5 =
+      16;
+
+      const octet FUNCTION_KILLSWITCH =
+      17;
+
+      const octet FUNCTION_TRANSITION =
+      18;
+
+      const octet FUNCTION_GEAR =
+      19;
+
+      const octet FUNCTION_ARMSWITCH =
+      20;
+
+      const octet FUNCTION_FLTBTN_SLOT_1 =
+      21;
+
+      const octet FUNCTION_FLTBTN_SLOT_2 =
+      22;
+
+      const octet FUNCTION_FLTBTN_SLOT_3 =
+      23;
+
+      const octet FUNCTION_FLTBTN_SLOT_4 =
+      24;
+
+      const octet FUNCTION_FLTBTN_SLOT_5 =
+      25;
+
+      const octet FUNCTION_FLTBTN_SLOT_6 =
+      26;
+
+      const octet FUNCTION_ENGAGE_MAIN_MOTOR =
+      27;
+
+      const octet FUNCTION_PAYLOAD_POWER =
+      28;
+
+      const octet FUNCTION_FLTBTN_SLOT_COUNT =
+      6;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::RcChannels_")
+      struct RcChannels
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Timestamp of last valid RC signal
+         */
+        unsigned long long timestamp_last_valid;
+        /**
+         * Scaled to -1..1 (throttle: 0..1)
+         */
+        float channels[18];
+        /**
+         * Number of valid channels
+         */
+        octet channel_count;
+        /**
+         * Functions mapping
+         */
+        octet function[29];
+        /**
+         * Receive signal strength index
+         */
+        octet rssi;
+        /**
+         * Control signal lost, should be checked together with topic timeout
+         */
+        boolean signal_lost;
+        /**
+         * Number of dropped frames
+         */
+        unsigned long frame_drop_count;
+      };
+    };
+  };
+};
+
+#endif

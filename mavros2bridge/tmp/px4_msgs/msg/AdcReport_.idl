@@ -1,0 +1,43 @@
+#ifndef __px4_msgs__msg__AdcReport__idl__
+#define __px4_msgs__msg__AdcReport__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::AdcReport_")
+      struct AdcReport
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * ADC channel IDs, negative for non-existent, TODO: should be kept same as array index
+         */
+        short channel_id[12];
+        /**
+         * ADC channel raw value, accept negative value, valid if channel ID is positive
+         */
+        long raw_data[12];
+        /**
+         * ADC channel resolution
+         */
+        unsigned long resolution;
+        /**
+         * ADC channel voltage reference, use to calculate LSB voltage(lsb=scale/resolution)
+         */
+        float v_ref;
+      };
+    };
+  };
+};
+
+#endif

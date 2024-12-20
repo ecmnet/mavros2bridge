@@ -1,0 +1,54 @@
+#ifndef __px4_msgs__msg__SatelliteInfo__idl__
+#define __px4_msgs__msg__SatelliteInfo__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet SAT_INFO_MAX_SATELLITES =
+      20;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::SatelliteInfo_")
+      struct SatelliteInfo
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Number of satellites visible to the receiver
+         */
+        octet count;
+        /**
+         * Space vehicle ID [1..255], see scheme below
+         */
+        octet svid[20];
+        /**
+         * 0: Satellite not used, 1: used for navigation
+         */
+        octet used[20];
+        /**
+         * Elevation (0: right on top of receiver, 90: on the horizon) of satellite
+         */
+        octet elevation[20];
+        /**
+         * Direction of satellite, 0: 0 deg, 255: 360 deg.
+         */
+        octet azimuth[20];
+        /**
+         * dBHz, Signal to noise ratio of satellite C/N0, range 0..99, zero when not tracking this satellite.
+         */
+        octet snr[20];
+        /**
+         * Satellite PRN code assignment, (psuedorandom number SBAS, valid codes are 120-144)
+         */
+        octet prn[20];
+      };
+    };
+  };
+};
+
+#endif

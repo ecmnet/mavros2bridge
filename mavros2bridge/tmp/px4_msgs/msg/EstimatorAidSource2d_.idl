@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__EstimatorAidSource2d__idl__
+#define __px4_msgs__msg__EstimatorAidSource2d__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorAidSource2d_")
+      struct EstimatorAidSource2d
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        octet estimator_instance;
+        unsigned long device_id;
+        unsigned long long time_last_fuse;
+        double observation[2];
+        float observation_variance[2];
+        float innovation[2];
+        float innovation_filtered[2];
+        float innovation_variance[2];
+        /**
+         * normalized innovation squared
+         */
+        float test_ratio[2];
+        /**
+         * signed filtered test ratio
+         */
+        float test_ratio_filtered[2];
+        /**
+         * true if the observation has been rejected
+         */
+        boolean innovation_rejected;
+        /**
+         * true if the sample was successfully fused
+         */
+        boolean fused;
+      };
+    };
+  };
+};
+
+#endif

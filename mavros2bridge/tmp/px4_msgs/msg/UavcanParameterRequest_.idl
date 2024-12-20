@@ -1,0 +1,97 @@
+#ifndef __px4_msgs__msg__UavcanParameterRequest__idl__
+#define __px4_msgs__msg__UavcanParameterRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * MAVLINK_MSG_ID_PARAM_REQUEST_READ
+       */
+      const octet MESSAGE_TYPE_PARAM_REQUEST_READ =
+      20;
+
+      /**
+       * MAVLINK_MSG_ID_PARAM_REQUEST_LIST
+       */
+      const octet MESSAGE_TYPE_PARAM_REQUEST_LIST =
+      21;
+
+      /**
+       * MAVLINK_MSG_ID_PARAM_SET
+       */
+      const octet MESSAGE_TYPE_PARAM_SET =
+      23;
+
+      /**
+       * MAV_COMP_ID_ALL
+       */
+      const octet NODE_ID_ALL =
+      0;
+
+      /**
+       * MAV_PARAM_TYPE_UINT8
+       */
+      const octet PARAM_TYPE_UINT8 =
+      1;
+
+      /**
+       * MAV_PARAM_TYPE_INT64
+       */
+      const octet PARAM_TYPE_INT64 =
+      8;
+
+      /**
+       * MAV_PARAM_TYPE_REAL32
+       */
+      const octet PARAM_TYPE_REAL32 =
+      9;
+
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::UavcanParameterRequest_")
+      struct UavcanParameterRequest
+      {
+        /**
+         * UAVCAN-MAVLink parameter bridge request type
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * MAVLink message type: PARAM_REQUEST_READ, PARAM_REQUEST_LIST, PARAM_SET
+         */
+        octet message_type;
+        /**
+         * UAVCAN node ID mapped from MAVLink component ID
+         */
+        octet node_id;
+        /**
+         * MAVLink/UAVCAN parameter name
+         */
+        char param_id[17];
+        /**
+         * -1 if the param_id field should be used as identifier
+         */
+        short param_index;
+        /**
+         * MAVLink parameter type
+         */
+        octet param_type;
+        /**
+         * current value if param_type is int-like
+         */
+        long long int_value;
+        /**
+         * current value if param_type is float-like
+         */
+        float real_value;
+      };
+    };
+  };
+};
+
+#endif

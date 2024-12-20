@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__FailureDetectorStatus__idl__
+#define __px4_msgs__msg__FailureDetectorStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::FailureDetectorStatus_")
+      struct FailureDetectorStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * FailureDetector status
+         */
+        boolean fd_roll;
+        boolean fd_pitch;
+        boolean fd_alt;
+        boolean fd_ext;
+        boolean fd_arm_escs;
+        boolean fd_battery;
+        boolean fd_imbalanced_prop;
+        boolean fd_motor;
+        /**
+         * Metric of the imbalanced propeller check (low-passed)
+         */
+        float imbalanced_prop_metric;
+        /**
+         * Bit-mask with motor indices, indicating critical motor failures
+         */
+        unsigned short motor_failure_mask;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,84 @@
+#ifndef __px4_msgs__msg__EstimatorGpsStatus__idl__
+#define __px4_msgs__msg__EstimatorGpsStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorGpsStatus_")
+      struct EstimatorGpsStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        boolean checks_passed;
+        /**
+         * 0 : insufficient fix type (no 3D solution)
+         */
+        boolean check_fail_gps_fix;
+        /**
+         * 1 : minimum required sat count fail
+         */
+        boolean check_fail_min_sat_count;
+        /**
+         * 2 : maximum allowed PDOP fail
+         */
+        boolean check_fail_max_pdop;
+        /**
+         * 3 : maximum allowed horizontal position error fail
+         */
+        boolean check_fail_max_horz_err;
+        /**
+         * 4 : maximum allowed vertical position error fail
+         */
+        boolean check_fail_max_vert_err;
+        /**
+         * 5 : maximum allowed speed error fail
+         */
+        boolean check_fail_max_spd_err;
+        /**
+         * 6 : maximum allowed horizontal position drift fail - requires stationary vehicle
+         */
+        boolean check_fail_max_horz_drift;
+        /**
+         * 7 : maximum allowed vertical position drift fail - requires stationary vehicle
+         */
+        boolean check_fail_max_vert_drift;
+        /**
+         * 8 : maximum allowed horizontal speed fail - requires stationary vehicle
+         */
+        boolean check_fail_max_horz_spd_err;
+        /**
+         * 9 : maximum allowed vertical velocity discrepancy fail
+         */
+        boolean check_fail_max_vert_spd_err;
+        /**
+         * 10 : GPS signal is spoofed
+         */
+        boolean check_fail_spoofed_gps;
+        /**
+         * Horizontal position rate magnitude (m/s)
+         */
+        float position_drift_rate_horizontal_m_s;
+        /**
+         * Vertical position rate magnitude (m/s)
+         */
+        float position_drift_rate_vertical_m_s;
+        /**
+         * Filtered horizontal velocity magnitude (m/s)
+         */
+        float filtered_horizontal_speed_m_s;
+      };
+    };
+  };
+};
+
+#endif

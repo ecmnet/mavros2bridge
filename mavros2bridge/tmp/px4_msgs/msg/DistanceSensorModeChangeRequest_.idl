@@ -1,0 +1,33 @@
+#ifndef __px4_msgs__msg__DistanceSensorModeChangeRequest__idl__
+#define __px4_msgs__msg__DistanceSensorModeChangeRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet REQUEST_OFF =
+      0;
+
+      const octet REQUEST_ON =
+      1;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::DistanceSensorModeChangeRequest_")
+      struct DistanceSensorModeChangeRequest
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * request to disable/enable the distance sensor
+         */
+        octet request_on_off;
+      };
+    };
+  };
+};
+
+#endif

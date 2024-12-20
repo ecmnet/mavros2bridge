@@ -1,0 +1,34 @@
+#ifndef __px4_msgs__msg__Buffer128__idl__
+#define __px4_msgs__msg__Buffer128__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const unsigned long MAX_BUFLEN =
+      128;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::Buffer128_")
+      struct Buffer128
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * length of data
+         */
+        octet len;
+        /**
+         * data
+         */
+        octet data[128];
+      };
+    };
+  };
+};
+
+#endif

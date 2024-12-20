@@ -1,0 +1,76 @@
+#ifndef __px4_msgs__msg__SensorOpticalFlow__idl__
+#define __px4_msgs__msg__SensorOpticalFlow__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet MODE_UNKNOWN =
+      0;
+
+      const octet MODE_BRIGHT =
+      1;
+
+      const octet MODE_LOWLIGHT =
+      2;
+
+      const octet MODE_SUPER_LOWLIGHT =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorOpticalFlow_")
+      struct SensorOpticalFlow
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * (radians) optical flow in radians where a positive value is produced by a RH rotation about the body axis
+         */
+        float pixel_flow[2];
+        /**
+         * (radians) accumulated gyro radians where a positive value is produced by a RH rotation about the body axis. Set to NaN if flow sensor does not have 3-axis gyro data.
+         */
+        float delta_angle[3];
+        boolean delta_angle_available;
+        /**
+         * (meters) Distance to the center of the flow field
+         */
+        float distance_m;
+        boolean distance_available;
+        /**
+         * (microseconds) accumulation timespan in microseconds
+         */
+        unsigned long integration_timespan_us;
+        /**
+         * quality, 0: bad quality, 255: maximum quality
+         */
+        octet quality;
+        unsigned long error_count;
+        /**
+         * (radians/s) Magnitude of maximum angular which the optical flow sensor can measure reliably
+         */
+        float max_flow_rate;
+        /**
+         * (meters) Minimum distance from ground at which the optical flow sensor operates reliably
+         */
+        float min_ground_distance;
+        /**
+         * (meters) Maximum distance from ground at which the optical flow sensor operates reliably
+         */
+        float max_ground_distance;
+        octet mode;
+      };
+    };
+  };
+};
+
+#endif

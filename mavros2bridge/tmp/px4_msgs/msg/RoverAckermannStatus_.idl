@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__RoverAckermannStatus__idl__
+#define __px4_msgs__msg__RoverAckermannStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RoverAckermannStatus_")
+      struct RoverAckermannStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * [m/s] Measured speed in body x direction. Forwards: positiv, Backwards: negativ
+         */
+        float measured_forward_speed;
+        /**
+         * [m/s] Speed setpoint after applying slew rate
+         */
+        float adjusted_forward_speed_setpoint;
+        /**
+         * [-1, 1] Normalized steering setpoint
+         */
+        float steering_setpoint_normalized;
+        /**
+         * [-1, 1] Normalized steering setpoint after applying slew rate
+         */
+        float adjusted_steering_setpoint_normalized;
+        /**
+         * [m/s^2] Measured acceleration in body y direction. Positiv: right, Negativ: left.
+         */
+        float measured_lateral_acceleration;
+        /**
+         * Integral of the PID for the closed loop speed controller
+         */
+        float pid_throttle_integral;
+        /**
+         * Integral of the PID for the closed loop lateral acceleration controller
+         */
+        float pid_lat_accel_integral;
+      };
+    };
+  };
+};
+
+#endif

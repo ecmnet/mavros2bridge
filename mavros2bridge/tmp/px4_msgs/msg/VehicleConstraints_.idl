@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__VehicleConstraints__idl__
+#define __px4_msgs__msg__VehicleConstraints__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Local setpoint constraints in NED frame
+       * setting something to NaN means that no limit is provided
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleConstraints_")
+      struct VehicleConstraints
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * in meters/sec
+         */
+        float speed_up;
+        /**
+         * in meters/sec
+         */
+        float speed_down;
+        /**
+         * tell the controller to initiate takeoff when idling (ignored during flight)
+         */
+        boolean want_takeoff;
+      };
+    };
+  };
+};
+
+#endif

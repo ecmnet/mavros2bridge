@@ -1,0 +1,54 @@
+#ifndef __px4_msgs__msg__PowerButtonState__idl__
+#define __px4_msgs__msg__PowerButtonState__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * Button went up without meeting shutdown button down time (delete event)
+       */
+      const octet PWR_BUTTON_STATE_IDEL =
+      0;
+
+      /**
+       * Button went Down
+       */
+      const octet PWR_BUTTON_STATE_DOWN =
+      1;
+
+      /**
+       * Button went Up
+       */
+      const octet PWR_BUTTON_STATE_UP =
+      2;
+
+      /**
+       * Button went Up after meeting shutdown button down time
+       */
+      const octet PWR_BUTTON_STATE_REQUEST_SHUTDOWN =
+      3;
+
+
+      /**
+       * power button state notification message
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::PowerButtonState_")
+      struct PowerButtonState
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * one of PWR_BUTTON_STATE_*
+         */
+        octet event;
+      };
+    };
+  };
+};
+
+#endif

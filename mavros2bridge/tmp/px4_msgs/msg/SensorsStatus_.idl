@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__SensorsStatus__idl__
+#define __px4_msgs__msg__SensorsStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorsStatus_")
+      struct SensorsStatus
+      {
+        /**
+         * 
+         * Sensor check metrics. This will be zero for a sensor that's primary or unpopulated.
+         * 
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * current primary device id for reference
+         */
+        unsigned long device_id_primary;
+        unsigned_long device_ids[4];
+        /**
+         * magnitude of difference between sensor instance and mean
+         */
+        float inconsistency[4];
+        /**
+         * sensor healthy
+         */
+        boolean healthy[4];
+        octet priority[4];
+        boolean enabled[4];
+        boolean external[4];
+      };
+    };
+  };
+};
+
+#endif

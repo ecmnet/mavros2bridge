@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__RoverMecanumGuidanceStatus__idl__
+#define __px4_msgs__msg__RoverMecanumGuidanceStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RoverMecanumGuidanceStatus_")
+      struct RoverMecanumGuidanceStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * [m] Lookahead distance of pure the pursuit controller
+         */
+        float lookahead_distance;
+        /**
+         * [rad] Heading error of the pure pursuit controller
+         */
+        float heading_error;
+        /**
+         * [m/s] Desired velocity magnitude (speed)
+         */
+        float desired_speed;
+      };
+    };
+  };
+};
+
+#endif

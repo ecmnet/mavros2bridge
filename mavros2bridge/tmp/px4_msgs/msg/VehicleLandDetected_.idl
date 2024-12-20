@@ -1,0 +1,50 @@
+#ifndef __px4_msgs__msg__VehicleLandDetected__idl__
+#define __px4_msgs__msg__VehicleLandDetected__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleLandDetected_")
+      struct VehicleLandDetected
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * true if vehicle is currently in free-fall
+         */
+        boolean freefall;
+        /**
+         * true if vehicle has ground contact but is not landed (1. stage)
+         */
+        boolean ground_contact;
+        /**
+         * true if the vehicle might have landed (2. stage)
+         */
+        boolean maybe_landed;
+        /**
+         * true if vehicle is currently landed on the ground (3. stage)
+         */
+        boolean landed;
+        /**
+         * indicates if from the perspective of the landing detector the vehicle might be in ground effect (baro). This flag will become true if the vehicle is not moving horizontally and is descending (crude assumption that user is landing).
+         */
+        boolean in_ground_effect;
+        boolean in_descend;
+        boolean has_low_throttle;
+        boolean vertical_movement;
+        boolean horizontal_movement;
+        boolean rotational_movement;
+        boolean close_to_ground_or_skipped_check;
+        boolean at_rest;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,79 @@
+#ifndef __px4_msgs__msg__IridiumsbdStatus__idl__
+#define __px4_msgs__msg__IridiumsbdStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::IridiumsbdStatus_")
+      struct IridiumsbdStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * timestamp of the last "OK" received after the "AT" command
+         */
+        unsigned long long last_at_ok_timestamp;
+        /**
+         * current size of the tx buffer
+         */
+        unsigned short tx_buf_write_index;
+        /**
+         * the rx buffer is parsed up to that index
+         */
+        unsigned short rx_buf_read_index;
+        /**
+         * current size of the rx buffer
+         */
+        unsigned short rx_buf_end_index;
+        /**
+         * number of failed sbd sessions
+         */
+        unsigned short failed_sbd_sessions;
+        /**
+         * number of successful sbd sessions
+         */
+        unsigned short successful_sbd_sessions;
+        /**
+         * number of times the tx buffer was reset
+         */
+        unsigned short num_tx_buf_reset;
+        /**
+         * current signal quality, 0 is no signal, 5 the best
+         */
+        octet signal_quality;
+        /**
+         * current state of the driver, see the satcom_state of IridiumSBD.h for the definition
+         */
+        octet state;
+        /**
+         * indicates if a ring call is pending
+         */
+        boolean ring_pending;
+        /**
+         * indicates if a tx buffer write is pending
+         */
+        boolean tx_buf_write_pending;
+        /**
+         * indicates if a tx session is pending
+         */
+        boolean tx_session_pending;
+        /**
+         * indicates if a rx read is pending
+         */
+        boolean rx_read_pending;
+        /**
+         * indicates if a rx session is pending
+         */
+        boolean rx_session_pending;
+      };
+    };
+  };
+};
+
+#endif

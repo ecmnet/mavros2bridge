@@ -1,0 +1,40 @@
+#ifndef __px4_msgs__msg__MagnetometerBiasEstimate__idl__
+#define __px4_msgs__msg__MagnetometerBiasEstimate__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::MagnetometerBiasEstimate_")
+      struct MagnetometerBiasEstimate
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * estimated X-bias of all the sensors
+         */
+        float bias_x[4];
+        /**
+         * estimated Y-bias of all the sensors
+         */
+        float bias_y[4];
+        /**
+         * estimated Z-bias of all the sensors
+         */
+        float bias_z[4];
+        /**
+         * true if the estimator has converged
+         */
+        boolean valid[4];
+        boolean stable[4];
+      };
+    };
+  };
+};
+
+#endif

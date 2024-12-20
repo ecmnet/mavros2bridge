@@ -1,0 +1,32 @@
+#ifndef __px4_msgs__msg__OpenDroneIdSystem__idl__
+#define __px4_msgs__msg__OpenDroneIdSystem__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::OpenDroneIdSystem_")
+      struct OpenDroneIdSystem
+      {
+        unsigned long long timestamp;
+        octet id_or_mac[20];
+        octet operator_location_type;
+        octet classification_type;
+        long operator_latitude;
+        long operator_longitude;
+        unsigned short area_count;
+        unsigned short area_radius;
+        float area_ceiling;
+        float area_floor;
+        octet category_eu;
+        octet class_eu;
+        float operator_altitude_geo;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,119 @@
+#ifndef __px4_msgs__msg__TecsStatus__idl__
+#define __px4_msgs__msg__TecsStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::TecsStatus_")
+      struct TecsStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Altitude setpoint AMSL [m]
+         */
+        float altitude_sp;
+        /**
+         * Altitude setpoint reference AMSL [m]
+         */
+        float altitude_reference;
+        /**
+         * Time constant of the altitude tracker [s]
+         */
+        float altitude_time_constant;
+        /**
+         * Height rate setpoint reference [m/s]
+         */
+        float height_rate_reference;
+        /**
+         * Direct height rate setpoint from velocity reference generator [m/s]
+         */
+        float height_rate_direct;
+        /**
+         * Height rate setpoint [m/s]
+         */
+        float height_rate_setpoint;
+        /**
+         * Height rate [m/s]
+         */
+        float height_rate;
+        /**
+         * Equivalent airspeed setpoint [m/s]
+         */
+        float equivalent_airspeed_sp;
+        /**
+         * True airspeed setpoint [m/s]
+         */
+        float true_airspeed_sp;
+        /**
+         * True airspeed filtered [m/s]
+         */
+        float true_airspeed_filtered;
+        /**
+         * True airspeed derivative setpoint [m/s^2]
+         */
+        float true_airspeed_derivative_sp;
+        /**
+         * True airspeed derivative [m/s^2]
+         */
+        float true_airspeed_derivative;
+        /**
+         * True airspeed derivative raw [m/s^2]
+         */
+        float true_airspeed_derivative_raw;
+        /**
+         * Total energy rate setpoint [m^2/s^3]
+         */
+        float total_energy_rate_sp;
+        /**
+         * Total energy rate estimate [m^2/s^3]
+         */
+        float total_energy_rate;
+        /**
+         * Energy balance rate setpoint [m^2/s^3]
+         */
+        float total_energy_balance_rate_sp;
+        /**
+         * Energy balance rate estimate [m^2/s^3]
+         */
+        float total_energy_balance_rate;
+        /**
+         * Throttle integrator value [-]
+         */
+        float throttle_integ;
+        /**
+         * Pitch integrator value [rad]
+         */
+        float pitch_integ;
+        /**
+         * Current throttle setpoint [-]
+         */
+        float throttle_sp;
+        /**
+         * Current pitch setpoint [rad]
+         */
+        float pitch_sp_rad;
+        /**
+         * estimated throttle value [0,1] required to fly level at equivalent_airspeed_sp in the current atmospheric conditions
+         */
+        float throttle_trim;
+        /**
+         * 0: no underspeed, 1: maximal underspeed. Controller takes measures to avoid stall proportional to ratio if >0.
+         */
+        float underspeed_ratio;
+        /**
+         * value indicating if fast descend mode is enabled with ramp up and ramp down [0-1]
+         */
+        float fast_descend_ratio;
+      };
+    };
+  };
+};
+
+#endif

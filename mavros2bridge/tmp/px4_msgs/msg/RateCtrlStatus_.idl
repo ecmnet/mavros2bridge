@@ -1,0 +1,33 @@
+#ifndef __px4_msgs__msg__RateCtrlStatus__idl__
+#define __px4_msgs__msg__RateCtrlStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RateCtrlStatus_")
+      struct RateCtrlStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * rate controller integrator status
+         */
+        float rollspeed_integ;
+        float pitchspeed_integ;
+        float yawspeed_integ;
+        /**
+         * FW only and optional
+         */
+        float wheel_rate_integ;
+      };
+    };
+  };
+};
+
+#endif

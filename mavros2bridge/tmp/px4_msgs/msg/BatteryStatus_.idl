@@ -1,0 +1,301 @@
+#ifndef __px4_msgs__msg__BatteryStatus__idl__
+#define __px4_msgs__msg__BatteryStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet BATTERY_SOURCE_POWER_MODULE =
+      0;
+
+      const octet BATTERY_SOURCE_EXTERNAL =
+      1;
+
+      const octet BATTERY_SOURCE_ESCS =
+      2;
+
+      /**
+       * no battery low voltage warning active
+       */
+      const octet BATTERY_WARNING_NONE =
+      0;
+
+      /**
+       * warning of low voltage
+       */
+      const octet BATTERY_WARNING_LOW =
+      1;
+
+      /**
+       * critical voltage, return / abort immediately
+       */
+      const octet BATTERY_WARNING_CRITICAL =
+      2;
+
+      /**
+       * immediate landing required
+       */
+      const octet BATTERY_WARNING_EMERGENCY =
+      3;
+
+      /**
+       * the battery has failed completely
+       */
+      const octet BATTERY_WARNING_FAILED =
+      4;
+
+      /**
+       * Battery is diagnosed to be defective or an error occurred, usage is discouraged / prohibited. Possible causes (faults) are listed in faults field.
+       */
+      const octet BATTERY_STATE_UNHEALTHY =
+      6;
+
+      /**
+       * Battery is charging
+       */
+      const octet BATTERY_STATE_CHARGING =
+      7;
+
+      /**
+       * Battery has deep discharged
+       */
+      const octet BATTERY_FAULT_DEEP_DISCHARGE =
+      0;
+
+      /**
+       * Voltage spikes
+       */
+      const octet BATTERY_FAULT_SPIKES =
+      1;
+
+      /**
+       * One or more cells have failed
+       */
+      const octet BATTERY_FAULT_CELL_FAIL =
+      2;
+
+      /**
+       * Over-current
+       */
+      const octet BATTERY_FAULT_OVER_CURRENT =
+      3;
+
+      /**
+       * Over-temperature
+       */
+      const octet BATTERY_FAULT_OVER_TEMPERATURE =
+      4;
+
+      /**
+       * Under-temperature fault
+       */
+      const octet BATTERY_FAULT_UNDER_TEMPERATURE =
+      5;
+
+      /**
+       * Vehicle voltage is not compatible with this battery (batteries on same power rail should have similar voltage).
+       */
+      const octet BATTERY_FAULT_INCOMPATIBLE_VOLTAGE =
+      6;
+
+      /**
+       * Battery firmware is not compatible with current autopilot firmware
+       */
+      const octet BATTERY_FAULT_INCOMPATIBLE_FIRMWARE =
+      7;
+
+      /**
+       * Battery model is not supported by the system
+       */
+      const octet BATTERY_FAULT_INCOMPATIBLE_MODEL =
+      8;
+
+      /**
+       * hardware problem
+       */
+      const octet BATTERY_FAULT_HARDWARE_FAILURE =
+      9;
+
+      /**
+       * Battery had a problem while arming
+       */
+      const octet BATTERY_FAULT_FAILED_TO_ARM =
+      10;
+
+      /**
+       * Counter - keep it as last element!
+       */
+      const octet BATTERY_FAULT_COUNT =
+      11;
+
+      const octet MAX_INSTANCES =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::BatteryStatus_")
+      struct BatteryStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Whether or not a battery is connected, based on a voltage threshold
+         */
+        boolean connected;
+        /**
+         * Battery voltage in volts, 0 if unknown
+         */
+        float voltage_v;
+        /**
+         * Battery current in amperes, -1 if unknown
+         */
+        float current_a;
+        /**
+         * Battery current average in amperes (for FW average in level flight), -1 if unknown
+         */
+        float current_average_a;
+        /**
+         * Discharged amount in mAh, -1 if unknown
+         */
+        float discharged_mah;
+        /**
+         * From 1 to 0, -1 if unknown
+         */
+        float remaining;
+        /**
+         * Power scaling factor, >= 1, or -1 if unknown
+         */
+        float scale;
+        /**
+         * predicted time in seconds remaining until battery is empty under previous averaged load, NAN if unknown
+         */
+        float time_remaining_s;
+        /**
+         * Temperature of the battery in degrees Celcius, NaN if unknown
+         */
+        float temperature;
+        /**
+         * Number of cells, 0 if unknown
+         */
+        octet cell_count;
+        /**
+         * Battery source
+         */
+        octet source;
+        /**
+         * Zero based priority is the connection on the Power Controller V1..Vn AKA BrickN-1
+         */
+        octet priority;
+        /**
+         * actual capacity of the battery
+         */
+        unsigned short capacity;
+        /**
+         * number of discharge cycles the battery has experienced
+         */
+        unsigned short cycle_count;
+        /**
+         * predicted remaining battery capacity based on the average rate of discharge in min
+         */
+        unsigned short average_time_to_empty;
+        /**
+         * serial number of the battery pack
+         */
+        unsigned short serial_number;
+        /**
+         * manufacture date, part of serial number of the battery pack. Formatted as: Day + Month×32 + (Year–1980)×512
+         */
+        unsigned short manufacture_date;
+        /**
+         * state of health. FullChargeCapacity/DesignCapacity, 0-100%.
+         */
+        unsigned short state_of_health;
+        /**
+         * max error, expected margin of error in % in the state-of-charge calculation with a range of 1 to 100%
+         */
+        unsigned short max_error;
+        /**
+         * ID number of a battery. Should be unique and consistent for the lifetime of a vehicle. 1-indexed.
+         */
+        octet id;
+        /**
+         * interface error counter
+         */
+        unsigned short interface_error;
+        /**
+         * Battery individual cell voltages, 0 if unknown
+         */
+        float voltage_cell_v[14];
+        /**
+         * Max difference between individual cell voltages
+         */
+        float max_cell_voltage_delta;
+        /**
+         * Power off event imminent indication, false if unknown
+         */
+        boolean is_powering_off;
+        /**
+         * Set if the battery is explicitly required before arming
+         */
+        boolean is_required;
+        /**
+         * Smart battery supply status/fault flags (bitmask) for health indication.
+         */
+        unsigned short faults;
+        /**
+         * Current battery warning
+         */
+        octet warning;
+        /**
+         * The compensated battery capacity
+         */
+        float full_charge_capacity_wh;
+        /**
+         * The compensated battery capacity remaining
+         */
+        float remaining_capacity_wh;
+        /**
+         * Number of battery overdischarge
+         */
+        unsigned short over_discharge_count;
+        /**
+         * Nominal voltage of the battery pack
+         */
+        float nominal_voltage;
+        /**
+         * [Ohm] Internal resistance per cell estimate
+         */
+        float internal_resistance_estimate;
+        /**
+         * [V] Open circuit voltage estimate
+         */
+        float ocv_estimate;
+        /**
+         * [V] Filtered open circuit voltage estimate
+         */
+        float ocv_estimate_filtered;
+        /**
+         * [0, 1] Normalized volt based state of charge estimate
+         */
+        float volt_based_soc_estimate;
+        /**
+         * [V] Predicted voltage
+         */
+        float voltage_prediction;
+        /**
+         * [V] Prediction error
+         */
+        float prediction_error;
+        /**
+         * Norm of the covariance matrix
+         */
+        float estimation_covariance_norm;
+      };
+    };
+  };
+};
+
+#endif

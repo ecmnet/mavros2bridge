@@ -1,0 +1,63 @@
+#ifndef __px4_msgs__msg__PositionControllerStatus__idl__
+#define __px4_msgs__msg__PositionControllerStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::PositionControllerStatus_")
+      struct PositionControllerStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Roll setpoint [rad]
+         */
+        float nav_roll;
+        /**
+         * Pitch setpoint [rad]
+         */
+        float nav_pitch;
+        /**
+         * Bearing angle[rad]
+         */
+        float nav_bearing;
+        /**
+         * Bearing angle from aircraft to current target [rad]
+         */
+        float target_bearing;
+        /**
+         * Signed track error [m]
+         */
+        float xtrack_error;
+        /**
+         * Distance to active (next) waypoint [m]
+         */
+        float wp_dist;
+        /**
+         * Current horizontal acceptance radius [m]
+         */
+        float acceptance_radius;
+        /**
+         * Yaw acceptance error[rad]
+         */
+        float yaw_acceptance;
+        /**
+         * Current vertical acceptance error [m]
+         */
+        float altitude_acceptance;
+        /**
+         * Current (applied) position setpoint type (see PositionSetpoint.msg)
+         */
+        octet type;
+      };
+    };
+  };
+};
+
+#endif

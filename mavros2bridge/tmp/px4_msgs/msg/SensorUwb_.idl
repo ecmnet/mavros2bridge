@@ -1,0 +1,111 @@
+#ifndef __px4_msgs__msg__SensorUwb__idl__
+#define __px4_msgs__msg__SensorUwb__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * UWB distance contains the distance information measured by an ultra-wideband positioning system,
+       * such as Pozyx or NXP Rddrone.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::SensorUwb_")
+      struct SensorUwb
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * UWB SessionID
+         */
+        unsigned long sessionid;
+        /**
+         * Time between Ranging Rounds in ms
+         */
+        unsigned long time_offset;
+        /**
+         * Number of Ranges since last Start of Ranging
+         */
+        unsigned long counter;
+        /**
+         * MAC adress of Initiator (controller)
+         */
+        unsigned short mac;
+        /**
+         * MAC adress of Responder (Controlee)
+         */
+        unsigned short mac_dest;
+        /**
+         * status feedback #
+         */
+        unsigned short status;
+        /**
+         * None line of site condition y/n
+         */
+        octet nlos;
+        /**
+         * distance in m to the UWB receiver
+         */
+        float distance;
+        /**
+         * Angle of arrival, Angle in Degree -60..+60; FOV in both axis is 120 degrees
+         * Angle of arrival of first incomming RX msg
+         */
+        float aoa_azimuth_dev;
+        /**
+         * Angle of arrival of first incomming RX msg
+         */
+        float aoa_elevation_dev;
+        /**
+         * Angle of arrival of first incomming RX msg at the responder
+         */
+        float aoa_azimuth_resp;
+        /**
+         * Angle of arrival of first incomming RX msg at the responder
+         */
+        float aoa_elevation_resp;
+        /**
+         * Figure of merit for the angle measurements
+         * AOA Azimuth FOM
+         */
+        octet aoa_azimuth_fom;
+        /**
+         * AOA Elevation FOM
+         */
+        octet aoa_elevation_fom;
+        /**
+         * AOA Azimuth FOM
+         */
+        octet aoa_dest_azimuth_fom;
+        /**
+         * AOA Elevation FOM
+         */
+        octet aoa_dest_elevation_fom;
+        /**
+         * Initiator physical configuration
+         * Direction the sensor faces from MAV_SENSOR_ORIENTATION enum
+         */
+        octet orientation;
+        /**
+         * Standard configuration is Antennas facing down and azimuth aligened in forward direction
+         * UWB initiator offset in X axis (NED drone frame)
+         */
+        float offset_x;
+        /**
+         * UWB initiator offset in Y axis (NED drone frame)
+         */
+        float offset_y;
+        /**
+         * UWB initiator offset in Z axis (NED drone frame)
+         */
+        float offset_z;
+      };
+    };
+  };
+};
+
+#endif

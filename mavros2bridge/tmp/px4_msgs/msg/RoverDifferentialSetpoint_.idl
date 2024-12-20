@@ -1,0 +1,43 @@
+#ifndef __px4_msgs__msg__RoverDifferentialSetpoint__idl__
+#define __px4_msgs__msg__RoverDifferentialSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RoverDifferentialSetpoint_")
+      struct RoverDifferentialSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * [m/s] Desired forward speed for the rover
+         */
+        float forward_speed_setpoint;
+        /**
+         * [-1, 1] Normalized forward speed for the rover
+         */
+        float forward_speed_setpoint_normalized;
+        /**
+         * [rad/s] Desired yaw rate for the rover (Overriden by yaw controller if yaw_setpoint is used)
+         */
+        float yaw_rate_setpoint;
+        /**
+         * [-1, 1] Normalized speed difference between the left and right wheels
+         */
+        float speed_diff_setpoint_normalized;
+        /**
+         * [rad] Desired yaw (heading) for the rover
+         */
+        float yaw_setpoint;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,97 @@
+#ifndef __px4_msgs__msg__EscStatus__idl__
+#define __px4_msgs__msg__EscStatus__idl__
+
+#include "px4_msgs/msg/./EscReport_.idl"
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * The number of ESCs supported. Current (Q2/2013) we support 8 ESCs
+       */
+      const octet CONNECTED_ESC_MAX =
+      8;
+
+      /**
+       * Traditional PPM ESC
+       */
+      const octet ESC_CONNECTION_TYPE_PPM =
+      0;
+
+      /**
+       * Serial Bus connected ESC
+       */
+      const octet ESC_CONNECTION_TYPE_SERIAL =
+      1;
+
+      /**
+       * One Shot PPM
+       */
+      const octet ESC_CONNECTION_TYPE_ONESHOT =
+      2;
+
+      /**
+       * I2C
+       */
+      const octet ESC_CONNECTION_TYPE_I2C =
+      3;
+
+      /**
+       * CAN-Bus
+       */
+      const octet ESC_CONNECTION_TYPE_CAN =
+      4;
+
+      /**
+       * DShot
+       */
+      const octet ESC_CONNECTION_TYPE_DSHOT =
+      5;
+
+
+      /**
+       * esc_online_flags bit 0 : Set to 1 if ESC0 is online
+       * esc_online_flags bit 1 : Set to 1 if ESC1 is online
+       * esc_online_flags bit 2 : Set to 1 if ESC2 is online
+       * esc_online_flags bit 3 : Set to 1 if ESC3 is online
+       * esc_online_flags bit 4 : Set to 1 if ESC4 is online
+       * esc_online_flags bit 5 : Set to 1 if ESC5 is online
+       * esc_online_flags bit 6 : Set to 1 if ESC6 is online
+       * esc_online_flags bit 7 : Set to 1 if ESC7 is online
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::EscStatus_")
+      struct EscStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * incremented by the writing thread everytime new data is stored
+         */
+        unsigned short counter;
+        /**
+         * number of connected ESCs
+         */
+        octet esc_count;
+        /**
+         * how ESCs connected to the system
+         */
+        octet esc_connectiontype;
+        /**
+         * Bitmask indicating which ESC is online/offline
+         */
+        octet esc_online_flags;
+        /**
+         * Bitmask indicating which ESC is armed. For ESC's where the arming state is not known (returned by the ESC), the arming bits should always be set.
+         */
+        octet esc_armed_flags;
+        px4_msgs::msg::dds::EscReport esc[8];
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__RoverDifferentialGuidanceStatus__idl__
+#define __px4_msgs__msg__RoverDifferentialGuidanceStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RoverDifferentialGuidanceStatus_")
+      struct RoverDifferentialGuidanceStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * [m] Lookahead distance of pure the pursuit controller
+         */
+        float lookahead_distance;
+        /**
+         * [deg] Heading error of the pure pursuit controller
+         */
+        float heading_error_deg;
+        /**
+         * Driving state of the rover [0: SPOT_TURNING, 1: DRIVING, 2: GOAL_REACHED]
+         */
+        octet state_machine;
+      };
+    };
+  };
+};
+
+#endif

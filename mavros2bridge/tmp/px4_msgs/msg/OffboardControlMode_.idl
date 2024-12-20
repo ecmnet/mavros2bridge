@@ -1,0 +1,33 @@
+#ifndef __px4_msgs__msg__OffboardControlMode__idl__
+#define __px4_msgs__msg__OffboardControlMode__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Off-board control mode
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::OffboardControlMode_")
+      struct OffboardControlMode
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        boolean position;
+        boolean velocity;
+        boolean acceleration;
+        boolean attitude;
+        boolean body_rate;
+        boolean thrust_and_torque;
+        boolean direct_actuator;
+      };
+    };
+  };
+};
+
+#endif

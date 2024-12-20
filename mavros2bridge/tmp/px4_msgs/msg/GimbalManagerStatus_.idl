@@ -1,0 +1,29 @@
+#ifndef __px4_msgs__msg__GimbalManagerStatus__idl__
+#define __px4_msgs__msg__GimbalManagerStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::GimbalManagerStatus_")
+      struct GimbalManagerStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long flags;
+        octet gimbal_device_id;
+        octet primary_control_sysid;
+        octet primary_control_compid;
+        octet secondary_control_sysid;
+        octet secondary_control_compid;
+      };
+    };
+  };
+};
+
+#endif

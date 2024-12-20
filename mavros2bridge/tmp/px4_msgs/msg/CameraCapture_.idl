@@ -1,0 +1,55 @@
+#ifndef __px4_msgs__msg__CameraCapture__idl__
+#define __px4_msgs__msg__CameraCapture__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::CameraCapture_")
+      struct CameraCapture
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Capture time in UTC / GPS time
+         */
+        unsigned long long timestamp_utc;
+        /**
+         * Image sequence number
+         */
+        unsigned long seq;
+        /**
+         * Latitude in degrees (WGS84)
+         */
+        double lat;
+        /**
+         * Longitude in degrees (WGS84)
+         */
+        double lon;
+        /**
+         * Altitude (AMSL)
+         */
+        float alt;
+        /**
+         * Altitude above ground (meters)
+         */
+        float ground_distance;
+        /**
+         * Attitude of the camera relative to NED earth-fixed frame when using a gimbal, otherwise vehicle attitude
+         */
+        float q[4];
+        /**
+         * 1 for success, 0 for failure, -1 if camera does not provide feedback
+         */
+        octet result;
+      };
+    };
+  };
+};
+
+#endif

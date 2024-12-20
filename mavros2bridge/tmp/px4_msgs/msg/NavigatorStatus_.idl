@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__NavigatorStatus__idl__
+#define __px4_msgs__msg__NavigatorStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet FAILURE_NONE =
+      0;
+
+      /**
+       * Target altitude exceeds maximum height above ground
+       */
+      const octet FAILURE_HAGL =
+      1;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::NavigatorStatus_")
+      struct NavigatorStatus
+      {
+        /**
+         * Current status of a Navigator mode
+         * The possible values of nav_state are defined in the VehicleStatus msg.
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Source mode (values in VehicleStatus)
+         */
+        octet nav_state;
+        /**
+         * Navigator failure enum
+         */
+        octet failure;
+      };
+    };
+  };
+};
+
+#endif

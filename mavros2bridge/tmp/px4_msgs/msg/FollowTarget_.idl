@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__FollowTarget__idl__
+#define __px4_msgs__msg__FollowTarget__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::FollowTarget_")
+      struct FollowTarget
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * target position (deg * 1e7)
+         */
+        double lat;
+        /**
+         * target position (deg * 1e7)
+         */
+        double lon;
+        /**
+         * target position
+         */
+        float alt;
+        /**
+         * target vel in y
+         */
+        float vy;
+        /**
+         * target vel in x
+         */
+        float vx;
+        /**
+         * target vel in z
+         */
+        float vz;
+        /**
+         * target reporting capabilities
+         */
+        octet est_cap;
+      };
+    };
+  };
+};
+
+#endif

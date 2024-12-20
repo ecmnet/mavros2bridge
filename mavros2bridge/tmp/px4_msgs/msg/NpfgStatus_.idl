@@ -1,0 +1,83 @@
+#ifndef __px4_msgs__msg__NpfgStatus__idl__
+#define __px4_msgs__msg__NpfgStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::NpfgStatus_")
+      struct NpfgStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * (boolean) true = wind estimate is valid and/or being used by controller (also indicates if wind est usage is disabled despite being valid)
+         */
+        octet wind_est_valid;
+        /**
+         * resultant lateral acceleration reference [m/s^2]
+         */
+        float lat_accel;
+        /**
+         * lateral acceleration demand only for maintaining curvature [m/s^2]
+         */
+        float lat_accel_ff;
+        /**
+         * bearing feasibility [0,1]
+         */
+        float bearing_feas;
+        /**
+         * on-track bearing feasibility [0,1]
+         */
+        float bearing_feas_on_track;
+        /**
+         * signed track error [m]
+         */
+        float signed_track_error;
+        /**
+         * track error bound [m]
+         */
+        float track_error_bound;
+        /**
+         * (true) airspeed reference [m/s]
+         */
+        float airspeed_ref;
+        /**
+         * bearing angle [rad]
+         */
+        float bearing;
+        /**
+         * heading angle reference [rad]
+         */
+        float heading_ref;
+        /**
+         * minimum forward ground speed reference [m/s]
+         */
+        float min_ground_speed_ref;
+        /**
+         * adapted period (if auto-tuning enabled) [s]
+         */
+        float adapted_period;
+        /**
+         * controller proportional gain [rad/s]
+         */
+        float p_gain;
+        /**
+         * controller time constant [s]
+         */
+        float time_const;
+        /**
+         * estimate of certainty of the correct functionality of the npfg roll setpoint in [0, 1]
+         */
+        float can_run_factor;
+      };
+    };
+  };
+};
+
+#endif

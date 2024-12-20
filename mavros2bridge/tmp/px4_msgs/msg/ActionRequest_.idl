@@ -1,0 +1,71 @@
+#ifndef __px4_msgs__msg__ActionRequest__idl__
+#define __px4_msgs__msg__ActionRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ACTION_DISARM =
+      0;
+
+      const octet ACTION_ARM =
+      1;
+
+      const octet ACTION_TOGGLE_ARMING =
+      2;
+
+      const octet ACTION_UNKILL =
+      3;
+
+      const octet ACTION_KILL =
+      4;
+
+      const octet ACTION_SWITCH_MODE =
+      5;
+
+      const octet ACTION_VTOL_TRANSITION_TO_MULTICOPTER =
+      6;
+
+      const octet ACTION_VTOL_TRANSITION_TO_FIXEDWING =
+      7;
+
+      const octet SOURCE_STICK_GESTURE =
+      0;
+
+      const octet SOURCE_RC_SWITCH =
+      1;
+
+      const octet SOURCE_RC_BUTTON =
+      2;
+
+      const octet SOURCE_RC_MODE_SLOT =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ActionRequest_")
+      struct ActionRequest
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * what action is requested
+         */
+        octet action;
+        /**
+         * how the request was triggered
+         */
+        octet source;
+        /**
+         * for ACTION_SWITCH_MODE what mode is requested according to vehicle_status_s::NAVIGATION_STATE_*
+         */
+        octet mode;
+      };
+    };
+  };
+};
+
+#endif

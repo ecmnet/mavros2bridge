@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__VehicleMagnetometer__idl__
+#define __px4_msgs__msg__VehicleMagnetometer__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleMagnetometer_")
+      struct VehicleMagnetometer
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the selected magnetometer
+         */
+        unsigned long device_id;
+        /**
+         * Magnetic field in the FRD body frame XYZ-axis in Gauss
+         */
+        float magnetometer_ga[3];
+        /**
+         * Calibration changed counter. Monotonically increases whenever calibration changes.
+         */
+        octet calibration_count;
+      };
+    };
+  };
+};
+
+#endif

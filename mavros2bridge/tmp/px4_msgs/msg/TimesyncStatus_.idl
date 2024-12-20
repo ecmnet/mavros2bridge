@@ -1,0 +1,52 @@
+#ifndef __px4_msgs__msg__TimesyncStatus__idl__
+#define __px4_msgs__msg__TimesyncStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet SOURCE_PROTOCOL_UNKNOWN =
+      0;
+
+      const octet SOURCE_PROTOCOL_MAVLINK =
+      1;
+
+      const octet SOURCE_PROTOCOL_DDS =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::TimesyncStatus_")
+      struct TimesyncStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * timesync source
+         */
+        octet source_protocol;
+        /**
+         * remote system timestamp (microseconds)
+         */
+        unsigned long long remote_timestamp;
+        /**
+         * raw time offset directly observed from this timesync packet (microseconds)
+         */
+        long long observed_offset;
+        /**
+         * smoothed time offset between companion system and PX4 (microseconds)
+         */
+        long long estimated_offset;
+        /**
+         * round trip time of this timesync packet (microseconds)
+         */
+        unsigned long round_trip_time;
+      };
+    };
+  };
+};
+
+#endif

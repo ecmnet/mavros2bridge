@@ -1,0 +1,27 @@
+#ifndef __px4_msgs__msg__LandingGearWheel__idl__
+#define __px4_msgs__msg__LandingGearWheel__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::LandingGearWheel_")
+      struct LandingGearWheel
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * negative is turning left, positive turning right [-1, 1]
+         */
+        float normalized_wheel_setpoint;
+      };
+    };
+  };
+};
+
+#endif

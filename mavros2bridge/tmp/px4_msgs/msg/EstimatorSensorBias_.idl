@@ -1,0 +1,88 @@
+#ifndef __px4_msgs__msg__EstimatorSensorBias__idl__
+#define __px4_msgs__msg__EstimatorSensorBias__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * 
+       * Sensor readings and in-run biases in SI-unit form. Sensor readings are compensated for static offsets,
+       * scale errors, in-run bias and thermal drift (if thermal compensation is enabled and available).
+       * 
+       * In-run bias estimates (subtract from uncorrected data)
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorSensorBias_")
+      struct EstimatorSensorBias
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long gyro_device_id;
+        /**
+         * gyroscope in-run bias in body frame (rad/s)
+         */
+        float gyro_bias[3];
+        /**
+         * magnitude of maximum gyroscope in-run bias in body frame (rad/s)
+         */
+        float gyro_bias_limit;
+        float gyro_bias_variance[3];
+        boolean gyro_bias_valid;
+        /**
+         * true when the gyro bias estimate is stable enough to use for calibration
+         */
+        boolean gyro_bias_stable;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long accel_device_id;
+        /**
+         * accelerometer in-run bias in body frame (m/s^2)
+         */
+        float accel_bias[3];
+        /**
+         * magnitude of maximum accelerometer in-run bias in body frame (m/s^2)
+         */
+        float accel_bias_limit;
+        float accel_bias_variance[3];
+        boolean accel_bias_valid;
+        /**
+         * true when the accel bias estimate is stable enough to use for calibration
+         */
+        boolean accel_bias_stable;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long mag_device_id;
+        /**
+         * magnetometer in-run bias in body frame (Gauss)
+         */
+        float mag_bias[3];
+        /**
+         * magnitude of maximum magnetometer in-run bias in body frame (Gauss)
+         */
+        float mag_bias_limit;
+        float mag_bias_variance[3];
+        boolean mag_bias_valid;
+        /**
+         * true when the mag bias estimate is stable enough to use for calibration
+         */
+        boolean mag_bias_stable;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,100 @@
+#ifndef __px4_msgs__msg__EstimatorEventFlags__idl__
+#define __px4_msgs__msg__EstimatorEventFlags__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorEventFlags_")
+      struct EstimatorEventFlags
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * information events
+         * number of information event changes
+         */
+        unsigned long information_event_changes;
+        /**
+         * 0 - true when gps quality checks are passing passed
+         */
+        boolean gps_checks_passed;
+        /**
+         * 1 - true when the velocity states are reset to the gps measurement
+         */
+        boolean reset_vel_to_gps;
+        /**
+         * 2 - true when the velocity states are reset using the optical flow measurement
+         */
+        boolean reset_vel_to_flow;
+        /**
+         * 3 - true when the velocity states are reset to the vision system measurement
+         */
+        boolean reset_vel_to_vision;
+        /**
+         * 4 - true when the velocity states are reset to zero
+         */
+        boolean reset_vel_to_zero;
+        /**
+         * 5 - true when the position states are reset to the last known position
+         */
+        boolean reset_pos_to_last_known;
+        /**
+         * 6 - true when the position states are reset to the gps measurement
+         */
+        boolean reset_pos_to_gps;
+        /**
+         * 7 - true when the position states are reset to the vision system measurement
+         */
+        boolean reset_pos_to_vision;
+        /**
+         * 8 - true when the filter starts using gps measurements to correct the state estimates
+         */
+        boolean starting_gps_fusion;
+        /**
+         * 9 - true when the filter starts using vision system position measurements to correct the state estimates
+         */
+        boolean starting_vision_pos_fusion;
+        /**
+         * 10 - true when the filter starts using vision system velocity measurements to correct the state estimates
+         */
+        boolean starting_vision_vel_fusion;
+        /**
+         * 11 - true when the filter starts using vision system yaw  measurements to correct the state estimates
+         */
+        boolean starting_vision_yaw_fusion;
+        /**
+         * 12 - true when the filter resets the yaw to an estimate derived from IMU and GPS data
+         */
+        boolean yaw_aligned_to_imu_gps;
+        /**
+         * 13 - true when the vertical position state is reset to the baro measurement
+         */
+        boolean reset_hgt_to_baro;
+        /**
+         * 14 - true when the vertical position state is reset to the gps measurement
+         */
+        boolean reset_hgt_to_gps;
+        /**
+         * 15 - true when the vertical position state is reset to the rng measurement
+         */
+        boolean reset_hgt_to_rng;
+        /**
+         * 16 - true when the vertical position state is reset to the ev measurement
+         */
+        boolean reset_hgt_to_ev;
+      };
+    };
+  };
+};
+
+#endif

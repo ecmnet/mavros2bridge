@@ -1,0 +1,55 @@
+#ifndef __px4_msgs__msg__VehicleTrajectoryWaypoint__idl__
+#define __px4_msgs__msg__VehicleTrajectoryWaypoint__idl__
+
+#include "px4_msgs/msg/./TrajectoryWaypoint_.idl"
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet MAV_TRAJECTORY_REPRESENTATION_WAYPOINTS =
+      0;
+
+      const octet POINT_0 =
+      0;
+
+      const octet POINT_1 =
+      1;
+
+      const octet POINT_2 =
+      2;
+
+      const octet POINT_3 =
+      3;
+
+      const octet POINT_4 =
+      4;
+
+      const octet NUMBER_POINTS =
+      5;
+
+
+      /**
+       * Vehicle Waypoints Trajectory description. See also MAVLink MAV_TRAJECTORY_REPRESENTATION msg
+       * The topic vehicle_trajectory_waypoint_desired is used to send the user desired waypoints from the position controller to the companion computer / avoidance module.
+       * The topic vehicle_trajectory_waypoint is used to send the adjusted waypoints from the companion computer / avoidance module to the position controller.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleTrajectoryWaypoint_")
+      struct VehicleTrajectoryWaypoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Type from MAV_TRAJECTORY_REPRESENTATION enum.
+         */
+        octet type;
+        px4_msgs::msg::dds::TrajectoryWaypoint waypoints[5];
+      };
+    };
+  };
+};
+
+#endif

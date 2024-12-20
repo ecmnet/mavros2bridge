@@ -1,0 +1,38 @@
+#ifndef __px4_msgs__msg__EstimatorSelectorStatus__idl__
+#define __px4_msgs__msg__EstimatorSelectorStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorSelectorStatus_")
+      struct EstimatorSelectorStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet primary_instance;
+        octet instances_available;
+        unsigned long instance_changed_count;
+        unsigned long long last_instance_change;
+        unsigned long accel_device_id;
+        unsigned long baro_device_id;
+        unsigned long gyro_device_id;
+        unsigned long mag_device_id;
+        float combined_test_ratio[9];
+        float relative_test_ratio[9];
+        boolean healthy[9];
+        float accumulated_gyro_error[4];
+        float accumulated_accel_error[4];
+        boolean gyro_fault_detected;
+        boolean accel_fault_detected;
+      };
+    };
+  };
+};
+
+#endif

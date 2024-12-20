@@ -1,0 +1,60 @@
+#ifndef __px4_msgs__msg__GimbalManagerSetManualControl__idl__
+#define __px4_msgs__msg__GimbalManagerSetManualControl__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const unsigned long GIMBAL_MANAGER_FLAGS_RETRACT =
+      1;
+
+      const unsigned long GIMBAL_MANAGER_FLAGS_NEUTRAL =
+      2;
+
+      const unsigned long GIMBAL_MANAGER_FLAGS_ROLL_LOCK =
+      4;
+
+      const unsigned long GIMBAL_MANAGER_FLAGS_PITCH_LOCK =
+      8;
+
+      const unsigned long GIMBAL_MANAGER_FLAGS_YAW_LOCK =
+      16;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::GimbalManagerSetManualControl_")
+      struct GimbalManagerSetManualControl
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet origin_sysid;
+        octet origin_compid;
+        octet target_system;
+        octet target_component;
+        unsigned long flags;
+        octet gimbal_device_id;
+        /**
+         * unitless -1..1, can be NAN
+         */
+        float pitch;
+        /**
+         * unitless -1..1, can be NAN
+         */
+        float yaw;
+        /**
+         * unitless -1..1, can be NAN
+         */
+        float pitch_rate;
+        /**
+         * unitless -1..1, can be NAN
+         */
+        float yaw_rate;
+      };
+    };
+  };
+};
+
+#endif

@@ -11,15 +11,27 @@
 	</properties>
   
   <dependencies>
+
+      <dependency>
+         <groupId>us.ihmc</groupId>
+         <artifactId>ros2-msg-to-idl-generator</artifactId>
+         <version>1.1.5</version>
+      </dependency>
+      <dependency>
+         <groupId>us.ihmc</groupId>
+         <artifactId>ihmc-pub-sub-generator</artifactId>
+         <version>1.1.5</version>
+      </dependency>
+ 
 		<dependency>
 			<groupId>us.ihmc</groupId>
 			<artifactId>ihmc-ros2-library</artifactId>
-			<version>0.20.5</version>
+			<version>0.24.5</version>
 		</dependency>
 		<dependency>
 			<groupId>us.ihmc</groupId>
 			<artifactId>ros2-common-interfaces</artifactId>
-			<version>0.20.5</version>
+			<version>0.24.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -42,5 +54,44 @@
 			<version>16</version>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/libs</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<excludeTransitive>false</excludeTransitive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>libs/</classpathPrefix>
+							<mainClass>
+								com.comino.mavros2bridge.MavROS2Bridge
+							</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	
 </project>

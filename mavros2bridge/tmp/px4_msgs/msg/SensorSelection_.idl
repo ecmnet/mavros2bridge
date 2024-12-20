@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__SensorSelection__idl__
+#define __px4_msgs__msg__SensorSelection__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorSelection_")
+      struct SensorSelection
+      {
+        /**
+         * 
+         * Sensor ID's for the voted sensors output on the sensor_combined topic.
+         * Will be updated on startup of the sensor module and when sensor selection changes
+         * 
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique device ID for the selected accelerometers
+         */
+        unsigned long accel_device_id;
+        /**
+         * unique device ID for the selected rate gyros
+         */
+        unsigned long gyro_device_id;
+      };
+    };
+  };
+};
+
+#endif

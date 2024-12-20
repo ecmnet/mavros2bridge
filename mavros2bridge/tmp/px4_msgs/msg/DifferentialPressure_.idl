@@ -1,0 +1,40 @@
+#ifndef __px4_msgs__msg__DifferentialPressure__idl__
+#define __px4_msgs__msg__DifferentialPressure__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::DifferentialPressure_")
+      struct DifferentialPressure
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * differential pressure reading in Pascals (may be negative)
+         */
+        float differential_pressure_pa;
+        /**
+         * Temperature provided by sensor in degrees Celsius, NAN if unknown
+         */
+        float temperature;
+        /**
+         * Number of errors detected by driver
+         */
+        unsigned long error_count;
+      };
+    };
+  };
+};
+
+#endif

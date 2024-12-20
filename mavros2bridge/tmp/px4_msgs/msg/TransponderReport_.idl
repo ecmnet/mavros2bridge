@@ -1,0 +1,173 @@
+#ifndef __px4_msgs__msg__TransponderReport__idl__
+#define __px4_msgs__msg__TransponderReport__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * ADSB flags
+       */
+      const unsigned short PX4_ADSB_FLAGS_VALID_COORDS =
+      1;
+
+      const unsigned short PX4_ADSB_FLAGS_VALID_ALTITUDE =
+      2;
+
+      const unsigned short PX4_ADSB_FLAGS_VALID_HEADING =
+      4;
+
+      const unsigned short PX4_ADSB_FLAGS_VALID_VELOCITY =
+      8;
+
+      const unsigned short PX4_ADSB_FLAGS_VALID_CALLSIGN =
+      16;
+
+      const unsigned short PX4_ADSB_FLAGS_VALID_SQUAWK =
+      32;
+
+      const unsigned short PX4_ADSB_FLAGS_RETRANSLATE =
+      256;
+
+      /**
+       * ADSB Emitter Data:
+       * from mavlink/v2.0/common/common.h
+       */
+      const unsigned short ADSB_EMITTER_TYPE_NO_INFO =
+      0;
+
+      const unsigned short ADSB_EMITTER_TYPE_LIGHT =
+      1;
+
+      const unsigned short ADSB_EMITTER_TYPE_SMALL =
+      2;
+
+      const unsigned short ADSB_EMITTER_TYPE_LARGE =
+      3;
+
+      const unsigned short ADSB_EMITTER_TYPE_HIGH_VORTEX_LARGE =
+      4;
+
+      const unsigned short ADSB_EMITTER_TYPE_HEAVY =
+      5;
+
+      const unsigned short ADSB_EMITTER_TYPE_HIGHLY_MANUV =
+      6;
+
+      const unsigned short ADSB_EMITTER_TYPE_ROTOCRAFT =
+      7;
+
+      const unsigned short ADSB_EMITTER_TYPE_UNASSIGNED =
+      8;
+
+      const unsigned short ADSB_EMITTER_TYPE_GLIDER =
+      9;
+
+      const unsigned short ADSB_EMITTER_TYPE_LIGHTER_AIR =
+      10;
+
+      const unsigned short ADSB_EMITTER_TYPE_PARACHUTE =
+      11;
+
+      const unsigned short ADSB_EMITTER_TYPE_ULTRA_LIGHT =
+      12;
+
+      const unsigned short ADSB_EMITTER_TYPE_UNASSIGNED2 =
+      13;
+
+      const unsigned short ADSB_EMITTER_TYPE_UAV =
+      14;
+
+      const unsigned short ADSB_EMITTER_TYPE_SPACE =
+      15;
+
+      const unsigned short ADSB_EMITTER_TYPE_UNASSGINED3 =
+      16;
+
+      const unsigned short ADSB_EMITTER_TYPE_EMERGENCY_SURFACE =
+      17;
+
+      const unsigned short ADSB_EMITTER_TYPE_SERVICE_SURFACE =
+      18;
+
+      const unsigned short ADSB_EMITTER_TYPE_POINT_OBSTACLE =
+      19;
+
+      const unsigned short ADSB_EMITTER_TYPE_ENUM_END =
+      20;
+
+      const octet ORB_QUEUE_LENGTH =
+      16;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::TransponderReport_")
+      struct TransponderReport
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * ICAO address
+         */
+        unsigned long icao_address;
+        /**
+         * Latitude, expressed as degrees
+         */
+        double lat;
+        /**
+         * Longitude, expressed as degrees
+         */
+        double lon;
+        /**
+         * Type from ADSB_ALTITUDE_TYPE enum
+         */
+        octet altitude_type;
+        /**
+         * Altitude(ASL) in meters
+         */
+        float altitude;
+        /**
+         * Course over ground in radians, -pi to +pi, 0 is north
+         */
+        float heading;
+        /**
+         * The horizontal velocity in m/s
+         */
+        float hor_velocity;
+        /**
+         * The vertical velocity in m/s, positive is up
+         */
+        float ver_velocity;
+        /**
+         * The callsign, 8+null
+         */
+        char callsign[9];
+        /**
+         * Type from ADSB_EMITTER_TYPE enum
+         */
+        octet emitter_type;
+        /**
+         * Time since last communication in seconds
+         */
+        octet tslc;
+        /**
+         * Flags to indicate various statuses including valid data fields
+         */
+        unsigned short flags;
+        /**
+         * Squawk code
+         */
+        unsigned short squawk;
+        /**
+         * Unique UAS ID
+         */
+        octet uas_id[18];
+      };
+    };
+  };
+};
+
+#endif

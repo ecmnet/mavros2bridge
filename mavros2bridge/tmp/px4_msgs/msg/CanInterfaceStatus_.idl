@@ -1,0 +1,27 @@
+#ifndef __px4_msgs__msg__CanInterfaceStatus__idl__
+#define __px4_msgs__msg__CanInterfaceStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::CanInterfaceStatus_")
+      struct CanInterfaceStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet interface;
+        unsigned long long io_errors;
+        unsigned long long frames_tx;
+        unsigned long long frames_rx;
+      };
+    };
+  };
+};
+
+#endif

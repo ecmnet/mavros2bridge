@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__FlightPhaseEstimation__idl__
+#define __px4_msgs__msg__FlightPhaseEstimation__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * vehicle flight phase is unknown
+       */
+      const octet FLIGHT_PHASE_UNKNOWN =
+      0;
+
+      /**
+       * Vehicle is in level flight
+       */
+      const octet FLIGHT_PHASE_LEVEL =
+      1;
+
+      /**
+       * vehicle is in descend
+       */
+      const octet FLIGHT_PHASE_DESCEND =
+      2;
+
+      /**
+       * vehicle is climbing
+       */
+      const octet FLIGHT_PHASE_CLIMB =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::FlightPhaseEstimation_")
+      struct FlightPhaseEstimation
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Estimate of current flight phase
+         */
+        octet flight_phase;
+      };
+    };
+  };
+};
+
+#endif

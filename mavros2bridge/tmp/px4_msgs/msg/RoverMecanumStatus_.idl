@@ -1,0 +1,75 @@
+#ifndef __px4_msgs__msg__RoverMecanumStatus__idl__
+#define __px4_msgs__msg__RoverMecanumStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RoverMecanumStatus_")
+      struct RoverMecanumStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * [m/s] Measured speed in body x direction. Positiv: forwards, Negativ: backwards
+         */
+        float measured_forward_speed;
+        /**
+         * [m/s] Speed setpoint after applying slew rate
+         */
+        float adjusted_forward_speed_setpoint;
+        /**
+         * [m/s] Measured speed in body y direction. Positiv: right, Negativ: left
+         */
+        float measured_lateral_speed;
+        /**
+         * [m/s] Speed setpoint after applying slew rate
+         */
+        float adjusted_lateral_speed_setpoint;
+        /**
+         * [rad/s] Measured yaw rate
+         */
+        float measured_yaw_rate;
+        /**
+         * [rad/s] Yaw rate setpoint output by the closed loop yaw controller
+         */
+        float clyaw_yaw_rate_setpoint;
+        /**
+         * [rad/s] Yaw rate setpoint from the closed loop yaw controller
+         */
+        float adjusted_yaw_rate_setpoint;
+        /**
+         * [rad] Measured yaw
+         */
+        float measured_yaw;
+        /**
+         * [rad] Yaw setpoint after applying slew rate
+         */
+        float adjusted_yaw_setpoint;
+        /**
+         * Integral of the PID for the closed loop yaw rate controller
+         */
+        float pid_yaw_rate_integral;
+        /**
+         * Integral of the PID for the closed loop yaw controller
+         */
+        float pid_yaw_integral;
+        /**
+         * Integral of the PID for the closed loop forward speed controller
+         */
+        float pid_forward_throttle_integral;
+        /**
+         * Integral of the PID for the closed loop lateral speed controller
+         */
+        float pid_lateral_throttle_integral;
+      };
+    };
+  };
+};
+
+#endif

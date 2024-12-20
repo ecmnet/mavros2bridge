@@ -1,0 +1,43 @@
+#ifndef __px4_msgs__msg__VehicleAttitude__idl__
+#define __px4_msgs__msg__VehicleAttitude__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * This is similar to the mavlink message ATTITUDE_QUATERNION, but for onboard use
+       * The quaternion uses the Hamilton convention, and the order is q(w, x, y, z)
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleAttitude_")
+      struct VehicleAttitude
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * Quaternion rotation from the FRD body frame to the NED earth frame
+         */
+        float q[4];
+        /**
+         * Amount by which quaternion has changed during last reset
+         */
+        float delta_q_reset[4];
+        /**
+         * Quaternion reset counter
+         */
+        octet quat_reset_counter;
+      };
+    };
+  };
+};
+
+#endif

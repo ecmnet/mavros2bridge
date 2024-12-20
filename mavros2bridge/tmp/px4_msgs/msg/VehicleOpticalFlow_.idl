@@ -1,0 +1,63 @@
+#ifndef __px4_msgs__msg__VehicleOpticalFlow__idl__
+#define __px4_msgs__msg__VehicleOpticalFlow__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Optical flow in XYZ body frame in SI units.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleOpticalFlow_")
+      struct VehicleOpticalFlow
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * (radians) accumulated optical flow in radians where a positive value is produced by a RH rotation about the body axis
+         */
+        float pixel_flow[2];
+        /**
+         * (radians) accumulated gyro radians where a positive value is produced by a RH rotation about the body axis. (NAN if unavailable)
+         */
+        float delta_angle[3];
+        /**
+         * (meters) Distance to the center of the flow field (NAN if unavailable)
+         */
+        float distance_m;
+        /**
+         * (microseconds) accumulation timespan in microseconds
+         */
+        unsigned long integration_timespan_us;
+        /**
+         * Average of quality of accumulated frames, 0: bad quality, 255: maximum quality
+         */
+        octet quality;
+        /**
+         * (radians/s) Magnitude of maximum angular which the optical flow sensor can measure reliably
+         */
+        float max_flow_rate;
+        /**
+         * (meters) Minimum distance from ground at which the optical flow sensor operates reliably
+         */
+        float min_ground_distance;
+        /**
+         * (meters) Maximum distance from ground at which the optical flow sensor operates reliably
+         */
+        float max_ground_distance;
+      };
+    };
+  };
+};
+
+#endif

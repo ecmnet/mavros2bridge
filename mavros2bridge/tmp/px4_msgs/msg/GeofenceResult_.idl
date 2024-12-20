@@ -1,0 +1,75 @@
+#ifndef __px4_msgs__msg__GeofenceResult__idl__
+#define __px4_msgs__msg__GeofenceResult__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * no action on geofence violation
+       */
+      const octet GF_ACTION_NONE =
+      0;
+
+      /**
+       * critical mavlink message
+       */
+      const octet GF_ACTION_WARN =
+      1;
+
+      /**
+       * switch to AUTO|LOITER
+       */
+      const octet GF_ACTION_LOITER =
+      2;
+
+      /**
+       * switch to AUTO|RTL
+       */
+      const octet GF_ACTION_RTL =
+      3;
+
+      /**
+       * flight termination
+       */
+      const octet GF_ACTION_TERMINATE =
+      4;
+
+      /**
+       * switch to AUTO|LAND
+       */
+      const octet GF_ACTION_LAND =
+      5;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::GeofenceResult_")
+      struct GeofenceResult
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * true the check for max distance from Home is triggered
+         */
+        boolean geofence_max_dist_triggered;
+        /**
+         * true the check for max altitude above Home is triggered
+         */
+        boolean geofence_max_alt_triggered;
+        /**
+         * true the check for custom inclusion/exclusion geofence(s) is triggered
+         */
+        boolean geofence_custom_fence_triggered;
+        /**
+         * action to take when the geofence is breached
+         */
+        octet geofence_action;
+      };
+    };
+  };
+};
+
+#endif

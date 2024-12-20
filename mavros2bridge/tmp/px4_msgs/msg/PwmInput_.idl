@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__PwmInput__idl__
+#define __px4_msgs__msg__PwmInput__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::PwmInput_")
+      struct PwmInput
+      {
+        /**
+         * Time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Timer overcapture error flag (AUX5 or MAIN5)
+         */
+        unsigned long long error_count;
+        /**
+         * Pulse width, timer counts
+         */
+        unsigned long pulse_width;
+        /**
+         * Period, timer counts
+         */
+        unsigned long period;
+      };
+    };
+  };
+};
+
+#endif

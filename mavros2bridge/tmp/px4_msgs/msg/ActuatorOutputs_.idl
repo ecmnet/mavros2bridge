@@ -1,0 +1,40 @@
+#ifndef __px4_msgs__msg__ActuatorOutputs__idl__
+#define __px4_msgs__msg__ActuatorOutputs__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet NUM_ACTUATOR_OUTPUTS =
+      16;
+
+      /**
+       * for sanity checking
+       */
+      const octet NUM_ACTUATOR_OUTPUT_GROUPS =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ActuatorOutputs_")
+      struct ActuatorOutputs
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * valid outputs
+         */
+        unsigned long noutputs;
+        /**
+         * output data, in natural output units
+         */
+        float output[16];
+      };
+    };
+  };
+};
+
+#endif

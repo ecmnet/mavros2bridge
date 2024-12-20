@@ -1,0 +1,75 @@
+#ifndef __px4_msgs__msg__ActuatorTest__idl__
+#define __px4_msgs__msg__ActuatorTest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * exit test mode for the given function
+       */
+      const octet ACTION_RELEASE_CONTROL =
+      0;
+
+      /**
+       * enable actuator test mode
+       */
+      const octet ACTION_DO_CONTROL =
+      1;
+
+      const octet FUNCTION_MOTOR1 =
+      101;
+
+      const octet MAX_NUM_MOTORS =
+      12;
+
+      const octet FUNCTION_SERVO1 =
+      201;
+
+      const octet MAX_NUM_SERVOS =
+      8;
+
+      /**
+       * >= MAX_NUM_MOTORS to support code in esc_calibration
+       */
+      const octet ORB_QUEUE_LENGTH =
+      16;
+
+
+      /**
+       * Topic to test individual actuator output functions
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ActuatorTest_")
+      struct ActuatorTest
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * one of ACTION_*
+         */
+        octet action;
+        /**
+         * actuator output function
+         */
+        unsigned short function;
+        /**
+         * range: [-1, 1], where 1 means maximum positive output,
+         */
+        float value;
+        /**
+         * 0 to center servos or minimum motor thrust,
+         * -1 maximum negative (if not supported by the motors, <0 maps to NaN),
+         * and NaN maps to disarmed (stop the motors)
+         * timeout in ms after which to exit test mode (if 0, do not time out)
+         */
+        unsigned long timeout_ms;
+      };
+    };
+  };
+};
+
+#endif

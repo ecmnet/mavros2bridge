@@ -1,0 +1,47 @@
+#ifndef __px4_msgs__msg__Ping__idl__
+#define __px4_msgs__msg__Ping__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::Ping_")
+      struct Ping
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Timestamp of the ping packet
+         */
+        unsigned long long ping_time;
+        /**
+         * Sequence number of the ping packet
+         */
+        unsigned long ping_sequence;
+        /**
+         * Number of dropped ping packets
+         */
+        unsigned long dropped_packets;
+        /**
+         * Round trip time (in ms)
+         */
+        float rtt_ms;
+        /**
+         * System ID of the remote system
+         */
+        octet system_id;
+        /**
+         * Component ID of the remote system
+         */
+        octet component_id;
+      };
+    };
+  };
+};
+
+#endif

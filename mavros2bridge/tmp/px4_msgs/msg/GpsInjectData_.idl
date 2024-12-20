@@ -1,0 +1,45 @@
+#ifndef __px4_msgs__msg__GpsInjectData__idl__
+#define __px4_msgs__msg__GpsInjectData__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      8;
+
+      const octet MAX_INSTANCES =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::GpsInjectData_")
+      struct GpsInjectData
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * length of data
+         */
+        unsigned short len;
+        /**
+         * LSB: 1=fragmented
+         */
+        octet flags;
+        /**
+         * data to write to GPS device (RTCM message)
+         */
+        octet data[300];
+      };
+    };
+  };
+};
+
+#endif

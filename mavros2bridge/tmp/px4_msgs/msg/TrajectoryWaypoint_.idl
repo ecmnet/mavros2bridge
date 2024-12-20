@@ -1,0 +1,34 @@
+#ifndef __px4_msgs__msg__TrajectoryWaypoint__idl__
+#define __px4_msgs__msg__TrajectoryWaypoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Waypoint Trajectory description. See also Mavlink TRAJECTORY msg
+       * The topic trajectory_waypoint describe each waypoint defined in vehicle_trajectory_waypoint
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::TrajectoryWaypoint_")
+      struct TrajectoryWaypoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        float position[3];
+        float velocity[3];
+        float acceleration[3];
+        float yaw;
+        float yaw_speed;
+        boolean point_valid;
+        octet type;
+      };
+    };
+  };
+};
+
+#endif

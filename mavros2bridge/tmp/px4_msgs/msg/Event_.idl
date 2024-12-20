@@ -1,0 +1,43 @@
+#ifndef __px4_msgs__msg__Event__idl__
+#define __px4_msgs__msg__Event__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      16;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::Event_")
+      struct Event
+      {
+        /**
+         * Events interface
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Event ID
+         */
+        unsigned long id;
+        /**
+         * Event sequence number
+         */
+        unsigned short event_sequence;
+        /**
+         * (optional) arguments, depend on event id
+         */
+        octet arguments[25];
+        /**
+         * Log levels: 4 bits MSB: internal, 4 bits LSB: external
+         */
+        octet log_levels;
+      };
+    };
+  };
+};
+
+#endif

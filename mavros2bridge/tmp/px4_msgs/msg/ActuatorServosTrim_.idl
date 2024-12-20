@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__ActuatorServosTrim__idl__
+#define __px4_msgs__msg__ActuatorServosTrim__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet NUM_CONTROLS =
+      8;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ActuatorServosTrim_")
+      struct ActuatorServosTrim
+      {
+        /**
+         * Servo trims, added as offset to servo outputs
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * range: [-1, 1]
+         */
+        float trim[8];
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,69 @@
+#ifndef __px4_msgs__msg__GotoSetpoint__idl__
+#define __px4_msgs__msg__GotoSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Position and (optional) heading setpoints with corresponding speed constraints
+       * Setpoints are intended as inputs to position and heading smoothers, respectively
+       * Setpoints do not need to be kinematically consistent
+       * Optional heading setpoints may be specified as controlled by the respective flag
+       * Unset optional setpoints are not controlled
+       * Unset optional constraints default to vehicle specifications
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::GotoSetpoint_")
+      struct GotoSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * setpoints
+         * [m] NED local world frame
+         */
+        float position[3];
+        /**
+         * true if heading is to be controlled
+         */
+        boolean flag_control_heading;
+        /**
+         * (optional) [rad] [-pi,pi] from North
+         */
+        float heading;
+        /**
+         * constraints
+         * true if setting a non-default horizontal speed limit
+         */
+        boolean flag_set_max_horizontal_speed;
+        /**
+         * (optional) [m/s] maximum speed (absolute) in the NE-plane
+         */
+        float max_horizontal_speed;
+        /**
+         * true if setting a non-default vertical speed limit
+         */
+        boolean flag_set_max_vertical_speed;
+        /**
+         * (optional) [m/s] maximum speed (absolute) in the D-axis
+         */
+        float max_vertical_speed;
+        /**
+         * true if setting a non-default heading rate limit
+         */
+        boolean flag_set_max_heading_rate;
+        /**
+         * (optional) [rad/s] maximum heading rate (absolute)
+         */
+        float max_heading_rate;
+      };
+    };
+  };
+};
+
+#endif

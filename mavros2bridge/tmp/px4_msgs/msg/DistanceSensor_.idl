@@ -1,0 +1,182 @@
+#ifndef __px4_msgs__msg__DistanceSensor__idl__
+#define __px4_msgs__msg__DistanceSensor__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet MAV_DISTANCE_SENSOR_LASER =
+      0;
+
+      const octet MAV_DISTANCE_SENSOR_ULTRASOUND =
+      1;
+
+      const octet MAV_DISTANCE_SENSOR_INFRARED =
+      2;
+
+      const octet MAV_DISTANCE_SENSOR_RADAR =
+      3;
+
+      /**
+       * MAV_SENSOR_ROTATION_NONE
+       */
+      const octet ROTATION_YAW_0 =
+      0;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_45
+       */
+      const octet ROTATION_YAW_45 =
+      1;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_90
+       */
+      const octet ROTATION_YAW_90 =
+      2;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_135
+       */
+      const octet ROTATION_YAW_135 =
+      3;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_180
+       */
+      const octet ROTATION_YAW_180 =
+      4;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_225
+       */
+      const octet ROTATION_YAW_225 =
+      5;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_270
+       */
+      const octet ROTATION_YAW_270 =
+      6;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_315
+       */
+      const octet ROTATION_YAW_315 =
+      7;
+
+      /**
+       * MAV_SENSOR_ROTATION_NONE
+       */
+      const octet ROTATION_FORWARD_FACING =
+      0;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_90
+       */
+      const octet ROTATION_RIGHT_FACING =
+      2;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_180
+       */
+      const octet ROTATION_BACKWARD_FACING =
+      4;
+
+      /**
+       * MAV_SENSOR_ROTATION_YAW_270
+       */
+      const octet ROTATION_LEFT_FACING =
+      6;
+
+      /**
+       * MAV_SENSOR_ROTATION_PITCH_90
+       */
+      const octet ROTATION_UPWARD_FACING =
+      24;
+
+      /**
+       * MAV_SENSOR_ROTATION_PITCH_270
+       */
+      const octet ROTATION_DOWNWARD_FACING =
+      25;
+
+      /**
+       * MAV_SENSOR_ROTATION_CUSTOM
+       */
+      const octet ROTATION_CUSTOM =
+      100;
+
+      const octet MODE_UNKNOWN =
+      0;
+
+      const octet MODE_ENABLED =
+      1;
+
+      const octet MODE_DISABLED =
+      2;
+
+
+      /**
+       * DISTANCE_SENSOR message data
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::DistanceSensor_")
+      struct DistanceSensor
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * Minimum distance the sensor can measure (in m)
+         */
+        float min_distance;
+        /**
+         * Maximum distance the sensor can measure (in m)
+         */
+        float max_distance;
+        /**
+         * Current distance reading (in m)
+         */
+        float current_distance;
+        /**
+         * Measurement variance (in m^2), 0 for unknown / invalid readings
+         */
+        float variance;
+        /**
+         * Signal quality in percent (0...100%), where 0 = invalid signal, 100 = perfect signal, and -1 = unknown signal quality.
+         */
+        octet signal_quality;
+        /**
+         * Type from MAV_DISTANCE_SENSOR enum
+         */
+        octet type;
+        /**
+         * Sensor horizontal field of view (rad)
+         */
+        float h_fov;
+        /**
+         * Sensor vertical field of view (rad)
+         */
+        float v_fov;
+        /**
+         * Quaterion sensor orientation with respect to the vehicle body frame to specify the orientation ROTATION_CUSTOM
+         */
+        float q[4];
+        /**
+         * Direction the sensor faces from MAV_SENSOR_ORIENTATION enum
+         */
+        octet orientation;
+        octet mode;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,151 @@
+#ifndef __px4_msgs__msg__ManualControlSwitches__idl__
+#define __px4_msgs__msg__ManualControlSwitches__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * switch is not mapped
+       */
+      const octet SWITCH_POS_NONE =
+      0;
+
+      /**
+       * switch activated (value = 1)
+       */
+      const octet SWITCH_POS_ON =
+      1;
+
+      /**
+       * middle position (value = 0)
+       */
+      const octet SWITCH_POS_MIDDLE =
+      2;
+
+      /**
+       * switch not activated (value = -1)
+       */
+      const octet SWITCH_POS_OFF =
+      3;
+
+      /**
+       * no mode slot assigned
+       */
+      const octet MODE_SLOT_NONE =
+      0;
+
+      /**
+       * mode slot 1 selected
+       */
+      const octet MODE_SLOT_1 =
+      1;
+
+      /**
+       * mode slot 2 selected
+       */
+      const octet MODE_SLOT_2 =
+      2;
+
+      /**
+       * mode slot 3 selected
+       */
+      const octet MODE_SLOT_3 =
+      3;
+
+      /**
+       * mode slot 4 selected
+       */
+      const octet MODE_SLOT_4 =
+      4;
+
+      /**
+       * mode slot 5 selected
+       */
+      const octet MODE_SLOT_5 =
+      5;
+
+      /**
+       * mode slot 6 selected
+       */
+      const octet MODE_SLOT_6 =
+      6;
+
+      /**
+       * number of slots
+       */
+      const octet MODE_SLOT_NUM =
+      6;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ManualControlSwitches_")
+      struct ManualControlSwitches
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * the slot a specific model selector is in
+         */
+        octet mode_slot;
+        /**
+         * arm/disarm switch: _DISARMED_, ARMED
+         */
+        octet arm_switch;
+        /**
+         * return to launch 2 position switch (mandatory): _NORMAL_, RTL
+         */
+        octet return_switch;
+        /**
+         * loiter 2 position switch (optional): _MISSION_, LOITER
+         */
+        octet loiter_switch;
+        /**
+         * offboard 2 position switch (optional): _NORMAL_, OFFBOARD
+         */
+        octet offboard_switch;
+        /**
+         * throttle kill: _NORMAL_, KILL
+         */
+        octet kill_switch;
+        /**
+         * landing gear switch: _DOWN_, UP
+         */
+        octet gear_switch;
+        /**
+         * VTOL transition switch: _HOVER, FORWARD_FLIGHT
+         */
+        octet transition_switch;
+        /**
+         * Photo trigger switch
+         */
+        octet photo_switch;
+        /**
+         * Photo trigger switch
+         */
+        octet video_switch;
+        /**
+         * Payload power switch
+         */
+        octet payload_power_switch;
+        /**
+         * Engage the main motor (for helicopters)
+         */
+        octet engage_main_motor_switch;
+        /**
+         * number of switch changes
+         */
+        unsigned long switch_changes;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,33 @@
+#ifndef __px4_msgs__msg__ButtonEvent__idl__
+#define __px4_msgs__msg__ButtonEvent__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      2;
+
+
+      /**
+       * TOPICS button_event safety_button
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ButtonEvent_")
+      struct ButtonEvent
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Set to true if the event is triggered
+         */
+        boolean triggered;
+      };
+    };
+  };
+};
+
+#endif

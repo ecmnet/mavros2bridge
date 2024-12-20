@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__SensorPreflightMag__idl__
+#define __px4_msgs__msg__SensorPreflightMag__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorPreflightMag_")
+      struct SensorPreflightMag
+      {
+        /**
+         * 
+         * Pre-flight sensor check metrics.
+         * The topic will not be updated when the vehicle is armed
+         * 
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * maximum angle between magnetometer instance field vectors in radians.
+         */
+        float mag_inconsistency_angle;
+      };
+    };
+  };
+};
+
+#endif

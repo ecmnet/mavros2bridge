@@ -1,0 +1,72 @@
+#ifndef __px4_msgs__msg__LoggerStatus__idl__
+#define __px4_msgs__msg__LoggerStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * Normal, full size log
+       */
+      const octet LOGGER_TYPE_FULL =
+      0;
+
+      /**
+       * reduced mission log (e.g. for geotagging)
+       */
+      const octet LOGGER_TYPE_MISSION =
+      1;
+
+      const octet BACKEND_FILE =
+      1;
+
+      const octet BACKEND_MAVLINK =
+      2;
+
+      const octet BACKEND_ALL =
+      3;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::LoggerStatus_")
+      struct LoggerStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet type;
+        octet backend;
+        boolean is_logging;
+        /**
+         * total written to log in kiloBytes
+         */
+        float total_written_kb;
+        /**
+         * write rate in kiloBytes/s
+         */
+        float write_rate_kb_s;
+        /**
+         * number of failed buffer writes due to buffer overflow
+         */
+        unsigned long dropouts;
+        /**
+         * messages misssed
+         */
+        unsigned long message_gaps;
+        /**
+         * current buffer fill in Bytes
+         */
+        unsigned long buffer_used_bytes;
+        /**
+         * total buffer size in Bytes
+         */
+        unsigned long buffer_size_bytes;
+        octet num_messages;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,215 @@
+#ifndef __px4_msgs__msg__SensorGps__idl__
+#define __px4_msgs__msg__SensorGps__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * Value 0 is also valid to represent no fix.
+       */
+      const octet FIX_TYPE_NONE =
+      1;
+
+      const octet FIX_TYPE_2D =
+      2;
+
+      const octet FIX_TYPE_3D =
+      3;
+
+      const octet FIX_TYPE_RTCM_CODE_DIFFERENTIAL =
+      4;
+
+      const octet FIX_TYPE_RTK_FLOAT =
+      5;
+
+      const octet FIX_TYPE_RTK_FIXED =
+      6;
+
+      const octet FIX_TYPE_EXTRAPOLATED =
+      8;
+
+      const octet JAMMING_STATE_UNKNOWN =
+      0;
+
+      const octet JAMMING_STATE_OK =
+      1;
+
+      const octet JAMMING_STATE_WARNING =
+      2;
+
+      const octet JAMMING_STATE_CRITICAL =
+      3;
+
+      const octet SPOOFING_STATE_UNKNOWN =
+      0;
+
+      const octet SPOOFING_STATE_NONE =
+      1;
+
+      const octet SPOOFING_STATE_INDICATED =
+      2;
+
+      const octet SPOOFING_STATE_MULTIPLE =
+      3;
+
+      const octet RTCM_MSG_USED_UNKNOWN =
+      0;
+
+      const octet RTCM_MSG_USED_NOT_USED =
+      1;
+
+      const octet RTCM_MSG_USED_USED =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorGps_")
+      struct SensorGps
+      {
+        /**
+         * GPS position in WGS84 coordinates.
+         * the field 'timestamp' is for the position & velocity (microseconds)
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * Latitude in degrees, allows centimeter level RTK precision
+         */
+        double latitude_deg;
+        /**
+         * Longitude in degrees, allows centimeter level RTK precision
+         */
+        double longitude_deg;
+        /**
+         * Altitude above MSL, meters
+         */
+        double altitude_msl_m;
+        /**
+         * Altitude above Ellipsoid, meters
+         */
+        double altitude_ellipsoid_m;
+        /**
+         * GPS speed accuracy estimate, (metres/sec)
+         */
+        float s_variance_m_s;
+        /**
+         * GPS course accuracy estimate, (radians)
+         */
+        float c_variance_rad;
+        /**
+         * Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix.
+         */
+        octet fix_type;
+        /**
+         * GPS horizontal position accuracy (metres)
+         */
+        float eph;
+        /**
+         * GPS vertical position accuracy (metres)
+         */
+        float epv;
+        /**
+         * Horizontal dilution of precision
+         */
+        float hdop;
+        /**
+         * Vertical dilution of precision
+         */
+        float vdop;
+        /**
+         * GPS noise per millisecond
+         */
+        long noise_per_ms;
+        /**
+         * Automatic gain control monitor
+         */
+        unsigned short automatic_gain_control;
+        /**
+         * indicates whether jamming has been detected or suspected by the receivers. O: Unknown, 1: OK, 2: Warning, 3: Critical
+         */
+        octet jamming_state;
+        /**
+         * indicates jamming is occurring
+         */
+        long jamming_indicator;
+        /**
+         * indicates whether spoofing has been detected or suspected by the receivers. O: Unknown, 1: OK, 2: Warning, 3: Critical
+         */
+        octet spoofing_state;
+        /**
+         * GPS ground speed, (metres/sec)
+         */
+        float vel_m_s;
+        /**
+         * GPS North velocity, (metres/sec)
+         */
+        float vel_n_m_s;
+        /**
+         * GPS East velocity, (metres/sec)
+         */
+        float vel_e_m_s;
+        /**
+         * GPS Down velocity, (metres/sec)
+         */
+        float vel_d_m_s;
+        /**
+         * Course over ground (NOT heading, but direction of movement), -PI..PI, (radians)
+         */
+        float cog_rad;
+        /**
+         * True if NED velocity is valid
+         */
+        boolean vel_ned_valid;
+        /**
+         * timestamp + timestamp_time_relative = Time of the UTC timestamp since system start, (microseconds)
+         */
+        long timestamp_time_relative;
+        /**
+         * Timestamp (microseconds, UTC), this is the timestamp which comes from the gps module. It might be unavailable right after cold start, indicated by a value of 0
+         */
+        unsigned long long time_utc_usec;
+        /**
+         * Number of satellites used
+         */
+        octet satellites_used;
+        /**
+         * heading angle of XYZ body frame rel to NED. Set to NaN if not available and updated (used for dual antenna GPS), (rad, [-PI, PI])
+         */
+        float heading;
+        /**
+         * heading offset of dual antenna array in body frame. Set to NaN if not applicable. (rad, [-PI, PI])
+         */
+        float heading_offset;
+        /**
+         * heading accuracy (rad, [0, 2PI])
+         */
+        float heading_accuracy;
+        /**
+         * RTCM message injection rate Hz
+         */
+        float rtcm_injection_rate;
+        /**
+         * uorb instance that is being used for RTCM corrections
+         */
+        octet selected_rtcm_instance;
+        /**
+         * RTCM message CRC failure detected
+         */
+        boolean rtcm_crc_failed;
+        /**
+         * Indicates if the RTCM message was used successfully by the receiver
+         */
+        octet rtcm_msg_used;
+      };
+    };
+  };
+};
+
+#endif

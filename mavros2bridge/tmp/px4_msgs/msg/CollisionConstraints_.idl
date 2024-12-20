@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__CollisionConstraints__idl__
+#define __px4_msgs__msg__CollisionConstraints__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Local setpoint constraints in NED frame
+       * setting something to NaN means that no limit is provided
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::CollisionConstraints_")
+      struct CollisionConstraints
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * velocities demanded
+         */
+        float original_setpoint[2];
+        /**
+         * velocities allowed
+         */
+        float adapted_setpoint[2];
+      };
+    };
+  };
+};
+
+#endif

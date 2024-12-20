@@ -1,0 +1,133 @@
+#ifndef __px4_msgs__msg__EscReport__idl__
+#define __px4_msgs__msg__EscReport__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * (1 << 0)
+       */
+      const octet FAILURE_OVER_CURRENT =
+      0;
+
+      /**
+       * (1 << 1)
+       */
+      const octet FAILURE_OVER_VOLTAGE =
+      1;
+
+      /**
+       * (1 << 2)
+       */
+      const octet FAILURE_MOTOR_OVER_TEMPERATURE =
+      2;
+
+      /**
+       * (1 << 3)
+       */
+      const octet FAILURE_OVER_RPM =
+      3;
+
+      /**
+       * (1 << 4)  Set if ESC received an inconsistent command (i.e out of boundaries)
+       */
+      const octet FAILURE_INCONSISTENT_CMD =
+      4;
+
+      /**
+       * (1 << 5)
+       */
+      const octet FAILURE_MOTOR_STUCK =
+      5;
+
+      /**
+       * (1 << 6)
+       */
+      const octet FAILURE_GENERIC =
+      6;
+
+      /**
+       * (1 << 7)
+       */
+      const octet FAILURE_MOTOR_WARN_TEMPERATURE =
+      7;
+
+      /**
+       * (1 << 8)
+       */
+      const octet FAILURE_WARN_ESC_TEMPERATURE =
+      8;
+
+      /**
+       * (1 << 9)
+       */
+      const octet FAILURE_OVER_ESC_TEMPERATURE =
+      9;
+
+      /**
+       * Counter - keep it as last element!
+       */
+      const octet ESC_FAILURE_COUNT =
+      10;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::EscReport_")
+      struct EscReport
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Number of reported errors by ESC - if supported
+         */
+        unsigned long esc_errorcount;
+        /**
+         * Motor RPM, negative for reverse rotation [RPM] - if supported
+         */
+        long esc_rpm;
+        /**
+         * Voltage measured from current ESC [V] - if supported
+         */
+        float esc_voltage;
+        /**
+         * Current measured from current ESC [A] - if supported
+         */
+        float esc_current;
+        /**
+         * Temperature measured from current ESC [degC] - if supported
+         */
+        float esc_temperature;
+        /**
+         * Address of current ESC (in most cases 1-8 / must be set by driver)
+         */
+        octet esc_address;
+        /**
+         * Counter of number of commands
+         */
+        octet esc_cmdcount;
+        /**
+         * State of ESC - depend on Vendor
+         */
+        octet esc_state;
+        /**
+         * actuator output function (one of Motor1...MotorN)
+         */
+        octet actuator_function;
+        /**
+         * Bitmask to indicate the internal ESC faults
+         */
+        unsigned short failures;
+        /**
+         * Applied power 0-100 in % (negative values reserved)
+         */
+        octet esc_power;
+      };
+    };
+  };
+};
+
+#endif

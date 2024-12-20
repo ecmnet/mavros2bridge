@@ -1,0 +1,88 @@
+#ifndef __px4_msgs__msg__AutotuneAttitudeControlStatus__idl__
+#define __px4_msgs__msg__AutotuneAttitudeControlStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet STATE_IDLE =
+      0;
+
+      const octet STATE_INIT =
+      1;
+
+      const octet STATE_ROLL =
+      2;
+
+      const octet STATE_ROLL_PAUSE =
+      3;
+
+      const octet STATE_PITCH =
+      4;
+
+      const octet STATE_PITCH_PAUSE =
+      5;
+
+      const octet STATE_YAW =
+      6;
+
+      const octet STATE_YAW_PAUSE =
+      7;
+
+      const octet STATE_VERIFICATION =
+      8;
+
+      const octet STATE_APPLY =
+      9;
+
+      const octet STATE_TEST =
+      10;
+
+      const octet STATE_COMPLETE =
+      11;
+
+      const octet STATE_FAIL =
+      12;
+
+      const octet STATE_WAIT_FOR_DISARM =
+      13;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::AutotuneAttitudeControlStatus_")
+      struct AutotuneAttitudeControlStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * coefficients of the identified discrete-time model
+         */
+        float coeff[5];
+        /**
+         * coefficients' variance of the identified discrete-time model
+         */
+        float coeff_var[5];
+        /**
+         * fitness of the parameter estimate
+         */
+        float fitness;
+        float innov;
+        float dt_model;
+        float kc;
+        float ki;
+        float kd;
+        float kff;
+        float att_p;
+        float rate_sp[3];
+        float u_filt;
+        float y_filt;
+        octet state;
+      };
+    };
+  };
+};
+
+#endif

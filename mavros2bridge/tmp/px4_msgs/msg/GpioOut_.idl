@@ -1,0 +1,38 @@
+#ifndef __px4_msgs__msg__GpioOut__idl__
+#define __px4_msgs__msg__GpioOut__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * GPIO mask and state
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::GpioOut_")
+      struct GpioOut
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Device id
+         */
+        unsigned long device_id;
+        /**
+         * pin mask
+         */
+        unsigned long mask;
+        /**
+         * pin state mask
+         */
+        unsigned long state;
+      };
+    };
+  };
+};
+
+#endif

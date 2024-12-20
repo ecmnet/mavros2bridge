@@ -1,0 +1,32 @@
+#ifndef __px4_msgs__msg__WheelEncoders__idl__
+#define __px4_msgs__msg__WheelEncoders__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::WheelEncoders_")
+      struct WheelEncoders
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Two wheels: 0 right, 1 left
+         * [rad/s]
+         */
+        float wheel_speed[2];
+        /**
+         * [rad]
+         */
+        float wheel_angle[2];
+      };
+    };
+  };
+};
+
+#endif

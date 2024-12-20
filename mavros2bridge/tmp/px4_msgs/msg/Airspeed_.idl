@@ -1,0 +1,40 @@
+#ifndef __px4_msgs__msg__Airspeed__idl__
+#define __px4_msgs__msg__Airspeed__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::Airspeed_")
+      struct Airspeed
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * indicated airspeed in m/s
+         */
+        float indicated_airspeed_m_s;
+        /**
+         * true filtered airspeed in m/s
+         */
+        float true_airspeed_m_s;
+        /**
+         * air temperature in degrees Celsius, -1000 if unknown
+         */
+        float air_temperature_celsius;
+        /**
+         * confidence value from 0 to 1 for this sensor
+         */
+        float confidence;
+      };
+    };
+  };
+};
+
+#endif

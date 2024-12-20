@@ -1,0 +1,74 @@
+#ifndef __px4_msgs__msg__HomePosition__idl__
+#define __px4_msgs__msg__HomePosition__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * GPS home position in WGS84 coordinates.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::HomePosition_")
+      struct HomePosition
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Latitude in degrees
+         */
+        double lat;
+        /**
+         * Longitude in degrees
+         */
+        double lon;
+        /**
+         * Altitude in meters (AMSL)
+         */
+        float alt;
+        /**
+         * X coordinate in meters
+         */
+        float x;
+        /**
+         * Y coordinate in meters
+         */
+        float y;
+        /**
+         * Z coordinate in meters
+         */
+        float z;
+        /**
+         * Yaw angle in radians
+         */
+        float yaw;
+        /**
+         * true when the altitude has been set
+         */
+        boolean valid_alt;
+        /**
+         * true when the latitude and longitude have been set
+         */
+        boolean valid_hpos;
+        /**
+         * true when the local position (xyz) has been set
+         */
+        boolean valid_lpos;
+        /**
+         * true when home position was set manually
+         */
+        boolean manual_home;
+        /**
+         * update counter of the home position
+         */
+        unsigned long update_count;
+      };
+    };
+  };
+};
+
+#endif

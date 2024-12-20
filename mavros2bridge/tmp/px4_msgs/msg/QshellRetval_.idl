@@ -1,0 +1,25 @@
+#ifndef __px4_msgs__msg__QshellRetval__idl__
+#define __px4_msgs__msg__QshellRetval__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::QshellRetval_")
+      struct QshellRetval
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        long return_value;
+        unsigned long return_sequence;
+      };
+    };
+  };
+};
+
+#endif

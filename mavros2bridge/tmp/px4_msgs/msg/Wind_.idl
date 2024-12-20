@@ -1,0 +1,59 @@
+#ifndef __px4_msgs__msg__Wind__idl__
+#define __px4_msgs__msg__Wind__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::Wind_")
+      struct Wind
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * Wind component in north / X direction (m/sec)
+         */
+        float windspeed_north;
+        /**
+         * Wind component in east / Y direction (m/sec)
+         */
+        float windspeed_east;
+        /**
+         * Wind estimate error variance in north / X direction (m/sec)**2 - set to zero (no uncertainty) if not estimated
+         */
+        float variance_north;
+        /**
+         * Wind estimate error variance in east / Y direction (m/sec)**2 - set to zero (no uncertainty) if not estimated
+         */
+        float variance_east;
+        /**
+         * True airspeed innovation
+         */
+        float tas_innov;
+        /**
+         * True airspeed innovation variance
+         */
+        float tas_innov_var;
+        /**
+         * Sideslip measurement innovation
+         */
+        float beta_innov;
+        /**
+         * Sideslip measurement innovation variance
+         */
+        float beta_innov_var;
+      };
+    };
+  };
+};
+
+#endif

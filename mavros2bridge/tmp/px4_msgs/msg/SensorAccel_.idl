@@ -1,0 +1,56 @@
+#ifndef __px4_msgs__msg__SensorAccel__idl__
+#define __px4_msgs__msg__SensorAccel__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      8;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorAccel_")
+      struct SensorAccel
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * acceleration in the FRD board frame X-axis in m/s^2
+         */
+        float x;
+        /**
+         * acceleration in the FRD board frame Y-axis in m/s^2
+         */
+        float y;
+        /**
+         * acceleration in the FRD board frame Z-axis in m/s^2
+         */
+        float z;
+        /**
+         * temperature in degrees Celsius
+         */
+        float temperature;
+        unsigned long error_count;
+        /**
+         * clip count per axis in the sample period
+         */
+        octet clip_counter[3];
+        /**
+         * number of raw samples that went into this message
+         */
+        octet samples;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,79 @@
+#ifndef __px4_msgs__msg__MissionResult__idl__
+#define __px4_msgs__msg__MissionResult__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::MissionResult_")
+      struct MissionResult
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Id for the mission for which the result was generated
+         */
+        unsigned long mission_id;
+        /**
+         * Id for the corresponding geofence for which the result was generated (used for mission feasibility)
+         */
+        unsigned long geofence_id;
+        /**
+         * Counter of the home position for which the result was generated (used for mission feasibility)
+         */
+        unsigned long home_position_counter;
+        /**
+         * Sequence of the mission item which has been reached, default -1
+         */
+        long seq_reached;
+        /**
+         * Sequence of the current mission item
+         */
+        unsigned short seq_current;
+        /**
+         * Total number of mission items
+         */
+        unsigned short seq_total;
+        /**
+         * true if mission is valid
+         */
+        boolean valid;
+        /**
+         * true if mission is valid, but has potentially problematic items leading to safety warnings
+         */
+        boolean warning;
+        /**
+         * true if mission has been completed
+         */
+        boolean finished;
+        /**
+         * true if the mission cannot continue or be completed for some reason
+         */
+        boolean failure;
+        /**
+         * true if the number of do jumps remaining has changed
+         */
+        boolean item_do_jump_changed;
+        /**
+         * indicate which item has changed
+         */
+        unsigned short item_changed_index;
+        /**
+         * set to the number of do jumps remaining for that item
+         */
+        unsigned short item_do_jump_remaining;
+        /**
+         * indicates the mode in which the mission is executed
+         */
+        octet execution_mode;
+      };
+    };
+  };
+};
+
+#endif

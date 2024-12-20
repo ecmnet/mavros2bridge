@@ -1,0 +1,48 @@
+#ifndef __px4_msgs__msg__RegisterExtComponentReply__idl__
+#define __px4_msgs__msg__RegisterExtComponentReply__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      2;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::RegisterExtComponentReply_")
+      struct RegisterExtComponentReply
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * ID from the request
+         */
+        unsigned long long request_id;
+        /**
+         * name from the request
+         */
+        char name[25];
+        unsigned short px4_ros2_api_version;
+        boolean success;
+        /**
+         * arming check registration ID (-1 if invalid)
+         */
+        octet arming_check_id;
+        /**
+         * assigned mode ID (-1 if invalid)
+         */
+        octet mode_id;
+        /**
+         * assigned mode executor ID (-1 if invalid)
+         */
+        octet mode_executor_id;
+      };
+    };
+  };
+};
+
+#endif

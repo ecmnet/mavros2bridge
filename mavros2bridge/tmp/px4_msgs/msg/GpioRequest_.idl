@@ -1,0 +1,30 @@
+#ifndef __px4_msgs__msg__GpioRequest__idl__
+#define __px4_msgs__msg__GpioRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Request GPIO mask to be read
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::GpioRequest_")
+      struct GpioRequest
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Device id
+         */
+        unsigned long device_id;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,72 @@
+#ifndef __px4_msgs__msg__Px4ioStatus__idl__
+#define __px4_msgs__msg__Px4ioStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::Px4ioStatus_")
+      struct Px4ioStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned short free_memory_bytes;
+        /**
+         * Servo rail voltage in volts
+         */
+        float voltage_v;
+        /**
+         * RSSI pin voltage in volts
+         */
+        float rssi_v;
+        /**
+         * PX4IO status flags (PX4IO_P_STATUS_FLAGS)
+         */
+        boolean status_arm_sync;
+        boolean status_failsafe;
+        boolean status_fmu_initialized;
+        boolean status_fmu_ok;
+        boolean status_init_ok;
+        boolean status_outputs_armed;
+        boolean status_raw_pwm;
+        boolean status_rc_ok;
+        boolean status_rc_dsm;
+        boolean status_rc_ppm;
+        boolean status_rc_sbus;
+        boolean status_rc_st24;
+        boolean status_rc_sumd;
+        /**
+         * px4io safety button was pressed for longer than 1 second
+         */
+        boolean status_safety_button_event;
+        /**
+         * PX4IO alarms (PX4IO_P_STATUS_ALARMS)
+         */
+        boolean alarm_pwm_error;
+        boolean alarm_rc_lost;
+        /**
+         * PX4IO arming (PX4IO_P_SETUP_ARMING)
+         */
+        boolean arming_failsafe_custom;
+        boolean arming_fmu_armed;
+        boolean arming_fmu_prearmed;
+        boolean arming_force_failsafe;
+        boolean arming_io_arm_ok;
+        boolean arming_lockdown;
+        boolean arming_termination_failsafe;
+        unsigned_short pwm[8];
+        unsigned_short pwm_disarmed[8];
+        unsigned_short pwm_failsafe[8];
+        unsigned_short pwm_rate_hz[8];
+        unsigned_short raw_inputs[18];
+      };
+    };
+  };
+};
+
+#endif

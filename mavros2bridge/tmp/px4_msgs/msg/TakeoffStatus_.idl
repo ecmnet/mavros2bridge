@@ -1,0 +1,49 @@
+#ifndef __px4_msgs__msg__TakeoffStatus__idl__
+#define __px4_msgs__msg__TakeoffStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet TAKEOFF_STATE_UNINITIALIZED =
+      0;
+
+      const octet TAKEOFF_STATE_DISARMED =
+      1;
+
+      const octet TAKEOFF_STATE_SPOOLUP =
+      2;
+
+      const octet TAKEOFF_STATE_READY_FOR_TAKEOFF =
+      3;
+
+      const octet TAKEOFF_STATE_RAMPUP =
+      4;
+
+      const octet TAKEOFF_STATE_FLIGHT =
+      5;
+
+
+      /**
+       * Status of the takeoff state machine currently just available for multicopters
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::TakeoffStatus_")
+      struct TakeoffStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet takeoff_state;
+        /**
+         * limited tilt feasibility during takeoff, contains maximum tilt otherwise
+         */
+        float tilt_limit;
+      };
+    };
+  };
+};
+
+#endif

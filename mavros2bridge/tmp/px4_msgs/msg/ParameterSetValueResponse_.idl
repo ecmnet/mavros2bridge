@@ -1,0 +1,28 @@
+#ifndef __px4_msgs__msg__ParameterSetValueResponse__idl__
+#define __px4_msgs__msg__ParameterSetValueResponse__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      /**
+       * ParameterSetValueResponse : Response to a set value request by either primary or secondary
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ParameterSetValueResponse_")
+      struct ParameterSetValueResponse
+      {
+        unsigned long long timestamp;
+        unsigned long long request_timestamp;
+        unsigned short parameter_index;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,27 @@
+#ifndef __px4_msgs__msg__MountOrientation__idl__
+#define __px4_msgs__msg__MountOrientation__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::MountOrientation_")
+      struct MountOrientation
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Attitude/direction of the mount as euler angles in rad
+         */
+        float attitude_euler_angle[3];
+      };
+    };
+  };
+};
+
+#endif

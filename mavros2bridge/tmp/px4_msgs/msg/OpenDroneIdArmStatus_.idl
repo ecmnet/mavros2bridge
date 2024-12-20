@@ -1,0 +1,22 @@
+#ifndef __px4_msgs__msg__OpenDroneIdArmStatus__idl__
+#define __px4_msgs__msg__OpenDroneIdArmStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::OpenDroneIdArmStatus_")
+      struct OpenDroneIdArmStatus
+      {
+        unsigned long long timestamp;
+        octet status;
+        char error[50];
+      };
+    };
+  };
+};
+
+#endif

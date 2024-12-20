@@ -1,0 +1,42 @@
+#ifndef __px4_msgs__msg__LandingGear__idl__
+#define __px4_msgs__msg__LandingGear__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * landing gear up
+       */
+      const octet GEAR_UP =
+      1;
+
+      /**
+       * landing gear down
+       */
+      const octet GEAR_DOWN =
+      255;
+
+      /**
+       * keep the current state
+       */
+      const octet GEAR_KEEP =
+      0;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::LandingGear_")
+      struct LandingGear
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet landing_gear;
+      };
+    };
+  };
+};
+
+#endif

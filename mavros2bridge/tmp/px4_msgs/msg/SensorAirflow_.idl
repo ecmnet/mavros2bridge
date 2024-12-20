@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__SensorAirflow__idl__
+#define __px4_msgs__msg__SensorAirflow__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorAirflow_")
+      struct SensorAirflow
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * the speed being reported by the wind / airflow sensor
+         */
+        float speed;
+        /**
+         * the direction being reported by the wind / airflow sensor
+         */
+        float direction;
+        /**
+         * Status code from the sensor
+         */
+        octet status;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__UnregisterExtComponent__idl__
+#define __px4_msgs__msg__UnregisterExtComponent__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::UnregisterExtComponent_")
+      struct UnregisterExtComponent
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * either the mode name, or component name
+         */
+        char name[25];
+        /**
+         * arming check registration ID (-1 if not registered)
+         */
+        octet arming_check_id;
+        /**
+         * assigned mode ID (-1 if not registered)
+         */
+        octet mode_id;
+        /**
+         * assigned mode executor ID (-1 if not registered)
+         */
+        octet mode_executor_id;
+      };
+    };
+  };
+};
+
+#endif

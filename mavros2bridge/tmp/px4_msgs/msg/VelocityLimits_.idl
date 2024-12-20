@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__VelocityLimits__idl__
+#define __px4_msgs__msg__VelocityLimits__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Velocity and yaw rate limits for a multicopter position slow mode only
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VelocityLimits_")
+      struct VelocityLimits
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * absolute speeds, NAN means use default limit
+         * [m/s]
+         */
+        float horizontal_velocity;
+        /**
+         * [m/s]
+         */
+        float vertical_velocity;
+        /**
+         * [rad/s]
+         */
+        float yaw_rate;
+      };
+    };
+  };
+};
+
+#endif

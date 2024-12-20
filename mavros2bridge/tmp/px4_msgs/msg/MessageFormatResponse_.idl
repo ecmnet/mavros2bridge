@@ -1,0 +1,39 @@
+#ifndef __px4_msgs__msg__MessageFormatResponse__idl__
+#define __px4_msgs__msg__MessageFormatResponse__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Response from PX4 with the format of a message
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::MessageFormatResponse_")
+      struct MessageFormatResponse
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Must be set to LATEST_PROTOCOL_VERSION. Do not change this field, it must be the first field after the timestamp
+         */
+        unsigned short protocol_version;
+        /**
+         * E.g. /fmu/in/vehicle_command
+         */
+        char topic_name[50];
+        boolean success;
+        /**
+         * hash over all message fields
+         */
+        unsigned long message_hash;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,24 @@
+#ifndef __px4_msgs__msg__ActuatorControlsStatus__idl__
+#define __px4_msgs__msg__ActuatorControlsStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::ActuatorControlsStatus_")
+      struct ActuatorControlsStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        float control_power[3];
+      };
+    };
+  };
+};
+
+#endif

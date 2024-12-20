@@ -1,0 +1,76 @@
+#ifndef __px4_msgs__msg__VehicleImu__idl__
+#define __px4_msgs__msg__VehicleImu__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet CLIPPING_X =
+      1;
+
+      const octet CLIPPING_Y =
+      2;
+
+      const octet CLIPPING_Z =
+      4;
+
+
+      /**
+       * IMU readings in SI-unit form.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleImu_")
+      struct VehicleImu
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * Accelerometer unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long accel_device_id;
+        /**
+         * Gyroscope unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long gyro_device_id;
+        /**
+         * delta angle about the FRD body frame XYZ-axis in rad over the integration time frame (delta_angle_dt)
+         */
+        float delta_angle[3];
+        /**
+         * delta velocity in the FRD body frame XYZ-axis in m/s over the integration time frame (delta_velocity_dt)
+         */
+        float delta_velocity[3];
+        /**
+         * integration period in microseconds
+         */
+        unsigned short delta_angle_dt;
+        /**
+         * integration period in microseconds
+         */
+        unsigned short delta_velocity_dt;
+        /**
+         * bitfield indicating if there was any gyro clipping (per axis) during the integration time frame
+         */
+        octet delta_angle_clipping;
+        /**
+         * bitfield indicating if there was any accelerometer clipping (per axis) during the integration time frame
+         */
+        octet delta_velocity_clipping;
+        /**
+         * Calibration changed counter. Monotonically increases whenever accelermeter calibration changes.
+         */
+        octet accel_calibration_count;
+        /**
+         * Calibration changed counter. Monotonically increases whenever rate gyro calibration changes.
+         */
+        octet gyro_calibration_count;
+      };
+    };
+  };
+};
+
+#endif

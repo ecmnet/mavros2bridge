@@ -1,0 +1,38 @@
+#ifndef __px4_msgs__msg__DebugArray__idl__
+#define __px4_msgs__msg__DebugArray__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ARRAY_SIZE =
+      58;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::DebugArray_")
+      struct DebugArray
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique ID of debug array, used to discriminate between arrays
+         */
+        unsigned short id;
+        /**
+         * name of the debug array (max. 10 characters)
+         */
+        char name[10];
+        /**
+         * data
+         */
+        float data[58];
+      };
+    };
+  };
+};
+
+#endif

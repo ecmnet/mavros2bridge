@@ -1,0 +1,37 @@
+#ifndef __px4_msgs__msg__ParameterUpdate__idl__
+#define __px4_msgs__msg__ParameterUpdate__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * This message is used to notify the system about one or more parameter changes
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ParameterUpdate_")
+      struct ParameterUpdate
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Instance count - constantly incrementing
+         */
+        unsigned long instance;
+        unsigned long get_count;
+        unsigned long set_count;
+        unsigned long find_count;
+        unsigned long export_count;
+        unsigned short active;
+        unsigned short changed;
+        unsigned short custom_default;
+      };
+    };
+  };
+};
+
+#endif

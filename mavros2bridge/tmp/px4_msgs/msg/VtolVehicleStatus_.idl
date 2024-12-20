@@ -1,0 +1,49 @@
+#ifndef __px4_msgs__msg__VtolVehicleStatus__idl__
+#define __px4_msgs__msg__VtolVehicleStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * VEHICLE_VTOL_STATE, should match 1:1 MAVLinks's MAV_VTOL_STATE
+       */
+      const octet VEHICLE_VTOL_STATE_UNDEFINED =
+      0;
+
+      const octet VEHICLE_VTOL_STATE_TRANSITION_TO_FW =
+      1;
+
+      const octet VEHICLE_VTOL_STATE_TRANSITION_TO_MC =
+      2;
+
+      const octet VEHICLE_VTOL_STATE_MC =
+      3;
+
+      const octet VEHICLE_VTOL_STATE_FW =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::VtolVehicleStatus_")
+      struct VtolVehicleStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * current state of the vtol, see VEHICLE_VTOL_STATE
+         */
+        octet vehicle_vtol_state;
+        /**
+         * vehicle in fixed-wing system failure failsafe mode (after quad-chute)
+         */
+        boolean fixed_wing_system_failure;
+      };
+    };
+  };
+};
+
+#endif

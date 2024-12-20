@@ -1,0 +1,52 @@
+#ifndef __px4_msgs__msg__YawEstimatorStatus__idl__
+#define __px4_msgs__msg__YawEstimatorStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::YawEstimatorStatus_")
+      struct YawEstimatorStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * composite yaw from GSF (rad)
+         */
+        float yaw_composite;
+        /**
+         * composite yaw variance from GSF (rad^2)
+         */
+        float yaw_variance;
+        boolean yaw_composite_valid;
+        /**
+         * yaw estimate for each model in the filter bank (rad)
+         */
+        float yaw[5];
+        /**
+         * North velocity innovation for each model in the filter bank (m/s)
+         */
+        float innov_vn[5];
+        /**
+         * East velocity innovation for each model in the filter bank (m/s)
+         */
+        float innov_ve[5];
+        /**
+         * weighting for each model in the filter bank
+         */
+        float weight[5];
+      };
+    };
+  };
+};
+
+#endif

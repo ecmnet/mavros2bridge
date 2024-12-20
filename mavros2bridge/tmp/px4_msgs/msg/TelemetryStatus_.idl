@@ -1,0 +1,169 @@
+#ifndef __px4_msgs__msg__TelemetryStatus__idl__
+#define __px4_msgs__msg__TelemetryStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet LINK_TYPE_GENERIC =
+      0;
+
+      const octet LINK_TYPE_UBIQUITY_BULLET =
+      1;
+
+      const octet LINK_TYPE_WIRE =
+      2;
+
+      const octet LINK_TYPE_USB =
+      3;
+
+      const octet LINK_TYPE_IRIDIUM =
+      4;
+
+      /**
+       * Heartbeat timeout (tolerate missing 1 + jitter)
+       */
+      const unsigned long long HEARTBEAT_TIMEOUT_US =
+      2500000;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::TelemetryStatus_")
+      struct TelemetryStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * type of the radio hardware (LINK_TYPE_*)
+         */
+        octet type;
+        octet mode;
+        boolean flow_control;
+        boolean forwarding;
+        boolean mavlink_v2;
+        boolean ftp;
+        octet streams;
+        /**
+         * configured maximum data rate (Bytes/s)
+         */
+        float data_rate;
+        float rate_multiplier;
+        /**
+         * transmit rate average (Bytes/s)
+         */
+        float tx_rate_avg;
+        /**
+         * transmit error rate average (Bytes/s)
+         */
+        float tx_error_rate_avg;
+        /**
+         * total message sent count
+         */
+        unsigned long tx_message_count;
+        /**
+         * number of TX buffer overruns
+         */
+        unsigned long tx_buffer_overruns;
+        /**
+         * transmit rate average (Bytes/s)
+         */
+        float rx_rate_avg;
+        /**
+         * count of total messages received
+         */
+        unsigned long rx_message_count;
+        unsigned long rx_message_lost_count;
+        /**
+         * number of RX buffer overruns
+         */
+        unsigned long rx_buffer_overruns;
+        /**
+         * number of parse errors
+         */
+        unsigned long rx_parse_errors;
+        /**
+         * number of packet drops
+         */
+        unsigned long rx_packet_drop_count;
+        float rx_message_lost_rate;
+        /**
+         * Heartbeats per type
+         * MAV_TYPE_ANTENNA_TRACKER
+         */
+        boolean heartbeat_type_antenna_tracker;
+        /**
+         * MAV_TYPE_GCS
+         */
+        boolean heartbeat_type_gcs;
+        /**
+         * MAV_TYPE_ONBOARD_CONTROLLER
+         */
+        boolean heartbeat_type_onboard_controller;
+        /**
+         * MAV_TYPE_GIMBAL
+         */
+        boolean heartbeat_type_gimbal;
+        /**
+         * MAV_TYPE_ADSB
+         */
+        boolean heartbeat_type_adsb;
+        /**
+         * MAV_TYPE_CAMERA
+         */
+        boolean heartbeat_type_camera;
+        /**
+         * MAV_TYPE_PARACHUTE
+         */
+        boolean heartbeat_type_parachute;
+        /**
+         * MAV_TYPE_ODID
+         */
+        boolean heartbeat_type_open_drone_id;
+        /**
+         * Heartbeats per component
+         * MAV_COMP_ID_TELEMETRY_RADIO
+         */
+        boolean heartbeat_component_telemetry_radio;
+        /**
+         * MAV_COMP_ID_LOG
+         */
+        boolean heartbeat_component_log;
+        /**
+         * MAV_COMP_ID_OSD
+         */
+        boolean heartbeat_component_osd;
+        /**
+         * MAV_COMP_ID_OBSTACLE_AVOIDANCE
+         */
+        boolean heartbeat_component_obstacle_avoidance;
+        /**
+         * MAV_COMP_ID_VISUAL_INERTIAL_ODOMETRY
+         */
+        boolean heartbeat_component_vio;
+        /**
+         * MAV_COMP_ID_PAIRING_MANAGER
+         */
+        boolean heartbeat_component_pairing_manager;
+        /**
+         * MAV_COMP_ID_UDP_BRIDGE
+         */
+        boolean heartbeat_component_udp_bridge;
+        /**
+         * MAV_COMP_ID_UART_BRIDGE
+         */
+        boolean heartbeat_component_uart_bridge;
+        /**
+         * Misc component health
+         */
+        boolean avoidance_system_healthy;
+        boolean open_drone_id_system_healthy;
+        boolean parachute_system_healthy;
+      };
+    };
+  };
+};
+
+#endif

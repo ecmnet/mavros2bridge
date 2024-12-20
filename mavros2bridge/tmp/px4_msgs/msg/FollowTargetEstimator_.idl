@@ -1,0 +1,61 @@
+#ifndef __px4_msgs__msg__FollowTargetEstimator__idl__
+#define __px4_msgs__msg__FollowTargetEstimator__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::FollowTargetEstimator_")
+      struct FollowTargetEstimator
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * time of last filter reset (microseconds)
+         */
+        unsigned long long last_filter_reset_timestamp;
+        /**
+         * True if estimator states are okay to be used
+         */
+        boolean valid;
+        /**
+         * True if estimator stopped receiving follow_target messages for some time. The estimate can still be valid, though it might be inaccurate.
+         */
+        boolean stale;
+        /**
+         * Estimated target latitude
+         */
+        double lat_est;
+        /**
+         * Estimated target longitude
+         */
+        double lon_est;
+        /**
+         * Estimated target altitude
+         */
+        float alt_est;
+        /**
+         * Estimated target NED position (m)
+         */
+        float pos_est[3];
+        /**
+         * Estimated target NED velocity (m/s)
+         */
+        float vel_est[3];
+        /**
+         * Estimated target NED acceleration (m^2/s)
+         */
+        float acc_est[3];
+        unsigned long long prediction_count;
+        unsigned long long fusion_count;
+      };
+    };
+  };
+};
+
+#endif

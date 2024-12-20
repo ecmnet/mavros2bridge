@@ -1,0 +1,163 @@
+#ifndef __px4_msgs__msg__FailsafeFlags__idl__
+#define __px4_msgs__msg__FailsafeFlags__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * Input flags for the failsafe state machine set by the arming & health checks.
+       * 
+       * Flags must be named such that false == no failure (e.g. _invalid, _unhealthy, _lost)
+       * The flag comments are used as label for the failsafe state machine simulation
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::FailsafeFlags_")
+      struct FailsafeFlags
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Per-mode requirements
+         */
+        unsigned long mode_req_angular_velocity;
+        unsigned long mode_req_attitude;
+        unsigned long mode_req_local_alt;
+        unsigned long mode_req_local_position;
+        unsigned long mode_req_local_position_relaxed;
+        unsigned long mode_req_global_position;
+        unsigned long mode_req_mission;
+        unsigned long mode_req_offboard_signal;
+        unsigned long mode_req_home_position;
+        /**
+         * if set, mode cannot be entered if wind or flight time limit exceeded
+         */
+        unsigned long mode_req_wind_and_flight_time_compliance;
+        /**
+         * if set, cannot arm while in this mode
+         */
+        unsigned long mode_req_prevent_arming;
+        unsigned long mode_req_manual_control;
+        /**
+         * other requirements, not covered above (for external modes)
+         */
+        unsigned long mode_req_other;
+        /**
+         * Mode requirements
+         * Angular velocity invalid
+         */
+        boolean angular_velocity_invalid;
+        /**
+         * Attitude invalid
+         */
+        boolean attitude_invalid;
+        /**
+         * Local altitude invalid
+         */
+        boolean local_altitude_invalid;
+        /**
+         * Local position estimate invalid
+         */
+        boolean local_position_invalid;
+        /**
+         * Local position with reduced accuracy requirements invalid (e.g. flying with optical flow)
+         */
+        boolean local_position_invalid_relaxed;
+        /**
+         * Local velocity estimate invalid
+         */
+        boolean local_velocity_invalid;
+        /**
+         * Global position estimate invalid
+         */
+        boolean global_position_invalid;
+        /**
+         * No mission available
+         */
+        boolean auto_mission_missing;
+        /**
+         * Offboard signal lost
+         */
+        boolean offboard_control_signal_lost;
+        /**
+         * No home position available
+         */
+        boolean home_position_invalid;
+        /**
+         * Control links
+         * Manual control (RC) signal lost
+         */
+        boolean manual_control_signal_lost;
+        /**
+         * GCS connection lost
+         */
+        boolean gcs_connection_lost;
+        /**
+         * Battery
+         * Battery warning level (see BatteryStatus.msg)
+         */
+        octet battery_warning;
+        /**
+         * Low battery based on remaining flight time
+         */
+        boolean battery_low_remaining_time;
+        /**
+         * Battery unhealthy
+         */
+        boolean battery_unhealthy;
+        /**
+         * Other
+         * Geofence breached (one or multiple)
+         */
+        boolean geofence_breached;
+        /**
+         * Mission failure
+         */
+        boolean mission_failure;
+        /**
+         * vehicle in fixed-wing system failure failsafe mode (after quad-chute)
+         */
+        boolean vtol_fixed_wing_system_failure;
+        /**
+         * Wind limit exceeded
+         */
+        boolean wind_limit_exceeded;
+        /**
+         * Maximum flight time exceeded
+         */
+        boolean flight_time_limit_exceeded;
+        /**
+         * Local position estimate has dropped below threshold, but is currently still declared valid
+         */
+        boolean local_position_accuracy_low;
+        /**
+         * Navigator failed to execute a mode
+         */
+        boolean navigator_failure;
+        /**
+         * Failure detector
+         * Critical failure (attitude/altitude limit exceeded, or external ATS)
+         */
+        boolean fd_critical_failure;
+        /**
+         * ESC failed to arm
+         */
+        boolean fd_esc_arming_failure;
+        /**
+         * Imbalanced propeller detected
+         */
+        boolean fd_imbalanced_prop;
+        /**
+         * Motor failure
+         */
+        boolean fd_motor_failure;
+      };
+    };
+  };
+};
+
+#endif

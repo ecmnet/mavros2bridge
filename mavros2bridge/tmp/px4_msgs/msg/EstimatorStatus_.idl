@@ -1,0 +1,403 @@
+#ifndef __px4_msgs__msg__EstimatorStatus__idl__
+#define __px4_msgs__msg__EstimatorStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * bits are true when corresponding test has failed
+       * 0 : insufficient fix type (no 3D solution)
+       */
+      const octet GPS_CHECK_FAIL_GPS_FIX =
+      0;
+
+      /**
+       * 1 : minimum required sat count fail
+       */
+      const octet GPS_CHECK_FAIL_MIN_SAT_COUNT =
+      1;
+
+      /**
+       * 2 : maximum allowed PDOP fail
+       */
+      const octet GPS_CHECK_FAIL_MAX_PDOP =
+      2;
+
+      /**
+       * 3 : maximum allowed horizontal position error fail
+       */
+      const octet GPS_CHECK_FAIL_MAX_HORZ_ERR =
+      3;
+
+      /**
+       * 4 : maximum allowed vertical position error fail
+       */
+      const octet GPS_CHECK_FAIL_MAX_VERT_ERR =
+      4;
+
+      /**
+       * 5 : maximum allowed speed error fail
+       */
+      const octet GPS_CHECK_FAIL_MAX_SPD_ERR =
+      5;
+
+      /**
+       * 6 : maximum allowed horizontal position drift fail - requires stationary vehicle
+       */
+      const octet GPS_CHECK_FAIL_MAX_HORZ_DRIFT =
+      6;
+
+      /**
+       * 7 : maximum allowed vertical position drift fail - requires stationary vehicle
+       */
+      const octet GPS_CHECK_FAIL_MAX_VERT_DRIFT =
+      7;
+
+      /**
+       * 8 : maximum allowed horizontal speed fail - requires stationary vehicle
+       */
+      const octet GPS_CHECK_FAIL_MAX_HORZ_SPD_ERR =
+      8;
+
+      /**
+       * 9 : maximum allowed vertical velocity discrepancy fail
+       */
+      const octet GPS_CHECK_FAIL_MAX_VERT_SPD_ERR =
+      9;
+
+      /**
+       * 10 : GPS signal is spoofed
+       */
+      const octet GPS_CHECK_FAIL_SPOOFED =
+      10;
+
+      /**
+       * 0 - true if the filter tilt alignment is complete
+       */
+      const octet CS_TILT_ALIGN =
+      0;
+
+      /**
+       * 1 - true if the filter yaw alignment is complete
+       */
+      const octet CS_YAW_ALIGN =
+      1;
+
+      /**
+       * 2 - true if GPS measurements are being fused
+       */
+      const octet CS_GPS =
+      2;
+
+      /**
+       * 3 - true if optical flow measurements are being fused
+       */
+      const octet CS_OPT_FLOW =
+      3;
+
+      /**
+       * 4 - true if a simple magnetic yaw heading is being fused
+       */
+      const octet CS_MAG_HDG =
+      4;
+
+      /**
+       * 5 - true if 3-axis magnetometer measurement are being fused
+       */
+      const octet CS_MAG_3D =
+      5;
+
+      /**
+       * 6 - true if synthetic magnetic declination measurements are being fused
+       */
+      const octet CS_MAG_DEC =
+      6;
+
+      /**
+       * 7 - true when thought to be airborne
+       */
+      const octet CS_IN_AIR =
+      7;
+
+      /**
+       * 8 - true when wind velocity is being estimated
+       */
+      const octet CS_WIND =
+      8;
+
+      /**
+       * 9 - true when baro height is being fused as a primary height reference
+       */
+      const octet CS_BARO_HGT =
+      9;
+
+      /**
+       * 10 - true when range finder height is being fused as a primary height reference
+       */
+      const octet CS_RNG_HGT =
+      10;
+
+      /**
+       * 11 - true when GPS height is being fused as a primary height reference
+       */
+      const octet CS_GPS_HGT =
+      11;
+
+      /**
+       * 12 - true when local position data from external vision is being fused
+       */
+      const octet CS_EV_POS =
+      12;
+
+      /**
+       * 13 - true when yaw data from external vision measurements is being fused
+       */
+      const octet CS_EV_YAW =
+      13;
+
+      /**
+       * 14 - true when height data from external vision measurements is being fused
+       */
+      const octet CS_EV_HGT =
+      14;
+
+      /**
+       * 15 - true when synthetic sideslip measurements are being fused
+       */
+      const octet CS_BETA =
+      15;
+
+      /**
+       * 16 - true when only the magnetic field states are updated by the magnetometer
+       */
+      const octet CS_MAG_FIELD =
+      16;
+
+      /**
+       * 17 - true when thought to be operating as a fixed wing vehicle with constrained sideslip
+       */
+      const octet CS_FIXED_WING =
+      17;
+
+      /**
+       * 18 - true when the magnetometer has been declared faulty and is no longer being used
+       */
+      const octet CS_MAG_FAULT =
+      18;
+
+      /**
+       * 19 - true when airspeed measurements are being fused
+       */
+      const octet CS_ASPD =
+      19;
+
+      /**
+       * 20 - true when when protection from ground effect induced static pressure rise is active
+       */
+      const octet CS_GND_EFFECT =
+      20;
+
+      /**
+       * 21 - true when a stuck range finder sensor has been detected
+       */
+      const octet CS_RNG_STUCK =
+      21;
+
+      /**
+       * 22 - true when yaw (not ground course) data from a GPS receiver is being fused
+       */
+      const octet CS_GPS_YAW =
+      22;
+
+      /**
+       * 23 - true when the in-flight mag field alignment has been completed
+       */
+      const octet CS_MAG_ALIGNED =
+      23;
+
+      /**
+       * 24 - true when local frame velocity data fusion from external vision measurements is intended
+       */
+      const octet CS_EV_VEL =
+      24;
+
+      /**
+       * 25 - true when we are using a synthesized measurement for the magnetometer Z component
+       */
+      const octet CS_SYNTHETIC_MAG_Z =
+      25;
+
+      /**
+       * 26 - true when the vehicle is at rest
+       */
+      const octet CS_VEHICLE_AT_REST =
+      26;
+
+      /**
+       * 27 - true when the GNSS heading has been declared faulty and is no longer being used
+       */
+      const octet CS_GPS_YAW_FAULT =
+      27;
+
+      /**
+       * 28 - true when the range finder has been declared faulty and is no longer being used
+       */
+      const octet CS_RNG_FAULT =
+      28;
+
+
+      /**
+       * 0 - true if the fusion of the magnetometer X-axis has encountered a numerical error
+       * 1 - true if the fusion of the magnetometer Y-axis has encountered a numerical error
+       * 2 - true if the fusion of the magnetometer Z-axis has encountered a numerical error
+       * 3 - true if the fusion of the magnetic heading has encountered a numerical error
+       * 4 - true if the fusion of the magnetic declination has encountered a numerical error
+       * 5 - true if fusion of the airspeed has encountered a numerical error
+       * 6 - true if fusion of the synthetic sideslip constraint has encountered a numerical error
+       * 7 - true if fusion of the optical flow X axis has encountered a numerical error
+       * 8 - true if fusion of the optical flow Y axis has encountered a numerical error
+       * 9 - true if fusion of the North velocity has encountered a numerical error
+       * 10 - true if fusion of the East velocity has encountered a numerical error
+       * 11 - true if fusion of the Down velocity has encountered a numerical error
+       * 12 - true if fusion of the North position has encountered a numerical error
+       * 13 - true if fusion of the East position has encountered a numerical error
+       * 14 - true if fusion of the Down position has encountered a numerical error
+       * 15 - true if bad delta velocity bias estimates have been detected
+       * 16 - true if bad vertical accelerometer data has been detected
+       * 17 - true if delta velocity data contains clipping (asymmetric railing)
+       * 0 - True if the attitude estimate is good
+       * 1 - True if the horizontal velocity estimate is good
+       * 2 - True if the vertical velocity estimate is good
+       * 3 - True if the horizontal position (relative) estimate is good
+       * 4 - True if the horizontal position (absolute) estimate is good
+       * 5 - True if the vertical position (absolute) estimate is good
+       * 6 - True if the vertical position (above ground) estimate is good
+       * 7 - True if the EKF is in a constant position mode and is not using external measurements (eg GPS or optical flow)
+       * 8 - True if the EKF has sufficient data to enter a mode that will provide a (relative) position estimate
+       * 9 - True if the EKF has sufficient data to enter a mode that will provide a (absolute) position estimate
+       * 10 - True if the EKF has detected a GPS glitch
+       * 11 - True if the EKF has detected bad accelerometer data
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorStatus_")
+      struct EstimatorStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * return a vector containing the output predictor angular, velocity and position tracking error magnitudes (rad), (m/s), (m)
+         */
+        float output_tracking_error[3];
+        /**
+         * Bitmask to indicate status of GPS checks - see definition below
+         */
+        unsigned short gps_check_fail_flags;
+        /**
+         * Bitmask to indicate EKF logic state
+         */
+        unsigned long long control_mode_flags;
+        /**
+         * Bitmask to indicate EKF internal faults
+         */
+        unsigned long filter_fault_flags;
+        /**
+         * 1-Sigma estimated horizontal position accuracy relative to the estimators origin (m)
+         */
+        float pos_horiz_accuracy;
+        /**
+         * 1-Sigma estimated vertical position accuracy relative to the estimators origin (m)
+         */
+        float pos_vert_accuracy;
+        /**
+         * low-pass filtered ratio of the largest heading innovation component to the innovation test limit
+         */
+        float hdg_test_ratio;
+        /**
+         * low-pass filtered ratio of the largest velocity innovation component to the innovation test limit
+         */
+        float vel_test_ratio;
+        /**
+         * low-pass filtered ratio of the largest horizontal position innovation component to the innovation test limit
+         */
+        float pos_test_ratio;
+        /**
+         * low-pass filtered ratio of the vertical position innovation to the innovation test limit
+         */
+        float hgt_test_ratio;
+        /**
+         * low-pass filtered ratio of the true airspeed innovation to the innovation test limit
+         */
+        float tas_test_ratio;
+        /**
+         * low-pass filtered ratio of the height above ground innovation to the innovation test limit
+         */
+        float hagl_test_ratio;
+        /**
+         * low-pass filtered ratio of the synthetic sideslip innovation to the innovation test limit
+         */
+        float beta_test_ratio;
+        /**
+         * Bitmask indicating which filter kinematic state outputs are valid for flight control use.
+         */
+        unsigned short solution_status_flags;
+        /**
+         * number of horizontal position reset events (allow to wrap if count exceeds 255)
+         */
+        octet reset_count_vel_ne;
+        /**
+         * number of vertical velocity reset events (allow to wrap if count exceeds 255)
+         */
+        octet reset_count_vel_d;
+        /**
+         * number of horizontal position reset events (allow to wrap if count exceeds 255)
+         */
+        octet reset_count_pos_ne;
+        /**
+         * number of vertical position reset events (allow to wrap if count exceeds 255)
+         */
+        octet reset_count_pod_d;
+        /**
+         * number of quaternion reset events (allow to wrap if count exceeds 255)
+         */
+        octet reset_count_quat;
+        /**
+         * cumulative amount of time in seconds that the EKF inertial calculation has slipped relative to system time
+         */
+        float time_slip;
+        boolean pre_flt_fail_innov_heading;
+        boolean pre_flt_fail_innov_height;
+        boolean pre_flt_fail_innov_pos_horiz;
+        boolean pre_flt_fail_innov_vel_horiz;
+        boolean pre_flt_fail_innov_vel_vert;
+        boolean pre_flt_fail_mag_field_disturbed;
+        unsigned long accel_device_id;
+        unsigned long gyro_device_id;
+        unsigned long baro_device_id;
+        unsigned long mag_device_id;
+        /**
+         * legacy local position estimator (LPE) flags
+         * Bitmask to indicate sensor health states (vel, pos, hgt)
+         */
+        octet health_flags;
+        /**
+         * Bitmask to indicate timeout flags (vel, pos, hgt)
+         */
+        octet timeout_flags;
+        float mag_inclination_deg;
+        float mag_inclination_ref_deg;
+        float mag_strength_gs;
+        float mag_strength_ref_gs;
+      };
+    };
+  };
+};
+
+#endif

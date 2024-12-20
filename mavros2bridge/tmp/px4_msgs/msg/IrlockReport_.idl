@@ -1,0 +1,44 @@
+#ifndef __px4_msgs__msg__IrlockReport__idl__
+#define __px4_msgs__msg__IrlockReport__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * IRLOCK_REPORT message data
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::IrlockReport_")
+      struct IrlockReport
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned short signature;
+        /**
+         * When looking along the optical axis of the camera, x points right, y points down, and z points along the optical axis.
+         * tan(theta), where theta is the angle between the target and the camera center of projection in camera x-axis
+         */
+        float pos_x;
+        /**
+         * tan(theta), where theta is the angle between the target and the camera center of projection in camera y-axis
+         */
+        float pos_y;
+        /**
+         * /** size of target along camera x-axis in units of tan(theta) **/
+         */
+        float size_x;
+        /**
+         * /** size of target along camera y-axis in units of tan(theta) **/
+         */
+        float size_y;
+      };
+    };
+  };
+};
+
+#endif

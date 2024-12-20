@@ -1,0 +1,46 @@
+#ifndef __px4_msgs__msg__PowerMonitor__idl__
+#define __px4_msgs__msg__PowerMonitor__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      /**
+       * power monitor message
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::PowerMonitor_")
+      struct PowerMonitor
+      {
+        /**
+         * Time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * Voltage in volts, 0 if unknown
+         */
+        float voltage_v;
+        /**
+         * Current in amperes, -1 if unknown
+         */
+        float current_a;
+        /**
+         * power in watts, -1 if unknown
+         */
+        float power_w;
+        short rconf;
+        short rsv;
+        short rbv;
+        short rp;
+        short rc;
+        short rcal;
+        short me;
+        short al;
+      };
+    };
+  };
+};
+
+#endif

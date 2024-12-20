@@ -1,0 +1,27 @@
+#ifndef __px4_msgs__msg__ParameterSetUsedRequest__idl__
+#define __px4_msgs__msg__ParameterSetUsedRequest__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      64;
+
+
+      /**
+       * ParameterSetUsedRequest : Used by a remote to update the used flag for a parameter on the primary
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::ParameterSetUsedRequest_")
+      struct ParameterSetUsedRequest
+      {
+        unsigned long long timestamp;
+        unsigned short parameter_index;
+      };
+    };
+  };
+};
+
+#endif

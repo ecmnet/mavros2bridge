@@ -1,0 +1,80 @@
+#ifndef __px4_msgs__msg__SensorCombined__idl__
+#define __px4_msgs__msg__SensorCombined__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * (0x7fffffff) If one of the relative timestamps is set to this value, it means the associated sensor values are invalid
+       */
+      const long RELATIVE_TIMESTAMP_INVALID =
+      2147483647;
+
+      const octet CLIPPING_X =
+      1;
+
+      const octet CLIPPING_Y =
+      2;
+
+      const octet CLIPPING_Z =
+      4;
+
+
+      /**
+       * Sensor readings in SI-unit form.
+       * These fields are scaled and offset-compensated where possible and do not
+       * change with board revisions and sensor updates.
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::SensorCombined_")
+      struct SensorCombined
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * gyro timstamp is equal to the timestamp of the message
+         * average angular rate measured in the FRD body frame XYZ-axis in rad/s over the last gyro sampling period
+         */
+        float gyro_rad[3];
+        /**
+         * gyro measurement sampling period in microseconds
+         */
+        unsigned long gyro_integral_dt;
+        /**
+         * timestamp + accelerometer_timestamp_relative = Accelerometer timestamp
+         */
+        long accelerometer_timestamp_relative;
+        /**
+         * average value acceleration measured in the FRD body frame XYZ-axis in m/s^2 over the last accelerometer sampling period
+         */
+        float accelerometer_m_s2[3];
+        /**
+         * accelerometer measurement sampling period in microseconds
+         */
+        unsigned long accelerometer_integral_dt;
+        /**
+         * bitfield indicating if there was any accelerometer clipping (per axis) during the integration time frame
+         */
+        octet accelerometer_clipping;
+        /**
+         * bitfield indicating if there was any gyro clipping (per axis) during the integration time frame
+         */
+        octet gyro_clipping;
+        /**
+         * Calibration changed counter. Monotonically increases whenever accelermeter calibration changes.
+         */
+        octet accel_calibration_count;
+        /**
+         * Calibration changed counter. Monotonically increases whenever rate gyro calibration changes.
+         */
+        octet gyro_calibration_count;
+      };
+    };
+  };
+};
+
+#endif

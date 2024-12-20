@@ -1,0 +1,62 @@
+#ifndef __px4_msgs__msg__PositionControllerLandingStatus__idl__
+#define __px4_msgs__msg__PositionControllerLandingStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * abort reasons
+       * after the manual operator abort, corresponds to individual bits of param FW_LND_ABORT
+       */
+      const octet NOT_ABORTED =
+      0;
+
+      const octet ABORTED_BY_OPERATOR =
+      1;
+
+      /**
+       * FW_LND_ABORT (1 << 0)
+       */
+      const octet TERRAIN_NOT_FOUND =
+      2;
+
+      /**
+       * FW_LND_ABORT (1 << 1)
+       */
+      const octet TERRAIN_TIMEOUT =
+      3;
+
+      const octet UNKNOWN_ABORT_CRITERION =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::PositionControllerLandingStatus_")
+      struct PositionControllerLandingStatus
+      {
+        /**
+         * [us] time since system start
+         */
+        unsigned long long timestamp;
+        /**
+         * [m] lateral touchdown position offset manually commanded during landing
+         */
+        float lateral_touchdown_offset;
+        /**
+         * true if the aircraft is flaring
+         */
+        boolean flaring;
+        /**
+         * abort status is:
+         * 0 if not aborted
+         * >0 if aborted, with the singular abort criterion which triggered the landing abort enumerated by the following abort reasons
+         */
+        octet abort_status;
+      };
+    };
+  };
+};
+
+#endif

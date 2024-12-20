@@ -1,0 +1,36 @@
+#ifndef __px4_msgs__msg__SensorHygrometer__idl__
+#define __px4_msgs__msg__SensorHygrometer__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorHygrometer_")
+      struct SensorHygrometer
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * Temperature provided by sensor (Celsius)
+         */
+        float temperature;
+        /**
+         * Humidity provided by sensor
+         */
+        float humidity;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,46 @@
+#ifndef __px4_msgs__msg__VehicleAttitudeSetpoint__idl__
+#define __px4_msgs__msg__VehicleAttitudeSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::VehicleAttitudeSetpoint_")
+      struct VehicleAttitudeSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * rad/s (commanded by user)
+         */
+        float yaw_sp_move_rate;
+        /**
+         * For quaternion-based attitude control
+         * Desired quaternion for quaternion control
+         */
+        float q_d[4];
+        /**
+         * For clarification: For multicopters thrust_body[0] and thrust[1] are usually 0 and thrust[2] is the negative throttle demand.
+         * For fixed wings thrust_x is the throttle demand and thrust_y, thrust_z will usually be zero.
+         * Normalized thrust command in body FRD frame [-1,1]
+         */
+        float thrust_body[3];
+        /**
+         * Reset roll/pitch/yaw integrals (navigation logic change)
+         */
+        boolean reset_integral;
+        /**
+         * control heading with steering wheel (used for auto takeoff on runway)
+         */
+        boolean fw_control_yaw_wheel;
+      };
+    };
+  };
+};
+
+#endif

@@ -1,0 +1,131 @@
+#ifndef __px4_msgs__msg__LedControl__idl__
+#define __px4_msgs__msg__LedControl__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * colors
+       * this is only used in the drivers
+       */
+      const octet COLOR_OFF =
+      0;
+
+      const octet COLOR_RED =
+      1;
+
+      const octet COLOR_GREEN =
+      2;
+
+      const octet COLOR_BLUE =
+      3;
+
+      const octet COLOR_YELLOW =
+      4;
+
+      const octet COLOR_PURPLE =
+      5;
+
+      const octet COLOR_AMBER =
+      6;
+
+      const octet COLOR_CYAN =
+      7;
+
+      const octet COLOR_WHITE =
+      8;
+
+      /**
+       * LED modes definitions
+       * turn LED off
+       */
+      const octet MODE_OFF =
+      0;
+
+      /**
+       * turn LED on
+       */
+      const octet MODE_ON =
+      1;
+
+      /**
+       * disable this priority (switch to lower priority setting)
+       */
+      const octet MODE_DISABLED =
+      2;
+
+      const octet MODE_BLINK_SLOW =
+      3;
+
+      const octet MODE_BLINK_NORMAL =
+      4;
+
+      const octet MODE_BLINK_FAST =
+      5;
+
+      /**
+       * continuously increase & decrease brightness (solid color if driver does not support it)
+       */
+      const octet MODE_BREATHE =
+      6;
+
+      /**
+       * two fast blinks (on/off) with timing as in MODE_BLINK_FAST and then off for a while
+       */
+      const octet MODE_FLASH =
+      7;
+
+      /**
+       * maximum priority (minimum is 0)
+       */
+      const octet MAX_PRIORITY =
+      2;
+
+      /**
+       * needs to match BOARD_MAX_LEDS
+       */
+      const octet ORB_QUEUE_LENGTH =
+      8;
+
+
+      /**
+       * LED control: control a single or multiple LED's.
+       * These are the externally visible LED's, not the board LED's
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::LedControl_")
+      struct LedControl
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * bitmask which LED(s) to control, set to 0xff for all
+         */
+        octet led_mask;
+        /**
+         * see COLOR_*
+         */
+        octet color;
+        /**
+         * see MODE_*
+         */
+        octet mode;
+        /**
+         * how many times to blink (number of on-off cycles if mode is one of MODE_BLINK_*) . Set to 0 for infinite
+         */
+        octet num_blinks;
+        /**
+         * in MODE_FLASH it is the number of cycles. Max number of blinks: 122 and max number of flash cycles: 20
+         * priority: higher priority events will override current lower priority events (see MAX_PRIORITY)
+         */
+        octet priority;
+      };
+    };
+  };
+};
+
+#endif

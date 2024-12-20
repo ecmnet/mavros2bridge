@@ -1,0 +1,45 @@
+#ifndef __px4_msgs__msg__LaunchDetectionStatus__idl__
+#define __px4_msgs__msg__LaunchDetectionStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * waiting for launch
+       */
+      const octet STATE_WAITING_FOR_LAUNCH =
+      0;
+
+      /**
+       * launch detected, but keep motor(s) disabled (e.g. because it can't spin freely while on catapult)
+       */
+      const octet STATE_LAUNCH_DETECTED_DISABLED_MOTOR =
+      1;
+
+      /**
+       * launch detected, use normal takeoff/flying configuration
+       */
+      const octet STATE_FLYING =
+      2;
+
+
+      /**
+       * Status of the launch detection state machine (fixed-wing only)
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::LaunchDetectionStatus_")
+      struct LaunchDetectionStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        octet launch_detection_state;
+      };
+    };
+  };
+};
+
+#endif

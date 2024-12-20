@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__EstimatorBias__idl__
+#define __px4_msgs__msg__EstimatorBias__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::EstimatorBias_")
+      struct EstimatorBias
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp of the raw data (microseconds)
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * estimated barometric altitude bias (m)
+         */
+        float bias;
+        /**
+         * estimated barometric altitude bias variance (m^2)
+         */
+        float bias_var;
+        /**
+         * innovation of the last measurement fusion (m)
+         */
+        float innov;
+        /**
+         * innovation variance of the last measurement fusion (m^2)
+         */
+        float innov_var;
+        /**
+         * normalized innovation squared test ratio
+         */
+        float innov_test_ratio;
+      };
+    };
+  };
+};
+
+#endif

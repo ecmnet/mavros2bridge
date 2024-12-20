@@ -1,0 +1,48 @@
+#ifndef __px4_msgs__msg__SensorsStatusImu__idl__
+#define __px4_msgs__msg__SensorsStatusImu__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorsStatusImu_")
+      struct SensorsStatusImu
+      {
+        /**
+         * 
+         * Sensor check metrics. This will be zero for a sensor that's primary or unpopulated.
+         * 
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * current primary accel device id for reference
+         */
+        unsigned long accel_device_id_primary;
+        unsigned_long accel_device_ids[4];
+        /**
+         * magnitude of acceleration difference between IMU instance and mean in m/s^2.
+         */
+        float accel_inconsistency_m_s_s[4];
+        boolean accel_healthy[4];
+        octet accel_priority[4];
+        /**
+         * current primary gyro device id for reference
+         */
+        unsigned long gyro_device_id_primary;
+        unsigned_long gyro_device_ids[4];
+        /**
+         * magnitude of angular rate difference between IMU instance and mean in (rad/s).
+         */
+        float gyro_inconsistency_rad_s[4];
+        boolean gyro_healthy[4];
+        octet gyro_priority[4];
+      };
+    };
+  };
+};
+
+#endif

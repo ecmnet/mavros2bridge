@@ -1,0 +1,150 @@
+#ifndef __px4_msgs__msg__PositionSetpoint__idl__
+#define __px4_msgs__msg__PositionSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * position setpoint
+       */
+      const octet SETPOINT_TYPE_POSITION =
+      0;
+
+      /**
+       * velocity setpoint
+       */
+      const octet SETPOINT_TYPE_VELOCITY =
+      1;
+
+      /**
+       * loiter setpoint
+       */
+      const octet SETPOINT_TYPE_LOITER =
+      2;
+
+      /**
+       * takeoff setpoint
+       */
+      const octet SETPOINT_TYPE_TAKEOFF =
+      3;
+
+      /**
+       * land setpoint, altitude must be ignored, descend until landing
+       */
+      const octet SETPOINT_TYPE_LAND =
+      4;
+
+      /**
+       * do nothing, switch off motors or keep at idle speed (MC)
+       */
+      const octet SETPOINT_TYPE_IDLE =
+      5;
+
+      /**
+       * Circular pattern
+       */
+      const octet LOITER_TYPE_ORBIT =
+      0;
+
+      /**
+       * Pattern resembling an 8
+       */
+      const octet LOITER_TYPE_FIGUREEIGHT =
+      1;
+
+
+      /**
+       * this file is only used in the position_setpoint triple as a dependency
+       */
+      @TypeCode(type="px4_msgs::msg::dds_::PositionSetpoint_")
+      struct PositionSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * true if setpoint is valid
+         */
+        boolean valid;
+        /**
+         * setpoint type to adjust behavior of position controller
+         */
+        octet type;
+        /**
+         * local velocity setpoint in m/s in NED
+         */
+        float vx;
+        /**
+         * local velocity setpoint in m/s in NED
+         */
+        float vy;
+        /**
+         * local velocity setpoint in m/s in NED
+         */
+        float vz;
+        /**
+         * latitude, in deg
+         */
+        double lat;
+        /**
+         * longitude, in deg
+         */
+        double lon;
+        /**
+         * altitude AMSL, in m
+         */
+        float alt;
+        /**
+         * yaw (only in hover), in rad [-PI..PI), NaN = leave to flight task
+         */
+        float yaw;
+        /**
+         * loiter major axis radius in m
+         */
+        float loiter_radius;
+        /**
+         * loiter minor axis radius (used for non-circular loiter shapes) in m
+         */
+        float loiter_minor_radius;
+        /**
+         * loiter direction is clockwise by default and can be changed using this field
+         */
+        boolean loiter_direction_counter_clockwise;
+        /**
+         * Orientation of the major axis with respect to true north in rad [-pi,pi)
+         */
+        float loiter_orientation;
+        /**
+         * loitern pattern to follow
+         */
+        octet loiter_pattern;
+        /**
+         * horizontal acceptance_radius (meters)
+         */
+        float acceptance_radius;
+        /**
+         * vertical acceptance radius, only used for fixed wing guidance, NAN = let guidance choose (meters)
+         */
+        float alt_acceptance_radius;
+        /**
+         * the generally desired cruising speed (not a hard constraint)
+         */
+        float cruising_speed;
+        /**
+         * commands the vehicle to glide if the capability is available (fixed wing only)
+         */
+        boolean gliding_enabled;
+        /**
+         * the generally desired cruising throttle (not a hard constraint), only has an effect for rover
+         */
+        float cruising_throttle;
+      };
+    };
+  };
+};
+
+#endif

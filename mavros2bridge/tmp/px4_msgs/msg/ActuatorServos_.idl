@@ -1,0 +1,35 @@
+#ifndef __px4_msgs__msg__ActuatorServos__idl__
+#define __px4_msgs__msg__ActuatorServos__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet NUM_CONTROLS =
+      8;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ActuatorServos_")
+      struct ActuatorServos
+      {
+        /**
+         * Servo control message
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * the timestamp the data this control response is based on was sampled
+         */
+        unsigned long long timestamp_sample;
+        /**
+         * range: [-1, 1], where 1 means maximum positive position,
+         */
+        float control[8];
+      };
+    };
+  };
+};
+
+#endif

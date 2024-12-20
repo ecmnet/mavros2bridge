@@ -1,0 +1,43 @@
+#ifndef __px4_msgs__msg__RoverAckermannSetpoint__idl__
+#define __px4_msgs__msg__RoverAckermannSetpoint__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RoverAckermannSetpoint_")
+      struct RoverAckermannSetpoint
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * [m/s] Desired speed in body x direction. Positiv: forwards, Negativ: backwards
+         */
+        float forward_speed_setpoint;
+        /**
+         * [-1, 1] Desired normalized speed in body x direction. Positiv: forwards, Negativ: backwards
+         */
+        float forward_speed_setpoint_normalized;
+        /**
+         * [rad] Desired steering angle
+         */
+        float steering_setpoint;
+        /**
+         * [-1, 1] Desired normalized steering angle
+         */
+        float steering_setpoint_normalized;
+        /**
+         * [m/s^2] Desired acceleration in body y direction. Positiv: right, Negativ: left.
+         */
+        float lateral_acceleration_setpoint;
+      };
+    };
+  };
+};
+
+#endif

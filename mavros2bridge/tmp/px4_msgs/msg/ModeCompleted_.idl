@@ -1,0 +1,45 @@
+#ifndef __px4_msgs__msg__ModeCompleted__idl__
+#define __px4_msgs__msg__ModeCompleted__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet RESULT_SUCCESS =
+      0;
+
+      /**
+       * [1-99]: reserved
+       * Mode failed (generic error)
+       */
+      const octet RESULT_FAILURE_OTHER =
+      100;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::ModeCompleted_")
+      struct ModeCompleted
+      {
+        /**
+         * Mode completion result, published by an active mode.
+         * The possible values of nav_state are defined in the VehicleStatus msg.
+         * Note that this is not always published (e.g. when a user switches modes or on
+         * failsafe activation)
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * One of RESULT_*
+         */
+        octet result;
+        /**
+         * Source mode (values in VehicleStatus)
+         */
+        octet nav_state;
+      };
+    };
+  };
+};
+
+#endif

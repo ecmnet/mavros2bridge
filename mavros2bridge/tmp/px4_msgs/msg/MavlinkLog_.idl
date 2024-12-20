@@ -1,0 +1,31 @@
+#ifndef __px4_msgs__msg__MavlinkLog__idl__
+#define __px4_msgs__msg__MavlinkLog__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      8;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::MavlinkLog_")
+      struct MavlinkLog
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        char text[127];
+        /**
+         * log level (same as in the linux kernel, starting with 0)
+         */
+        octet severity;
+      };
+    };
+  };
+};
+
+#endif

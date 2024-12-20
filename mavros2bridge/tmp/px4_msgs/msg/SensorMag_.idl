@@ -1,0 +1,48 @@
+#ifndef __px4_msgs__msg__SensorMag__idl__
+#define __px4_msgs__msg__SensorMag__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      const octet ORB_QUEUE_LENGTH =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::SensorMag_")
+      struct SensorMag
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        unsigned long long timestamp_sample;
+        /**
+         * unique device ID for the sensor that does not change between power cycles
+         */
+        unsigned long device_id;
+        /**
+         * magnetic field in the FRD board frame X-axis in Gauss
+         */
+        float x;
+        /**
+         * magnetic field in the FRD board frame Y-axis in Gauss
+         */
+        float y;
+        /**
+         * magnetic field in the FRD board frame Z-axis in Gauss
+         */
+        float z;
+        /**
+         * temperature in degrees Celsius
+         */
+        float temperature;
+        unsigned long error_count;
+      };
+    };
+  };
+};
+
+#endif

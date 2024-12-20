@@ -1,0 +1,73 @@
+#ifndef __px4_msgs__msg__RtlStatus__idl__
+#define __px4_msgs__msg__RtlStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+      /**
+       * pending if evaluation can't pe performed currently e.g. when it is still loading the safe points
+       */
+      const octet RTL_STATUS_TYPE_NONE =
+      0;
+
+      /**
+       * chosen to directly go to a safe point or home position
+       */
+      const octet RTL_STATUS_TYPE_DIRECT_SAFE_POINT =
+      1;
+
+      /**
+       * going straight to the beginning of the mission landing
+       */
+      const octet RTL_STATUS_TYPE_DIRECT_MISSION_LAND =
+      2;
+
+      /**
+       * Following the mission from start index to mission landing. Start index is current WP if in Mission mode, and closest WP otherwise.
+       */
+      const octet RTL_STATUS_TYPE_FOLLOW_MISSION =
+      3;
+
+      /**
+       * Following the mission in reverse from start index to the beginning of the mission. Start index is previous WP if in Mission mode, and closest WP otherwise.
+       */
+      const octet RTL_STATUS_TYPE_FOLLOW_MISSION_REVERSE =
+      4;
+
+
+      @TypeCode(type="px4_msgs::msg::dds_::RtlStatus_")
+      struct RtlStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * unique ID of active set of safe_point_items
+         */
+        unsigned long safe_points_id;
+        /**
+         * flag if the RTL point needs reevaluation (e.g. new safe points available, but need loading).
+         */
+        boolean is_evaluation_pending;
+        /**
+         * flag if approaches are defined for current RTL_TYPE parameter setting
+         */
+        boolean has_vtol_approach;
+        /**
+         * Type of RTL chosen
+         */
+        octet rtl_type;
+        /**
+         * index of the chosen safe point, if in RTL_STATUS_TYPE_DIRECT_SAFE_POINT mode
+         */
+        octet safe_point_index;
+      };
+    };
+  };
+};
+
+#endif

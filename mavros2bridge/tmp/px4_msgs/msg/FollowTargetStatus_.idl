@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__FollowTargetStatus__idl__
+#define __px4_msgs__msg__FollowTargetStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::FollowTargetStatus_")
+      struct FollowTargetStatus
+      {
+        /**
+         * [microseconds] time since system start
+         */
+        unsigned long long timestamp;
+        /**
+         * [rad] Tracked target course in NED local frame (North is course zero)
+         */
+        float tracked_target_course;
+        /**
+         * [rad] Current follow angle setting
+         */
+        float follow_angle;
+        /**
+         * [rad] Current orbit angle setpoint from the smooth trajectory generator
+         */
+        float orbit_angle_setpoint;
+        /**
+         * [rad/s] Angular rate commanded from Jerk-limited Orbit Angle trajectory for Orbit Angle
+         */
+        float angular_rate_setpoint;
+        /**
+         * [m] Raw 'idealistic' desired drone position if a drone could teleport from place to places
+         */
+        float desired_position_raw[3];
+        /**
+         * [bool] True when doing emergency ascent (when distance to ground is below safety altitude)
+         */
+        boolean in_emergency_ascent;
+        /**
+         * [rad] Gimbal pitch commanded to track target in the center of the frame
+         */
+        float gimbal_pitch;
+      };
+    };
+  };
+};
+
+#endif

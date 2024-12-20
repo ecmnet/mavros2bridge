@@ -1,0 +1,51 @@
+#ifndef __px4_msgs__msg__RadioStatus__idl__
+#define __px4_msgs__msg__RadioStatus__idl__
+
+module px4_msgs
+{
+  module msg
+  {
+    module dds
+    {
+
+      @TypeCode(type="px4_msgs::msg::dds_::RadioStatus_")
+      struct RadioStatus
+      {
+        /**
+         * time since system start (microseconds)
+         */
+        unsigned long long timestamp;
+        /**
+         * local signal strength
+         */
+        octet rssi;
+        /**
+         * remote signal strength
+         */
+        octet remote_rssi;
+        /**
+         * how full the tx buffer is as a percentage
+         */
+        octet txbuf;
+        /**
+         * background noise level
+         */
+        octet noise;
+        /**
+         * remote background noise level
+         */
+        octet remote_noise;
+        /**
+         * receive errors
+         */
+        unsigned short rxerrors;
+        /**
+         * count of error corrected packets
+         */
+        unsigned short fix;
+      };
+    };
+  };
+};
+
+#endif
