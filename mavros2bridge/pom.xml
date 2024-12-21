@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.comino</groupId>
   <artifactId>mavros2bridge</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -11,7 +11,11 @@
 	</properties>
   
   <dependencies>
-
+      <dependency>
+			<groupId>com.comino</groupId>
+			<artifactId>mavcom</artifactId>
+			<version>0.0.1</version>
+	  </dependency>
       <dependency>
          <groupId>us.ihmc</groupId>
          <artifactId>ros2-msg-to-idl-generator</artifactId>
@@ -33,28 +37,9 @@
 			<artifactId>ros2-common-interfaces</artifactId>
 			<version>0.24.5</version>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-swing</artifactId>
-			<version>16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-media</artifactId>
-			<version>16</version>
-		</dependency>
 	</dependencies>
 	
+<!--
 	<build>
 		<plugins>
 			<plugin>
@@ -93,5 +78,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+	-->
 </project>

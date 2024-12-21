@@ -1,7 +1,5 @@
 package com.comino.mavros2bridge;
 
-import java.net.InetAddress;
-
 import com.eprosima.xmlschemas.fastrtps_profiles.DurabilityQosKindPolicyType;
 import com.eprosima.xmlschemas.fastrtps_profiles.HistoryQosKindPolicyType;
 import com.eprosima.xmlschemas.fastrtps_profiles.ReliabilityQosKindPolicyType;
@@ -9,9 +7,7 @@ import com.eprosima.xmlschemas.fastrtps_profiles.ReliabilityQosKindPolicyType;
 import std_msgs.msg.dds.StringPubSubType;
 import us.ihmc.pubsub.DomainFactory;
 import us.ihmc.pubsub.common.SampleInfo;
-import us.ihmc.ros2.QueuedROS2Subscription;
 import us.ihmc.ros2.ROS2Node;
-import us.ihmc.ros2.ROS2NodeInterface;
 import us.ihmc.ros2.ROS2Publisher;
 import us.ihmc.ros2.ROS2QosProfile;
 
@@ -22,7 +18,7 @@ public class MavROS2Bridge {
 		std_msgs.msg.dds.String message = new std_msgs.msg.dds.String();
 		std_msgs.msg.dds.String sending = new std_msgs.msg.dds.String();
 		
-		px4_msgs.msg.dds.VehicleLocalPosition sensors = new px4_msgs.msg.dds.VehicleLocalPosition( );
+		px4_msgs.msg.dds.EstimatorStatusFlags sensors = new px4_msgs.msg.dds.EstimatorStatusFlags( );
 
 		SampleInfo info = new SampleInfo();
 		ROS2Node node = new ROS2Node(DomainFactory.getDefaultDomain(),"javaNode");
@@ -38,11 +34,11 @@ public class MavROS2Bridge {
 			}
 		},"/chatter",ROS2QosProfile.RELIABLE());
 		
-		node.createSubscription(new px4_msgs.msg.dds.VehicleLocalPositionPubSubType(), subscriber -> {
+		node.createSubscription(new px4_msgs.msg.dds.EstimatorStatusFlagsPubSubType(), subscriber -> {
 			if (subscriber.takeNextData(sensors, info)) {
-				System.err.println("Sensor: "+sensors.z_);
+				System.err.println("Sensor: "+sensors.cs_ev_vel_);
 			}
-		},"/fmu/out/vehicle_local_position",MavROS2Bridge.getProfile());
+		},"/fmu/out/estimator_status_flags",MavROS2Bridge.getProfile());
 
 
 		// Publisher
