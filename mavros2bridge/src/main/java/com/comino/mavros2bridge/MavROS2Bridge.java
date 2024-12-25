@@ -5,6 +5,7 @@ import com.eprosima.xmlschemas.fastrtps_profiles.HistoryQosKindPolicyType;
 import com.eprosima.xmlschemas.fastrtps_profiles.ReliabilityQosKindPolicyType;
 
 import std_msgs.msg.dds.StringPubSubType;
+import us.ihmc.log.LogTools;
 import us.ihmc.pubsub.DomainFactory;
 import us.ihmc.pubsub.common.SampleInfo;
 import us.ihmc.ros2.ROS2Node;
@@ -30,13 +31,13 @@ public class MavROS2Bridge {
 		// Callback subscriber
 		node.createSubscription(new StringPubSubType(), subscriber -> {
 			if (subscriber.takeNextData(message, info)) {
-				System.err.println("Text: "+message.getData().toString());
+				LogTools.info("Text: "+message.getData().toString());
 			}
 		},"/chatter",ROS2QosProfile.RELIABLE());
 		
 		node.createSubscription(new px4_msgs.msg.dds.EstimatorStatusFlagsPubSubType(), subscriber -> {
 			if (subscriber.takeNextData(sensors, info)) {
-				System.err.println("Sensor: "+sensors.cs_ev_vel_);
+				LogTools.info("Sensor: "+sensors.cs_ev_vel_);
 			}
 		},"/fmu/out/estimator_status_flags",MavROS2Bridge.getProfile());
 
