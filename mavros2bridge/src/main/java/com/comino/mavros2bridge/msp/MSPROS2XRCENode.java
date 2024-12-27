@@ -2,16 +2,16 @@ package com.comino.mavros2bridge.msp;
 
 import java.util.ArrayList;
 
-import org.mavlink.messages.MAV_MODE;
 
 import com.comino.mavcom.control.IMAVController;
 import com.comino.mavcom.model.DataModel;
 import com.comino.mavcom.model.segment.Vision;
-import com.comino.mavros2bridge.msp.callbacks.IModeCompletedCallback;
+import com.comino.mavros2bridge.msp.callbacks.xrce.IModeCompletedCallback;
 import com.eprosima.xmlschemas.fastrtps_profiles.DurabilityQosKindPolicyType;
 import com.eprosima.xmlschemas.fastrtps_profiles.HistoryQosKindPolicyType;
 import com.eprosima.xmlschemas.fastrtps_profiles.ReliabilityQosKindPolicyType;
 
+import georegression.struct.point.Point3D_F32;
 import us.ihmc.log.LogTools;
 import us.ihmc.pubsub.DomainFactory;
 import us.ihmc.pubsub.common.SampleInfo;
@@ -19,42 +19,46 @@ import us.ihmc.ros2.ROS2Node;
 import us.ihmc.ros2.ROS2Publisher;
 import us.ihmc.ros2.ROS2QosProfile;
 
-public class MSPROS2Node {
+public class MSPROS2XRCENode {
 
-	private static MSPROS2Node instance;
+	private static MSPROS2XRCENode instance;
 
 	private final ROS2Node  node;
 	private final DataModel model;
 
+	private ROS2Publisher<px4_msgs.msg.dds.TrajectorySetpoint>           pubTrajectorySetpoint;
+	private px4_msgs.msg.dds.TrajectorySetpoint                          msgTrajectorySetpoint = new  px4_msgs.msg.dds.TrajectorySetpoint( );
 
 	private ROS2Publisher<px4_msgs.msg.dds.VehicleLocalPositionSetpoint> pubVehicleLocalPositionSetpoint;
 	private px4_msgs.msg.dds.VehicleLocalPositionSetpoint                msgVehicleLocalPositionSetpoint = new  px4_msgs.msg.dds.VehicleLocalPositionSetpoint( );
 
 	private ROS2Publisher<px4_msgs.msg.dds.OffboardControlMode>          pubOffboardControlMode;
 	private px4_msgs.msg.dds.OffboardControlMode                         msgOffboardControlMode = new  px4_msgs.msg.dds.OffboardControlMode( );
-	
+
 	private ArrayList<IModeCompletedCallback>                            modeCompletedListeners   = new ArrayList<IModeCompletedCallback>( );
-	
+
 	private long tms_vision_old;
 	private int  nav_state_old;
 
-	public static MSPROS2Node getInstance(IMAVController control) {
+	public static MSPROS2XRCENode getInstance(IMAVController control) {
 		if(instance == null) {
-			instance = new MSPROS2Node(control);
+			instance = new MSPROS2XRCENode(control);
 		}
 		return instance;
 	}
 
-	public static MSPROS2Node getInstance() {
+	public static MSPROS2XRCENode getInstance() {
 		return instance;
 	}
 
-	private MSPROS2Node(IMAVController control) {
-		this.node       = new ROS2Node(DomainFactory.getDefaultDomain(),"MSPRos2Node");
+	private MSPROS2XRCENode(IMAVController control) {
+		this.node       = new ROS2Node(DomainFactory.getDefaultDomain(),"MSPRos2XRCENode");
 		this.model      = control.getCurrentModel();
 
 		this.vehicle_subscription_setup();
 		this.vehicle_publisher_setup( );
+		
+		LogTools.info("ROS2 XRCE DDS node started");
 	}
 
 	public ROS2Node getNode() {
@@ -73,6 +77,20 @@ public class MSPROS2Node {
 		LogTools.debug("Publish:"+msgVehicleLocalPositionSetpoint);
 	}
 
+	public void publishRos2TrajectorySetpoint(Point3D_F32 pos, Point3D_F32 vel, Point3D_F32 acc, Point3D_F32 jrk, Float yaw, Float yaw_speed ) {
+		for(int i=0; i<3;i++) {
+			msgTrajectorySetpoint.position_[i]     = pos.getIdx(i);
+			msgTrajectorySetpoint.velocity_[i]     = vel.getIdx(i);
+			msgTrajectorySetpoint.acceleration_[i] = acc.getIdx(i);
+			msgTrajectorySetpoint.jerk_[i]         = jrk.getIdx(i);
+		}
+		msgTrajectorySetpoint.yaw_        = yaw;
+		msgTrajectorySetpoint.yawspeed_   = yaw_speed;
+		msgTrajectorySetpoint.timestamp_ = DataModel.getSynchronizedPX4Time_us();
+		pubTrajectorySetpoint.publish(msgTrajectorySetpoint);
+		LogTools.debug("Publish:"+msgTrajectorySetpoint);
+	}
+
 	public void publishRos2ffboardControlMode( boolean pos, boolean vel, boolean acc) {
 		msgOffboardControlMode.position_          = pos;
 		msgOffboardControlMode.velocity_          = vel;
@@ -83,11 +101,11 @@ public class MSPROS2Node {
 		pubOffboardControlMode.publish(msgOffboardControlMode);
 		LogTools.debug("Publish:"+pubOffboardControlMode);
 	}
-	
+
 	public ArrayList<IModeCompletedCallback> getModeCompletedListeners( ) {
 		return modeCompletedListeners;
 	}
-	
+
 
 	private void vehicle_subscription_setup() {
 
@@ -124,17 +142,17 @@ public class MSPROS2Node {
 			}
 		},"/fmu/out/vehicle_odometry",profile);
 		LogTools.info("Register subscriber: "+vehicleOdometry.getClass().getName());
-		
+
 		// TimeSync Status
 		px4_msgs.msg.dds.TimesyncStatus timesyncStatus = new px4_msgs.msg.dds.TimesyncStatus( );
 		node.createSubscription(new px4_msgs.msg.dds.TimesyncStatusPubSubType(), subscriber -> {
 			if (subscriber.takeNextData(timesyncStatus, info)) {
-				DataModel.t_offset_ms = timesyncStatus.estimated_offset_;
-			//	LogTools.info("Timesync roundtrip: "+timesyncStatus.round_trip_time_);
+				System.err.println("XRC "+timesyncStatus.estimated_offset_);
+				//	LogTools.info("Timesync roundtrip: "+timesyncStatus.round_trip_time_);
 			}
 		},"fmu/out/timesync_status",profile);
 		LogTools.info("Register subscriber: "+timesyncStatus.getClass().getName());
-		
+
 
 		// EstimatorStatusFlags
 		px4_msgs.msg.dds.EstimatorStatusFlags estStatusFlags = new px4_msgs.msg.dds.EstimatorStatusFlags( );
@@ -146,18 +164,18 @@ public class MSPROS2Node {
 			}
 		},"/fmu/out/estimator_status_flags",profile);
 		LogTools.info("Register subscriber: "+estStatusFlags.getClass().getName());
-		
+
 		// Failsafe flags 
 		px4_msgs.msg.dds.FailsafeFlags failsafeFlags = new px4_msgs.msg.dds.FailsafeFlags( );
 		node.createSubscription(new px4_msgs.msg.dds.FailsafeFlagsPubSubType(), subscriber -> {
 			if (subscriber.takeNextData(failsafeFlags, info)) {
-				
+
 				// TODO MSP Actions required when failsafe is triggered
-				
+
 			}
 		},"/fmu/out/failsafe_flags",profile);
 		LogTools.info("Register subscriber: "+failsafeFlags.getClass().getName());
-		
+
 
 		// Mode completed - Note: Topics sometimes triggered more than once
 		px4_msgs.msg.dds.ModeCompleted modeCompleted = new px4_msgs.msg.dds.ModeCompleted( );
@@ -167,7 +185,7 @@ public class MSPROS2Node {
 					for(var listener : modeCompletedListeners)
 						listener.changed(modeCompleted.nav_state_);
 				}
-			    nav_state_old = modeCompleted.nav_state_;
+				nav_state_old = modeCompleted.nav_state_;
 			}
 		},"/fmu/out/mode_completed",profile);
 		LogTools.info("Register subscriber: "+modeCompleted.getClass().getName());
@@ -182,9 +200,15 @@ public class MSPROS2Node {
 				"/fmu/in/vehicle_local_position",profile);
 		LogTools.info("Register publisher: "+msgVehicleLocalPositionSetpoint.getClass().getName());
 
+		this.pubTrajectorySetpoint =  (ROS2Publisher<px4_msgs.msg.dds.TrajectorySetpoint>) node.createPublisher(new px4_msgs.msg.dds.TrajectorySetpointPubSubType(), 
+				"/fmu/in/vehicle_trajectory_setpoint",profile);
+		LogTools.info("Register publisher: "+msgTrajectorySetpoint.getClass().getName());
+
+
 		this.pubOffboardControlMode =  (ROS2Publisher<px4_msgs.msg.dds.OffboardControlMode>) node.createPublisher(new px4_msgs.msg.dds.OffboardControlModePubSubType(), 
-				"/fmu/in//fmu/in/offboard_control_mode",profile);
+				"fmu/in/offboard_control_mode",profile);
 		LogTools.info("Register publisher: "+msgOffboardControlMode.getClass().getName());
+
 	}
 
 
